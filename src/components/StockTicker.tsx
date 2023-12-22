@@ -1,0 +1,131 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Marquee from "react-fast-marquee";
+
+interface Stock {
+  symbol: string;
+  price: number;
+  change: number;
+  changePercent: number;
+}
+
+const StockTickerItem: React.FC<{ symbol: string; stock: Stock }> = ({
+  symbol,
+  stock,
+}) => {
+  return (
+    <div className="inline-flex flex-row gap-3 items-center justify-center mx-2">
+      <span className="font-bold text-white">{symbol}</span>
+      <span
+        className={`text-sm ${
+          stock.change < 0 ? "text-red-500" : "text-green-500"
+        }`}
+      >
+        ${stock.price.toFixed(2)}
+      </span>
+      <span
+        className={`text-xs ${
+          stock.change < 0 ? "text-red-500" : "text-green-500"
+        }`}
+      >
+        ({stock.changePercent.toFixed(2)}%)
+      </span>
+    </div>
+  );
+};
+
+const sliderSettings = {
+  dots: false,
+  infinite: true,
+  speed: 1000,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 1000,
+  cssEase: "linear",
+  variableWidth: true,
+  pauseOnHover: false,
+};
+
+const stockSymbols: string[] = [
+  "TME",
+  "BZ",
+  "LI",
+  "NTES",
+  "ZTO",
+  "BABA",
+  "BIDU",
+  "TCOM",
+  "TAL",
+  "YUMC",
+];
+const StockTicker: React.FC<{ className?: string }> = ({ className }) => {
+  const [stocks, setStocks] = useState<Stock[]>([]);
+  const tickerClass = `relative overflow-hidden bg-black ${className || ""}`;
+
+  useEffect(() => {
+    const fetchStocks = async () => {
+      try {
+        const apiKey = "YOUR_ALPHA_VANTAGE_API_KEY"; // Replace with your API key
+        const promises = stockSymbols.map((symbol) =>
+          fetch(
+            `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=I1FMEDI5HTYFX6TF`
+          ).then((response) => response.json())
+        );
+
+        const results = await Promise.all(promises);
+        const transformedData = results
+          .map((result, index) => {
+            const quote = result["Global Quote"];
+            if (quote) {
+              const price = parseFloat(quote["05. price"]) || 0;
+              const previousClose =
+                parseFloat(quote["08. previous close"]) || 0;
+              const change = price - previousClose;
+              const changePercent =
+                previousClose !== 0 ? (change / previousClose) * 100 : 0;
+
+              return {
+                symbol: stockSymbols[index],
+                price,
+                change,
+                changePercent,
+              };
+            }
+            return null;
+          })
+          .filter((stock) => stock !== null);
+
+        setStocks(transformedData as Stock[]);
+      } catch (error) {
+        console.error("Error fetching stock data:", error);
+      }
+    };
+
+    fetchStocks();
+  }, []);
+  console.log(stocks);
+
+  return (
+    <div className={tickerClass}>
+      <Marquee pauseOnHover={false} gradient={false} speed={100}>
+        {[...stocks, ...stocks].map(
+          (stock, index) =>
+            stock && (
+              <StockTickerItem
+                key={index}
+                symbol={stock.symbol}
+                stock={stock}
+              />
+            )
+        )}
+      </Marquee>
+    </div>
+  );
+};
+
+export default StockTicker;
