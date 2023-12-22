@@ -94,7 +94,7 @@ export default async function CategoryFeatures({
         <div className="relative w-full h-80 mb-8 rounded-lg shadow-lg">
           {" "}
           {/* Enhanced shadow */}
-          <div className="absolute inset-0 overflow-hidden 6 w-full group-hover:scale-105 transition-all duration-500 opacity-100">
+          <div className="absolute inset-0 overflow-hidden  w-full group-hover:scale-105 transition-all duration-500 opacity-100">
             <Image
               src={articles[0].attributes.image?.data?.attributes?.url}
               alt={articles[0].attributes.title}
