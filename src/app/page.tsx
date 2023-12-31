@@ -1,12 +1,12 @@
 import Header from "../components/Header";
-import ArticlesServerComponent from "./ArticlesServerComponent";
+import BentoArticles from "./BentoArticles";
 import CategoryFeatures from "./categoryFeatures";
 import Footer from "../components/Footer";
 export default function Home() {
   return (
     <main>
       <Header />
-      <ArticlesServerComponent />
+      <BentoArticles />
       <CategoryFeatures collection="Politik" />
       <CategoryFeatures collection="Wirtschaft" />
       <CategoryFeatures collection="Kultur" />

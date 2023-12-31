@@ -82,7 +82,7 @@ export default function Header() {
               <input
                 type="text"
                 placeholder="Search here..."
-                className="w-full rounded-xl border border-gray-300 bg-white py-2 pl-12 pr-5 text-black placeholder-gray-400 outline-none focus:border-gray-400 focus-visible:shadow-none "
+                className="w-full rounded-lg border border-gray-300 bg-white py-2 pl-12 pr-5 text-black placeholder-gray-400 outline-none focus:border-gray-400 focus-visible:shadow-none "
               />
               <button className="absolute left-4 top-1/2 -translate-y-1/2">
                 <FaSearch />

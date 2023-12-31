@@ -1,42 +1,10 @@
-import React, { FC, useEffect, useState } from "react";
 import Image from "next/image";
+import fetchArticles from "./helpers/fetch-articles";
+import Link from "next/link";
+import { Article } from "./types/Article";
 
-type Article = {
-  id: number;
-  attributes: {
-    title: string;
-    text: string;
-    updatedAt: string; // Assuming createdAt is a string date
-    Headline: boolean; // Added Headline property
-    image: {
-      data: {
-        attributes: {
-          url: string;
-          width: number;
-          height: number;
-        };
-      };
-    };
-  };
-};
-
-const fetchArticles = async (): Promise<Article[]> => {
-  const response = await fetch(
-    "https://jellyfish-app-qw7fr.ondigitalocean.app/api/articles?populate=*&filters[HeroBreaking][$eq]=true&sort=createdAt:desc",
-    {
-      cache: "no-store",
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-      },
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error(`Error: ${response.status}`);
-  }
-
-  const jsonData = await response.json();
-  var articles = jsonData.data;
+const fetchHomeArticles = async (): Promise<Article[]> => {
+  const articles = await fetchArticles(`filters[HeroBreaking][$eq]=true`);
 
   // Sort articles by 'updatedAt' descending
   articles.sort(
@@ -59,10 +27,8 @@ const fetchArticles = async (): Promise<Article[]> => {
 
   // Re-sort to ensure the headline is first
   articles.sort(
-    (
-      a: { attributes: { Headline: number } },
-      b: { attributes: { Headline: number } }
-    ) => b.attributes.Headline - a.attributes.Headline
+    (a: Article, b: Article) =>
+      Number(b.attributes.Headline) - Number(a.attributes.Headline)
   );
 
   // Remove the oldest non-headline article if count exceeds 5
@@ -121,16 +87,26 @@ const updateArticle = async (articleId: number, updatedData: object) => {
   }
 };
 
-export default async function ArticlesServerComponent() {
-  const articles = await fetchArticles();
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
+
+export default async function BentoArticles() {
+  const articles = await fetchHomeArticles();
 
   return (
     <div className="container mx-auto my-5">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
         {articles.map((article, index) => (
-          <div
+          <Link
+            href={`/${article.attributes.collection.data.attributes.slug}/${article.attributes.slug}`}
             key={article.id}
-            className={`group relative rounded-xl overflow-hidden shadow-lg ${
+            className={`group relative rounded-lg overflow-hidden shadow-lg ${
               index === 0 ? "sm:col-span-2 lg:col-span-2 lg:row-span-2" : ""
             }`}
             style={{
@@ -138,7 +114,6 @@ export default async function ArticlesServerComponent() {
             }}
           >
             <div className="absolute inset-0 overflow-hidden  w-full group-hover:scale-105 transition-all duration-500 ">
-              {" "}
               <Image
                 src={article.attributes.image?.data?.attributes?.url}
                 alt={article.attributes.title}
@@ -148,6 +123,9 @@ export default async function ArticlesServerComponent() {
               />
             </div>
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-800 to-transparent p-6">
+              <div className="text-white text-sm">
+                {formatDate(article.attributes.updatedAt)}
+              </div>
               <h1
                 className={`text-xl ${
                   index === 0 ? "sm:text-2xl" : "sm:text-lg"
@@ -155,11 +133,11 @@ export default async function ArticlesServerComponent() {
               >
                 {article.attributes.title}
               </h1>
-              <p className="text-white text-base sm:text-lg truncate leading-relaxed">
+              <h3 className="text-white text-base sm:text-lg truncate leading-relaxed">
                 {article.attributes.text}
-              </p>
+              </h3>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
