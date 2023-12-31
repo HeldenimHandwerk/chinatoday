@@ -20,7 +20,6 @@ const fetchHomeArticles = async (): Promise<Article[]> => {
 
   // If there's more than one headline, update the older one
   if (headlineArticles.length > 1) {
-    console.log(headlineArticles);
     await updateHeadlineStatus(headlineArticles[1].id); // Remove headline status from the old headline
     headlineArticles[1].attributes.Headline = false; // Update local state
   }

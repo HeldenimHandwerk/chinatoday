@@ -1,4 +1,5 @@
 export type Article = {
+  slice(arg0: number, arg1: number): unknown;
   id: number;
   attributes: {
     title: string;

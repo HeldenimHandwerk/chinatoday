@@ -156,7 +156,7 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
             </div>
           )}
 
-          <div className="text-lg text-gray-700 leading-relaxed mb-6 w-[70vw] mx-auto">
+          <div className="container text-lg text-gray-700 leading-relaxed mb-6 lg:w-[60vw] md:w-[70vw] mx-auto ">
             {insertAdsBasedOnLength(text)}
           </div>
 
@@ -166,7 +166,11 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
             </h2>
             <div className="grid md:grid-cols-3 gap-4 ">
               {relatedArticles.map((article) => (
-                <ArticleCard key={article.id} article={article} />
+                <ArticleCard
+                  key={article.id}
+                  article={article}
+                  style={undefined}
+                />
               ))}
             </div>
           </section>

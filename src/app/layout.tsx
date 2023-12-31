@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import GoogleAnalytics from "./analytics";
 
 // Importing Roboto font
 const roboto = Roboto({
@@ -21,7 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       {/* Applying Roboto font to the body */}
-      <body className={roboto.className}>{children}</body>
+      <body className={roboto.className}>
+        <GoogleAnalytics />
+        {children}
+      </body>
     </html>
   );
 }

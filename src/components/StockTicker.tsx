@@ -93,7 +93,6 @@ const StockTicker: React.FC<{ className?: string }> = ({ className }) => {
 
     fetchStocks();
   }, []);
-  console.log(stocks);
 
   return (
     <div className={tickerClass}>
