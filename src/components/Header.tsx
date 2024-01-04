@@ -6,9 +6,10 @@ import logo from "../../public/images/logo.png";
 import { FaInstagram, FaTiktok, FaYoutube, FaSearch } from "react-icons/fa";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Stockticker from "./StockTicker";
+import Link from "next/link";
 
 const categories = [
-  { name: "Home", link: "/#" },
+  { name: "Home", link: "/" },
   { name: "Politik", link: "politik" },
   { name: "Wirtschaft", link: "wirtschaft" },
   { name: "Kultur", link: "kultur" },
@@ -64,7 +65,7 @@ export default function Header() {
         <div className="container mx-auto flex justify-between px-4">
           {/* Logo */}
           <div className="w-40 max-w-full px-4">
-            <a href="/#" className="block w-full py-5 lg:py-3">
+            <Link href="/#" className="block w-full py-5 lg:py-3">
               <Image
                 src={logo}
                 alt="logo"
@@ -72,7 +73,7 @@ export default function Header() {
                 height={500}
                 className="w-full h-full"
               />
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Menu */}
@@ -93,30 +94,30 @@ export default function Header() {
           {/* Social Media Icons */}
           <div className="hidden md:flex  items-center justify-end">
             <div className="flex items-center space-x-4">
-              <a
+              <Link
                 href="https://www.instagram.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-black hover:text-gray-700"
               >
                 <FaInstagram size={24} />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="https://www.tiktok.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-black hover:text-gray-700"
               >
                 <FaTiktok size={24} />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="https://www.youtube.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-black hover:text-gray-700"
               >
                 <FaYoutube size={24} />
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -149,41 +150,41 @@ export default function Header() {
               <ul className="flex flex-col space-y-5  justify-start">
                 {categories.map((category, index) => (
                   <li key={index}>
-                    <a
+                    <Link
                       href={`/#${category.link}`}
                       className="text-black hover:text-gray-700 text-lg"
                     >
                       {category.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
               {/* Mobile Social Media Icons */}
               <div className="flex flex-row gap-5 items-center">
-                <a
+                <Link
                   href="https://www.instagram.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-black hover:text-gray-700"
                 >
                   <FaInstagram size={24} />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="https://www.tiktok.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-black hover:text-gray-700"
                 >
                   <FaTiktok size={24} />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="https://www.youtube.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-black hover:text-gray-700"
                 >
                   <FaYoutube size={24} />
-                </a>
+                </Link>
               </div>
             </div>
           )}
@@ -198,12 +199,12 @@ export default function Header() {
           <ul className="flex items-center justify-center space-x-10 py-4">
             {categories.map((category, index) => (
               <li key={index}>
-                <a
+                <Link
                   href={`/${category.link}`}
                   className=" text-black text-lg hover:border-b-2 hover:border-black transition"
                 >
                   {category.name}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

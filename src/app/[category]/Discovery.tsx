@@ -85,7 +85,7 @@ const SingleCard: React.FC<ArticleProps> = ({ article }) => {
             src={imageUrl}
             alt={title}
             fill
-            className="r absolute inset-0 w-full h-full object-cover object-center"
+            className=" absolute inset-0 w-full h-full object-cover object-center"
           />
         </div>
         <div className="flex flex-col justify-between p-4 sm:w-1/2">
