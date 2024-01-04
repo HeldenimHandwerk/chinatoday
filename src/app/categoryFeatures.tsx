@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Key } from "react";
 import fetchcollectionArticles from "./helpers/fetch-collectionArticles";
 import { Article } from "./types/Article";
+
 async function fetchArticles(collection: string) {
   const articles = await fetchcollectionArticles(collection);
+
   var filteredArticles = articles.filter(
     (article: Article) => article.attributes.CategoryBreaking === true
   );
@@ -88,7 +89,7 @@ export default async function CategoryFeatures({
       )}
       {/* Grid of Smaller Images */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        {articles.slice(1, 4).map((article: Article, index: Key) => (
+        {articles.slice(1, 4).map((article: Article, index: number) => (
           <Link
             href={`/${article.attributes.collection.data.attributes.slug}/${article.attributes.slug}`}
             key={index}
@@ -100,7 +101,7 @@ export default async function CategoryFeatures({
                 alt={article.attributes.title}
                 width={article.attributes.image?.data?.attributes?.width}
                 height={article.attributes.image?.data?.attributes?.height}
-                className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
+                className="w-full h-full object-cover "
               />
             </div>
             <div className="p-4 flex-grow flex flex-col justify-between">

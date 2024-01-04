@@ -8,7 +8,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Stockticker from "./StockTicker";
 
 const categories = [
-  { name: "Home", link: "/" },
+  { name: "Home", link: "/#" },
   { name: "Politik", link: "politik" },
   { name: "Wirtschaft", link: "wirtschaft" },
   { name: "Kultur", link: "kultur" },

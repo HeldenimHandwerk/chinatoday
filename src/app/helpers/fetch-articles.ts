@@ -1,7 +1,7 @@
 import { Article } from "../types/Article";
 const fetchArticles = async (filters: string): Promise<Article[]> => {
   const response = await fetch(
-    `https://jellyfish-app-qw7fr.ondigitalocean.app/api/articles?populate=*&sort=createdAt:desc&${filters}`,
+    `https://jellyfish-app-qw7fr.ondigitalocean.app/api/articles?populate=*&sort=updatedAt:desc&${filters}`,
     {
       cache: "no-store",
       headers: {

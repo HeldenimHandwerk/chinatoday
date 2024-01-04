@@ -12,7 +12,7 @@ async function fetchCollectionArticles(collection: string) {
     throw new Error(`Error: ${response.status}`);
   }
   const jsonData = await response.json();
-  const articles = jsonData.data[0].attributes.articles.data;
+  const articles = jsonData.data[0]?.attributes.articles.data;
   return articles;
 }
 

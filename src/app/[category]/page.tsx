@@ -3,63 +3,35 @@ import fetchCollectionArticles from "../helpers/fetch-collectionArticles";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Article } from "../types/Article";
-import ArticleComponent from "./ArticleComponent";
-
+import MostViewed from "./MostViewed";
+import CategoryArticlesLayout from "./CategoryArticlesLayout";
+import Discovery from "./Discovery";
 interface Props {
   params: {
     category: string;
   };
 }
 
-const Page: React.FC<Props> = async ({ params: { category } }) => {
-  const articles = await fetchCollectionArticles(
-    category.charAt(0).toUpperCase() + category.slice(1)
-  );
+async function fetchArticles(collection: string) {
+  const articles = await fetchCollectionArticles(collection);
 
+  return articles;
+}
+
+const Page = async ({ params: { category } }: Props) => {
+  const categoryCapitalized =
+    category.charAt(0).toUpperCase() + category.slice(1);
+  const articles = await fetchArticles(categoryCapitalized);
   return (
-    <div className="bg-white text-gray-900">
+    <div className="bg-[#FAFAFA] text-gray-900">
       <Header />
-      <div className="p-4 container mx-auto">
-        <div className="flex justify-between">
-          {/* First Column */}
-          <div className="flex flex-col w-1/4">
-            {articles.slice(0, 2).map((article: Article) => (
-              <ArticleComponent
-                article={article}
-                style={{ height: "50%" }}
-                key={article.id}
-              />
-            ))}
-          </div>
-
-          {/* Second (Middle) Column */}
-          <div className="flex flex-col w-1/2">
-            <ArticleComponent
-              article={articles[2]}
-              style={{ height: "60%" }}
-              isHighlighted={true}
-              key={articles[2].id}
-            />
-            <ArticleComponent
-              article={articles[3]}
-              style={{ height: "40%" }}
-              isHighlighted={true}
-              key={articles[3].id}
-            />
-          </div>
-
-          {/* Third Column */}
-          <div className="flex flex-col w-1/4">
-            {articles.slice(4).map((article: Article) => (
-              <ArticleComponent
-                article={article}
-                style={{ height: "50%" }}
-                key={article.id}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* <div className="mx-auto w-3/4">
+        <CategoryArticlesLayout articles={articles} />
+      </div> */}
+      {/* <MostViewed articles={articles} /> */}
+      <Discovery
+        collection={category.charAt(0).toUpperCase() + category.slice(1)}
+      />
       <Footer />
     </div>
   );
