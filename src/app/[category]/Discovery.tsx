@@ -76,31 +76,32 @@ const SingleCard: React.FC<ArticleProps> = ({ article }) => {
 
   return (
     <Link
-      href={`/${article.attributes.collection.data.attributes.slug}/${article.attributes.slug}`}
+      href={`/${article?.attributes?.collection?.data.attributes.slug}/${article.attributes.slug}`}
       className="w-full p-4 sm:w-1/2"
     >
-      <div className="flex flex-row overflow-hidden rounded-lg shadow-lg transform duration-300 hover:shadow-xl hover:-translate-y-1 bg-white h-60">
-        <div className="w-1/2  overflow-hidden rounded-md">
+      <div className="flex flex-col lg:flex-row overflow-hidden rounded-lg shadow-lg transform duration-300 hover:shadow-xl hover:-translate-y-1 bg-white">
+        <div className="w-full lg:w-1/2 overflow-hidden rounded-md relative h-60 lg:h-auto">
           <Image
             src={imageUrl}
             alt={title}
-            width={500}
-            height={500}
-            className="object-cover object-center w-full h-full"
+            fill
+            className="r absolute inset-0 w-full h-full object-cover object-center"
           />
         </div>
-        <div className="flex flex-col justify-between p-4 w-1/2">
+        <div className="flex flex-col justify-between p-4 sm:w-1/2">
           <div>
-            <h1 className="mb-2 text-lg font-semibold text-black hover:text-red-600">
+            <h1 className="mb-2 text-lg lg:text-xl font-semibold text-black hover:text-red-600">
               {title}
             </h1>
-            <h3 className="text-sm text-gray-600 truncate-3-lines">
+            <h3 className="text-sm lg:text-md text-gray-600 truncate-3-lines">
               {description}
             </h3>
-            <span className="text-xs text-gray-500">{published}</span>
+            <span className="text-xs lg:text-sm text-gray-500">
+              {published}
+            </span>
           </div>
           <div className="mt-2">
-            <span className="px-3 py-1 text-sm text-white bg-red-500 rounded-full">
+            <span className="px-3 py-1 text-sm lg:text-md text-white bg-red-500 rounded-full">
               {collectionName}
             </span>
           </div>

@@ -25,9 +25,7 @@ const Page = async ({ params: { category } }: Props) => {
   return (
     <div className="bg-[#FAFAFA] text-gray-900">
       <Header />
-      <div className="mx-auto w-3/4">
-        <CategoryArticlesLayout articles={articles} />
-      </div>
+      <CategoryArticlesLayout articles={articles} />
       <MostViewed articles={articles} />
       <Discovery collection={categoryCapitalized} />
       <Footer />
