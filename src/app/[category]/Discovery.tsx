@@ -79,7 +79,7 @@ const SingleCard: React.FC<ArticleProps> = ({ article }) => {
       href={`/${article?.attributes?.collection?.data.attributes.slug}/${article.attributes.slug}`}
       className="w-full p-4 sm:w-1/2"
     >
-      <div className="flex flex-col lg:flex-row overflow-hidden rounded-lg shadow-lg transform duration-300 hover:shadow-xl hover:-translate-y-1 bg-white">
+      <div className="flex flex-col lg:flex-row overflow-hidden rounded-lg shadow-lg transform duration-300 hover:shadow-xl hover:-translate-y-1 bg-white h-full">
         <div className="w-full lg:w-1/2 overflow-hidden rounded-md relative h-60 lg:h-auto">
           <Image
             src={imageUrl}
