@@ -25,13 +25,11 @@ const Page = async ({ params: { category } }: Props) => {
   return (
     <div className="bg-[#FAFAFA] text-gray-900">
       <Header />
-      {/* <div className="mx-auto w-3/4">
+      <div className="mx-auto w-3/4">
         <CategoryArticlesLayout articles={articles} />
-      </div> */}
-      {/* <MostViewed articles={articles} /> */}
-      <Discovery
-        collection={category.charAt(0).toUpperCase() + category.slice(1)}
-      />
+      </div>
+      <MostViewed articles={articles} />
+      <Discovery collection={categoryCapitalized} />
       <Footer />
     </div>
   );

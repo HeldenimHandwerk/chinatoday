@@ -1,26 +1,47 @@
 // MostViewed.jsx or MostViewed.tsx
 import React from "react";
-import { Article as ArticleType } from "../types/Article";
+import { Article } from "../types/Article";
 import Image from "next/image";
 import Link from "next/link";
+import fetchCollectionArticles from "../helpers/fetch-collectionArticles";
 
-interface MostViewedProps {
-  articles: ArticleType[];
-}
+// async function fetchArticles(collection: string) {
+//   try {
+//     let articles = await fetchCollectionArticles(collection);
 
-const MostViewed: React.FC<MostViewedProps> = ({ articles }) => {
+//     const sortedArticles = articles.sort(
+//       (a: Article, b: Article) =>
+//         new Date(b.attributes.updatedAt).getTime() -
+//         new Date(a.attributes.updatedAt).getTime()
+//     );
+
+//     const filteredArticles = sortedArticles.filter(
+//       (article: Article) => article.attributes.CategoryBreaking !== false
+//     );
+
+//     return filteredArticles.slice(0, 5);
+//   } catch (error) {
+//     console.error("Error in fetchArticles:", error);
+//     return []; // Return an empty array in case of error
+//   }
+// }
+
+export default async function MostViewed({
+  articles,
+}: {
+  articles: Article[];
+}) {
   const sortedArticles = articles.sort(
-    (a, b) =>
+    (a: Article, b: Article) =>
       new Date(b.attributes.updatedAt).getTime() -
       new Date(a.attributes.updatedAt).getTime()
   );
 
   const filteredArticles = sortedArticles.filter(
-    (article) => article.attributes.CategoryBreaking !== false
+    (article: Article) => article.attributes.CategoryBreaking !== false
   );
 
   const mostViewedArticles = filteredArticles.slice(0, 5);
-
   return (
     <>
       <section className=" bg-gray-2 pt-20 lg:mb-[70px] lg:pt-10">
@@ -61,7 +82,7 @@ const MostViewed: React.FC<MostViewedProps> = ({ articles }) => {
           </div>
 
           <div className="-mx-4 flex flex-wrap">
-            {mostViewedArticles.map((article) => (
+            {mostViewedArticles.map((article: Article) => (
               <Article key={article.id} article={article} />
             ))}
           </div>
@@ -69,9 +90,7 @@ const MostViewed: React.FC<MostViewedProps> = ({ articles }) => {
       </section>
     </>
   );
-};
-
-export default MostViewed;
+}
 
 const formatDate = (dateString: string): string => {
   const date = new Date(dateString);
@@ -86,7 +105,7 @@ const formatDate = (dateString: string): string => {
 };
 
 interface ArticleProps {
-  article: ArticleType;
+  article: Article;
 }
 
 const Article: React.FC<ArticleProps> = ({ article }) => {

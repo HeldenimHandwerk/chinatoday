@@ -11,6 +11,11 @@ interface CategoryArticlesLayoutProps {
 const CategoryArticlesLayout: React.FC<CategoryArticlesLayoutProps> = ({
   articles,
 }) => {
+  console.log(
+    articles.map(
+      (article) => article.attributes.collection.data.attributes.slug
+    )
+  );
   return (
     <div className="flex justify-between px-10 py-2 h-[85vh]">
       {/* First Column */}
@@ -67,26 +72,26 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
 }) => (
   <div className={`overflow-hidden shadow-md relative`} style={style}>
     <Link
-      href={`/${article.attributes.collection.data.attributes.slug}/${article.attributes.slug}`}
+      href={`/${article?.attributes?.collection?.data?.attributes?.slug}/${article?.attributes?.slug}`}
     >
       <div className="block h-full ">
         <div className={`relative w-full ${isHighlighted ? "h-full" : "h-48"}`}>
           <Image
-            src={article.attributes.image?.data?.attributes?.url}
-            alt={article.attributes.title}
+            src={article?.attributes?.image?.data?.attributes?.url}
+            alt={article?.attributes?.title}
             className="object-cover transition-all duration-500 hover:scale-105"
             fill
           />
           {isHighlighted && (
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
               <h1 className="text-white font-bold mb-2 text-2xl hover:text-red-400 transition-colors duration-300">
-                {article.attributes.title}
+                {article?.attributes.title}
               </h1>
               <h3 className="text-white mb-4 truncate text-lg ">
-                {article.attributes.text}
+                {article?.attributes.text}
               </h3>
               <div className="text-white text-xs">
-                Updated: {formatDate(article.attributes.updatedAt)}
+                Updated: {formatDate(article?.attributes.updatedAt)}
               </div>
             </div>
           )}
@@ -94,13 +99,13 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
         {!isHighlighted && (
           <div className="p-4 rounded-xl">
             <h1 className="font-bold text-black mb-2 line-clamp-2 text-lg hover:text-red-400 transition-colors duration-300">
-              {article.attributes.title}
+              {article?.attributes.title}
             </h1>
             <h3 className="text-gray-600 mb-4 truncate text-md ">
-              {article.attributes.text}
+              {article?.attributes.text}
             </h3>
             <div className="text-gray-500 text-xs">
-              Updated: {formatDate(article.attributes.updatedAt)}
+              Updated: {formatDate(article?.attributes.updatedAt)}
             </div>
           </div>
         )}

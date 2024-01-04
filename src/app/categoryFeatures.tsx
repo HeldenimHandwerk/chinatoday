@@ -4,7 +4,7 @@ import fetchcollectionArticles from "./helpers/fetch-collectionArticles";
 import { Article } from "./types/Article";
 
 async function fetchArticles(collection: string) {
-  const articles = await fetchcollectionArticles(collection);
+  let articles = await fetchcollectionArticles(collection);
 
   var filteredArticles = articles.filter(
     (article: Article) => article.attributes.CategoryBreaking === true
