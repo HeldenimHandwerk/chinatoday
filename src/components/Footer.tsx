@@ -3,41 +3,13 @@ import Image from "next/image";
 import { HiOutlineMail } from "react-icons/hi";
 import { FaInstagram, FaTiktok, FaYoutube, FaMobileAlt } from "react-icons/fa";
 import logo from "../../public/images/logo.png";
-import Link from "next/link";
+import NewsLetterSignUpForm from "./NewsLetterSignUpForm";
 
 const Footer = () => {
   return (
     <footer className="bg-gray-100">
       {/* Signup Section */}
-      <div className="container mx-auto py-10 px-4">
-        <div className="flex flex-wrap justify-center items-center">
-          <div className="w-full lg:w-1/2 px-4 mb-5">
-            <h3 className="text-2xl font-bold text-black sm:text-[28px] sm:leading-snug">
-              Signup for latest news and insights from China today
-            </h3>
-          </div>
-          <div className="w-full lg:w-1/2 px-4">
-            <form className="flex flex-wrap">
-              <div className="relative mb-3 mr-5 w-full max-w-[370px]">
-                <input
-                  type="email"
-                  placeholder="Enter your email address"
-                  className="h-[52px] w-full rounded-md border border-red-600 bg-white/5 pl-14 pr-5 text-black  outline-none  focus-visible:shadow-none"
-                />
-                <label className="absolute left-5 top-1/2 -translate-y-1/2">
-                  <HiOutlineMail size="25px" />
-                </label>
-              </div>
-              <button
-                type="submit"
-                className="mb-3 h-[52px] rounded-md border border-transparent  px-7 font-medium  hover:bg-opacity-90 border-gray-5 hover:border-gray-400 focus:outline-none focus-visible:shadow-none py-2  bg-red-600 hover:bg-red-700 text-white transition duration-300 ease-in-out  shadow"
-              >
-                Subscribe
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+      <NewsLetterSignUpForm />
       <div className="container flex-grow border-t border-gray-400"></div>
 
       {/* Links and Info */}

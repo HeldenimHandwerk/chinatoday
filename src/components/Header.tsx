@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import Image from "next/image";
 import logo from "../../public/images/logo.png";
 import { FaInstagram, FaTiktok, FaYoutube, FaSearch } from "react-icons/fa";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Stockticker from "./StockTicker";
 import Link from "next/link";
+import { search } from "@/app/action";
 
 const categories = [
   { name: "Home", link: "/" },
@@ -24,6 +25,11 @@ export default function Header() {
   const [showElements, setShowElements] = useState<boolean>(true);
   const [lastScrollY, setLastScrollY] = useState<number>(0);
   const [cumulativeScroll, setCumulativeScroll] = useState<number>(0);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchChange = (event: FormEvent) => {
+    setSearchQuery((event.target as HTMLInputElement).value); // Update the search query state on change
+  };
 
   useEffect(() => {
     let animationFrameId: number;
@@ -40,7 +46,7 @@ export default function Header() {
         } else {
           setShowElements(false);
         }
-        setCumulativeScroll(0); // Reset cumulative scroll after state change
+        setCumulativeScroll(0);
       }
 
       setLastScrollY(currentScrollY);
@@ -79,13 +85,25 @@ export default function Header() {
           {/* Desktop Menu */}
           <div className="hidden md:flex flex-1 items-center justify-center">
             {/* Search Bar */}
-            <form className="relative flex max-w-[230px] lg:max-w-full">
+            <form
+              className="relative flex max-w-[230px] lg:max-w-full"
+              onSubmit={(e) => {
+                e.preventDefault();
+                // Redirect to the search page with the query
+                window.location.href = `/search/${searchQuery}`;
+              }}
+            >
               <input
                 type="text"
                 placeholder="Search here..."
-                className="w-full rounded-lg border border-gray-300 bg-white py-2 pl-12 pr-5 text-black placeholder-gray-400 outline-none focus:border-gray-400 focus-visible:shadow-none "
+                value={searchQuery}
+                onChange={handleSearchChange}
+                className="w-full rounded-lg border border-gray-300 bg-white py-2 pl-12 pr-5 text-black placeholder-gray-400 outline-none focus:border-gray-400 focus-visible:shadow-none"
               />
-              <button className="absolute left-4 top-1/2 -translate-y-1/2">
+              <button
+                type="submit"
+                className="absolute left-4 top-1/2 -translate-y-1/2"
+              >
                 <FaSearch />
               </button>
             </form>
@@ -136,10 +154,19 @@ export default function Header() {
           {isOpen && (
             <div className="absolute inset-x-0 top-[100%] bg-white border border-t-0 shadow-lg p-4 z-20 md:hidden space-y-5">
               {/* Mobile Search Bar */}
-              <form className="mb-4 flex">
+              <form
+                className="mb-4 flex"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  // Redirect to the search page with the query
+                  window.location.href = `/search/${searchQuery}`;
+                }}
+              >
                 <input
                   type="text"
                   placeholder="Search here..."
+                  value={searchQuery}
+                  onChange={handleSearchChange}
                   className="flex-grow rounded border border-gray-300 bg-white py-2 pl-3 pr-5 text-black"
                 />
                 <button className="ml-2">
@@ -151,7 +178,7 @@ export default function Header() {
                 {categories.map((category, index) => (
                   <li key={index}>
                     <Link
-                      href={`/#${category.link}`}
+                      href={`/${category.link}`}
                       className="text-black hover:text-gray-700 text-lg"
                     >
                       {category.name}

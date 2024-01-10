@@ -90,7 +90,7 @@ const SingleCard: React.FC<ArticleProps> = ({ article }) => {
         </div>
         <div className="flex flex-col justify-between p-4 sm:w-1/2">
           <div>
-            <h1 className="mb-2 text-lg lg:text-xl font-semibold text-black hover:text-red-600">
+            <h1 className="mb-2 text-lg font-semibold text-black hover:text-red-600">
               {title}
             </h1>
             <h3 className="text-sm lg:text-md text-gray-600 truncate-3-lines">

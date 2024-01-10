@@ -20,7 +20,7 @@ const CategoryArticlesLayout: React.FC<CategoryArticlesLayoutProps> = ({
   ];
 
   return (
-    <div className="flex flex-col md:flex-row justify-between px-4 md:px-10 py-4 gap-4 h-[85vh] md:overflow-hidden">
+    <div className="flex flex-col md:flex-row justify-between px-4 md:px-10 py-4 gap-4 h-full md:overflow-hidden">
       {/* Mobile view: Display articles in a rearranged order */}
       <div className="md:hidden flex flex-col w-full gap-4 overflow-auto">
         {mobileArticles.map((article, index) => (

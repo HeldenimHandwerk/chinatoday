@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-polly": "^3.485.0",
     "@heroicons/react": "^2.0.18",
     "@smakss/react-scroll-direction": "^3.1.4",
     "alpinejs": "^3.13.3",
+    "aws-sdk": "^2.1531.0",
     "chart.js": "^4.4.1",
     "heroicons": "^2.0.18",
+    "md5": "^2.3.0",
     "next": "14.0.4",
     "react": "^18",
     "react-chartjs-2": "^5.2.0",
@@ -24,6 +27,7 @@
     "tailgrids": "^2.1.0"
   },
   "devDependencies": {
+    "@types/aws-sdk": "^2.7.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
