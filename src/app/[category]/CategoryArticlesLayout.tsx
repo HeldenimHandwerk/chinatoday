@@ -11,24 +11,36 @@ interface CategoryArticlesLayoutProps {
 const CategoryArticlesLayout: React.FC<CategoryArticlesLayoutProps> = ({
   articles,
 }) => {
-  // Prepare a mobile-specific array of articles, with highlighted ones first
-  const mobileArticles = [
-    ...(articles.length > 2 ? [articles[2]] : []), // Add 3rd article if exists
-    ...(articles.length > 3 ? [articles[3]] : []), // Add 4th article if exists
-    ...articles.slice(0, 2), // Add first two articles
-    ...articles.slice(4), // Add the rest of the articles
+  // Extract the highlighted articles (3rd and 4th if they exist)
+  const highlightedArticles = articles.slice(2, 4);
+
+  // Prepare the rest of the articles for mobile view
+  const restOfTheArticles = [
+    ...articles.slice(0, 2), // First two articles
+    ...articles.slice(4), // Articles after the 4th
   ];
 
   return (
     <div className="flex flex-col md:flex-row justify-between px-4 md:px-10 py-4 gap-4 h-full md:overflow-hidden">
-      {/* Mobile view: Display articles in a rearranged order */}
+      {/* Mobile view */}
       <div className="md:hidden flex flex-col w-full gap-4 overflow-auto">
-        {mobileArticles.map((article, index) => (
+        {/* Render highlighted articles first */}
+        {highlightedArticles.map((article, index) => (
           <ArticleComponent
             article={article}
-            style={{ minHeight: "40vh" }} // Responsive height
-            isHighlighted={index === 0 || index === 1} // Highlight the first two articles (which are 3rd and optionally 4th from original array)
-            key={index}
+            style={{ minHeight: "30vh" }}
+            isHighlighted={true}
+            key={`highlighted-${index}`}
+          />
+        ))}
+
+        {/* Then render the rest of the articles */}
+        {restOfTheArticles.map((article, index) => (
+          <ArticleComponent
+            article={article}
+            style={{ minHeight: "30vh" }}
+            isHighlighted={false}
+            key={`rest-${index}`}
           />
         ))}
       </div>
@@ -94,7 +106,9 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
       href={`/${article?.attributes.collection.data.attributes.slug}/${article?.attributes.slug}`}
     >
       <div className="block h-full">
-        <div className={`relative w-full ${isHighlighted ? "h-full" : "h-48"}`}>
+        <div
+          className={` w-full ${isHighlighted ? "h-full " : "h-48 relative"}`}
+        >
           <Image
             src={article?.attributes?.image?.data?.attributes.url}
             alt={article?.attributes.title}
