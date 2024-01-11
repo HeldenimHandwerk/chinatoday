@@ -1,8 +1,8 @@
 import Image from "next/image";
-import fetchArticles from "./helpers/fetch-articles";
+import { fetchArticles } from "@/app/action";
 import Link from "next/link";
-import { Article } from "./types/Article";
-
+import { Article } from "../types/Article";
+import formatDate from "@/app/utils/formatDate";
 const fetchHomeArticles = async (): Promise<Article[]> => {
   const articles = await fetchArticles(`filters[HeroBreaking][$eq]=true`);
 
@@ -86,15 +86,6 @@ const updateArticle = async (articleId: number, updatedData: object) => {
   }
 };
 
-const formatDate = (dateString: string) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-};
-
 export default async function BentoArticles() {
   const articles = await fetchHomeArticles();
 
@@ -109,7 +100,7 @@ export default async function BentoArticles() {
               index === 0 ? "sm:col-span-2 lg:col-span-2 lg:row-span-2" : ""
             }`}
             style={{
-              minHeight: index === 0 ? "475px" : "250px",
+              minHeight: index === 0 ? "400px" : "230px",
             }}
           >
             <div className="absolute inset-0 overflow-hidden  w-full group-hover:scale-105 transition-all duration-500 ">

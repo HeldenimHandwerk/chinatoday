@@ -56,3 +56,44 @@ body {
   visibility: hidden;
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }
+
+.slick-prev,
+.slick-next {
+  font-size: 24px; /* Increase arrow size */
+  color: #333; /* Dark color for visibility */
+  z-index: 1; /* Ensure arrows are above other elements */
+  top: 50%; /* Align vertically */
+  transform: translateY(-50%); /* Center vertically */
+}
+
+.slick-prev {
+  margin-left: -35px; /* Position outside the slider */
+}
+
+.slick-next {
+  margin-right: -20px; /* Position outside the slider */
+}
+
+/* Optional: Add a background to make arrows more visible */
+.slick-prev:before,
+.slick-next:before {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 8px;
+}
+
+/* Hide arrows on mobile screens */
+@media screen and (max-width: 768px) {
+  .slick-prev,
+  .slick-next {
+    display: none;
+  }
+
+  .slick-next {
+    margin-right: 50px; /* Position outside the slider */
+    z-index: -1;
+  }
+  .slick-prev {
+    margin-left: -50px; /* Position outside the slider */
+  }
+}

@@ -1,19 +1,24 @@
 import Header from "../components/Header";
-import BentoArticles from "./BentoArticles";
-import CategoryFeatures from "./categoryFeatures";
+import BentoArticles from "./homeComponents/BentoArticles";
+import CategoryFeatures from "./homeComponents/categoryFeatures";
 import Footer from "../components/Footer";
 export default function Home() {
+  const collections = [
+    "Politik",
+    "Wirtschaft",
+    "Kultur",
+    "Greenenergy",
+    "Mobilität",
+    "Reisen",
+    "Sport",
+  ];
   return (
     <main>
       <Header />
       <BentoArticles />
-      <CategoryFeatures collection="Politik" />
-      <CategoryFeatures collection="Wirtschaft" />
-      <CategoryFeatures collection="Kultur" />
-      <CategoryFeatures collection="Greenenergy" />
-      <CategoryFeatures collection="Mobilität" />
-      <CategoryFeatures collection="Reisen" />
-      <CategoryFeatures collection="Sport" />
+      {collections.map((collection, index) => (
+        <CategoryFeatures key={index} collection={collection} />
+      ))}
       <Footer />
     </main>
   );

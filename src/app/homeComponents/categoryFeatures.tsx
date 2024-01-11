@@ -1,18 +1,24 @@
 import Image from "next/image";
 import Link from "next/link";
-import fetchcollectionArticles from "./helpers/fetch-collectionArticles";
-import { Article } from "./types/Article";
+import { fetchCollectionArticles } from "@/app/action";
+import { Article } from "../types/Article";
 
 async function fetchArticles(collection: string) {
-  let articles = await fetchcollectionArticles(collection);
+  let articles = await fetchCollectionArticles(collection);
+
+  articles.sort(
+    (a: Article, b: Article) =>
+      new Date(b.attributes.updatedAt).getTime() -
+      new Date(a.attributes.updatedAt).getTime()
+  );
 
   var filteredArticles = articles.filter(
     (article: Article) => article.attributes.CategoryBreaking === true
   );
   // Check the length after filtering
-  if (filteredArticles.length > 4) {
+  if (filteredArticles.length > 6) {
     // Assuming the last one in filteredArticles is the oldest
-    const oldestArticle = filteredArticles[0];
+    const oldestArticle = filteredArticles.reverse()[0];
     await updateOldestArticle(oldestArticle); // Now awaited
     filteredArticles.pop(); // Remove the oldest article from the array
   }
@@ -54,7 +60,7 @@ export default async function CategoryFeatures({
       <div className="flex justify-between items-center mb-4 p-4 bg-red-200 text-red-800  shadow">
         <span className="font-bold text-xl uppercase">{collection}</span>
         <Link
-          href={`/categories/${collection.toLowerCase()}`}
+          href={`/${collection.toLowerCase()}`}
           className="py-2 px-4 bg-red-600 hover:bg-red-700 text-white transition duration-300 ease-in-out  shadow"
         >
           Mehr Lesen
@@ -65,15 +71,14 @@ export default async function CategoryFeatures({
         <Link
           href={`/${articles[0].attributes.collection.data.attributes.slug}/${articles[0].attributes.slug}`}
         >
-          <div className="relative w-full h-80 mb-8 rounded-lg shadow-lg">
+          <div className="relative w-full h-[500px] mb-8 rounded-lg shadow-lg">
             {/* Enhanced shadow */}
             <div className="absolute inset-0 overflow-hidden  w-full group-hover:scale-105 transition-all duration-500 opacity-100">
               <Image
                 src={articles[0].attributes.image?.data?.attributes?.url}
                 alt={articles[0].attributes.title}
-                width={articles[0].attributes.image?.data?.attributes?.width}
-                height={articles[0].attributes.image?.data?.attributes?.height}
-                className="w-full h-full object-cover hover:scale-105 transition-all duration-500 opacity-100"
+                fill
+                className="object-cover object-center hover:scale-105 transition-all duration-500 opacity-100"
               />
             </div>
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 rounded-b-lg ">

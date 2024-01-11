@@ -2,20 +2,12 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Article } from "@/app/types/Article";
+import formatDate from "@/app/utils/formatDate";
 
 interface ArticleCardProps {
   article: Article;
   style: any;
 }
-
-const formatDate = (dateString: string) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-};
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ article, style }) => {
   return (

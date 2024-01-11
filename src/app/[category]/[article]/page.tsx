@@ -1,13 +1,14 @@
-import fetchArticles from "../../helpers/fetch-articles";
+import { fetchArticles } from "@/app/action";
 import Image from "next/image";
 import Link from "next/link";
-import Header from "../../../components/Header";
-import Footer from "../../../components/Footer";
-import fetchCollectionArticles from "@/app/helpers/fetch-collectionArticles";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { fetchCollectionArticles } from "@/app/action";
 import picture from "../../../../public/images/Aldi-Banner.jpg";
-import ArticleCard from "@/components/ArticleCard";
+import ArticleCard from "./components/ArticleCard";
 import { Article } from "@/app/types/Article";
-import TextToSpeechButton from "./TextToSpeechButton";
+import TextToSpeechButton from "./components/TextToSpeechButton";
+import formatDate from "@/app/utils/formatDate";
 
 interface Props {
   params: {
@@ -26,18 +27,6 @@ const AdImage = () => {
       quality={100}
     />
   );
-};
-
-const formatDate = (dateString: string) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-  });
 };
 
 const Page: React.FC<Props> = async ({ params: { article } }) => {

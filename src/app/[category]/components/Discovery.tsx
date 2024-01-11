@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Article as ArticleType } from "../types/Article";
-import fetchArticles from "../helpers/fetch-articles";
+import { Article as ArticleType } from "../../types/Article";
+import { fetchArticles } from "@/app/action";
 
 const Discovery = async (category: any) => {
   let collections = [

@@ -7,7 +7,6 @@ import { FaInstagram, FaTiktok, FaYoutube, FaSearch } from "react-icons/fa";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Stockticker from "./StockTicker";
 import Link from "next/link";
-import { search } from "@/app/action";
 
 const categories = [
   { name: "Home", link: "/" },
@@ -218,8 +217,8 @@ export default function Header() {
         </div>
       </header>
       <nav
-        className={`bg-gray-100 shadow hidden sm:flex ${
-          showElements ? "sm:show " : "hide"
+        className={`bg-gray-100 shadow hidden md:flex ${
+          showElements ? "md:show " : "hide"
         }`}
       >
         <div className="container mx-auto px-4">
@@ -228,7 +227,7 @@ export default function Header() {
               <li key={index}>
                 <Link
                   href={`/${category.link}`}
-                  className=" text-black text-lg hover:border-b-2 hover:border-black transition"
+                  className=" text-black lg:text-lg md:text-md overflow-hidden hover:border-b-2 hover:border-black transition"
                 >
                   {category.name}
                 </Link>

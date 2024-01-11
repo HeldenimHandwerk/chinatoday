@@ -1,11 +1,10 @@
 import React from "react";
-import fetchCollectionArticles from "../helpers/fetch-collectionArticles";
+import { fetchCollectionArticles } from "@/app/action";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Article } from "../types/Article";
-import MostViewed from "./MostViewed";
-import CategoryArticlesLayout from "./CategoryArticlesLayout";
-import Discovery from "./Discovery";
+import MostViewed from "./components/MostViewed";
+import CategoryArticlesLayout from "./components/CategoryArticlesLayout";
+import Discovery from "./components/Discovery";
 interface Props {
   params: {
     category: string;

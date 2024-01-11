@@ -2,22 +2,60 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Article as ArticleType } from "../types/Article";
+import { Article as ArticleType } from "../../types/Article";
+import formatDate from "@/app/utils/formatDate";
+const updateOldestArticle = async (oldestArticle: ArticleType) => {
+  // Make an API request to update the 'Breaking' status of the oldest article.
+  const response = await fetch(
+    `https://jellyfish-app-qw7fr.ondigitalocean.app/api/articles/${oldestArticle.id}`,
+    {
+      method: "PUT",
+      cache: "no-store",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+      },
+      body: JSON.stringify({
+        data: { CategoryBreaking: false },
+      }),
+    }
+  );
 
-interface CategoryArticlesLayoutProps {
-  articles: ArticleType[];
-}
+  if (!response.ok) {
+    throw new Error(`Error: ${response.status}`);
+  }
+};
 
-const CategoryArticlesLayout: React.FC<CategoryArticlesLayoutProps> = ({
+export default async function CategoryArticlesLayout({
   articles,
-}) => {
+}: {
+  articles: ArticleType[];
+}) {
+  // Sort articles by 'updatedAt' descending
+  articles.sort(
+    (a: ArticleType, b: ArticleType) =>
+      new Date(b.attributes.updatedAt).getTime() -
+      new Date(a.attributes.updatedAt).getTime()
+  );
+
+  const featureArticles = articles.filter(
+    (article: ArticleType) => article.attributes.CategoryBreaking === true
+  );
+
+  if (featureArticles.length > 6) {
+    // Assuming the last one in filteredArticles is the oldest
+    const oldestArticle = featureArticles.reverse()[0];
+    await updateOldestArticle(oldestArticle); // Now awaited
+    featureArticles.pop();
+  }
+
   // Extract the highlighted articles (3rd and 4th if they exist)
-  const highlightedArticles = articles.slice(2, 4);
+  const highlightedArticles = featureArticles.slice(2, 4);
 
   // Prepare the rest of the articles for mobile view
   const restOfTheArticles = [
-    ...articles.slice(0, 2), // First two articles
-    ...articles.slice(4), // Articles after the 4th
+    ...featureArticles.slice(0, 2), // First two articles
+    ...featureArticles.slice(4), // Articles after the 4th
   ];
 
   return (
@@ -25,20 +63,12 @@ const CategoryArticlesLayout: React.FC<CategoryArticlesLayoutProps> = ({
       {/* Mobile view */}
       <div className="md:hidden flex flex-col w-full gap-4 overflow-auto">
         {/* Render highlighted articles first */}
-        {highlightedArticles.map((article, index) => (
-          <ArticleComponent
-            article={article}
-            style={{ minHeight: "30vh" }}
-            isHighlighted={true}
-            key={`highlighted-${index}`}
-          />
-        ))}
 
         {/* Then render the rest of the articles */}
-        {restOfTheArticles.map((article, index) => (
+        {featureArticles.map((article, index) => (
           <ArticleComponent
             article={article}
-            style={{ minHeight: "30vh" }}
+            style={{ minHeight: "40vh" }}
             isHighlighted={false}
             key={`rest-${index}`}
           />
@@ -48,7 +78,7 @@ const CategoryArticlesLayout: React.FC<CategoryArticlesLayoutProps> = ({
       {/* Desktop view: Original three columns */}
       {/* First Column */}
       <div className="hidden md:flex flex-col w-1/4 gap-4">
-        {articles.slice(0, 2).map((article, index) => (
+        {featureArticles.slice(0, 2).map((article, index) => (
           <ArticleComponent
             article={article}
             style={{ height: "50%" }}
@@ -59,13 +89,13 @@ const CategoryArticlesLayout: React.FC<CategoryArticlesLayoutProps> = ({
       {/* Second Column */}
       <div className="hidden md:flex flex-col w-1/2 gap-4">
         <ArticleComponent
-          article={articles[2]}
+          article={featureArticles[2]}
           style={{ height: "60%" }}
           isHighlighted={true}
         />
         {articles.length > 3 && (
           <ArticleComponent
-            article={articles[3]}
+            article={featureArticles[3]}
             style={{ height: "40%" }}
             isHighlighted={true}
           />
@@ -73,7 +103,7 @@ const CategoryArticlesLayout: React.FC<CategoryArticlesLayoutProps> = ({
       </div>
       {/* Third Column */}
       <div className="hidden md:flex flex-col w-1/4 gap-4">
-        {articles.slice(4).map((article, index) => (
+        {featureArticles.slice(4).map((article, index) => (
           <ArticleComponent
             article={article}
             style={{ height: "50%" }}
@@ -83,9 +113,7 @@ const CategoryArticlesLayout: React.FC<CategoryArticlesLayoutProps> = ({
       </div>
     </div>
   );
-};
-
-export default CategoryArticlesLayout;
+}
 
 interface ArticleComponentProps {
   article: ArticleType;
@@ -146,15 +174,3 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
     </Link>
   </div>
 );
-
-const formatDate = (dateString: string): string => {
-  const date = new Date(dateString);
-  return `${date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  })} at ${date.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-  })}`;
-};

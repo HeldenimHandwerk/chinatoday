@@ -7,6 +7,7 @@ export type Article = {
     updatedAt: string;
     Headline: boolean;
     slug: string;
+    view: number;
     CategoryBreaking: boolean;
     image: {
       data: {

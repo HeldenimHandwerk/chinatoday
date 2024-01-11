@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { FaSearch } from "react-icons/fa";
-import Discover from "../[category]/Discovery";
+import Discover from "../[category]/components/Discovery";
 
 const SearchIndexPage = () => {
   const [query, setQuery] = useState("");
