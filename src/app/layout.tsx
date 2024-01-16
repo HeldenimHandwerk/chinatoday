@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
-// import GoogleAnalytics from "./analytics";
+import { Analytics } from "@vercel/analytics/react";
 
 // Importing Roboto font
 const roboto = Roboto({
@@ -25,6 +25,7 @@ export default function RootLayout({
       <body className={roboto.className}>
         {/* <GoogleAnalytics /> */}
         {children}
+        <Analytics />
       </body>
     </html>
   );
