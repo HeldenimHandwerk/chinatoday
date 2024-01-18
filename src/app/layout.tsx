@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import Script from "next/script";
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 // Importing Roboto font
 const roboto = Roboto({
@@ -24,11 +26,18 @@ export default function RootLayout({
       {/* Applying Roboto font to the body */}
       <body className={roboto.className}>
         {/* <GoogleAnalytics /> */}
-        <script
-          defer
-          src="https://eu.umami.is/script.js"
-          data-website-id="fff0aa84-fa05-472e-81cc-3a882ba2168d"
-        ></script>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${GA_MEASUREMENT_ID}');
+  `}
+        </Script>
         {children}
         <Analytics />
       </body>
