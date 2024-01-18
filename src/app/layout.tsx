@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import { GoogleAnalytics } from "nextjs-google-analytics";
 
 // Importing Roboto font
 const roboto = Roboto({
@@ -26,6 +27,7 @@ export default function RootLayout({
         {/* <GoogleAnalytics /> */}
         {children}
         <Analytics />
+        <GoogleAnalytics trackPageViews />
       </body>
     </html>
   );
