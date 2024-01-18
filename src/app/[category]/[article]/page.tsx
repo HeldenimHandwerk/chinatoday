@@ -9,12 +9,39 @@ import ArticleCard from "./components/ArticleCard";
 import { Article } from "@/app/types/Article";
 import TextToSpeechButton from "./components/TextToSpeechButton";
 import formatDate from "@/app/utils/formatDate";
+import type { Metadata, ResolvingMetadata } from "next";
 
-interface Props {
-  params: {
-    article: string;
+type ArticleData = {
+  title: string;
+  text: string;
+  image: any; // Adjust the type as needed
+  updatedAt: string;
+};
+
+const fetchArticleData = async (
+  slug: string
+): Promise<{ article: ArticleData; relatedArticles: Article[] }> => {
+  // Fetch the main article
+  const articleResponse = await fetchArticles(`filters[slug][$eq]=${slug}`);
+  const articleData = articleResponse[0]?.attributes;
+
+  // Fetch related articles based on the article category
+  const articleCategory = articleData?.collection.data.attributes.name;
+  const relatedResponse = await fetchCollectionArticles(articleCategory);
+  const relatedArticles = relatedResponse.slice(0, 3);
+  //format the date
+  const formattedDate = formatDate(articleData.updatedAt);
+  // Return the main article data and related articles
+  return {
+    article: {
+      title: articleData.title,
+      text: articleData.text,
+      image: articleData.image,
+      updatedAt: formattedDate,
+    },
+    relatedArticles,
   };
-}
+};
 
 const AdImage = () => {
   return (
@@ -29,17 +56,30 @@ const AdImage = () => {
   );
 };
 
+export const generateMetadata = async ({
+  params: { article },
+}: {
+  params: { article: string };
+}): Promise<Metadata> => {
+  const { article: articleData } = await fetchArticleData(article);
+
+  return {
+    title: `${articleData.title}`,
+    description: `${articleData.text}`,
+  };
+};
+
+interface Props {
+  params: {
+    article: string;
+  };
+}
+
 const Page: React.FC<Props> = async ({ params: { article } }) => {
-  const articleResponse = await fetchArticles(`filters[slug][$eq]=${article}`);
-  const articleCategory =
-    articleResponse[0]?.attributes.collection.data.attributes.name;
-  const fetchrelated = await fetchCollectionArticles(articleCategory);
-  const relatedArticles: Article[] = fetchrelated.slice(0, 3);
-
-  const { title, text, image, updatedAt } = articleResponse[0]?.attributes;
-
-  //format the date
-  const formattedDate = formatDate(updatedAt);
+  const { article: articleData, relatedArticles } = await fetchArticleData(
+    article
+  );
+  const { title, text, image, updatedAt } = articleData;
 
   const insertAdsBasedOnLength = (text: string) => {
     const sentenceEndRegex = /\. [A-Z]/;
@@ -89,7 +129,6 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
     if (lastIndex < totalLength) {
       elements.push(createTextElement("text-end", text.slice(lastIndex)));
     }
-
     return elements;
   };
 
@@ -111,7 +150,7 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-4 rounded-b-lg">
                 <h3>
                   <span className="text-white text-sm">
-                    Published: {formattedDate}
+                    Published: {updatedAt}
                   </span>
                 </h3>
                 <h1 className="md:text-5xl text-3xl font-bold text-white sm:p-5 flex justify-center items-center">
