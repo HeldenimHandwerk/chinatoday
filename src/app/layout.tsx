@@ -26,18 +26,11 @@ export default function RootLayout({
       {/* Applying Roboto font to the body */}
       <body className={roboto.className}>
         {/* <GoogleAnalytics /> */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){window.dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '${GA_MEASUREMENT_ID}');
-  `}
-        </Script>
+        <script
+          defer
+          src="https://eu.umami.is/script.js"
+          data-website-id="fff0aa84-fa05-472e-81cc-3a882ba2168d"
+        ></script>
         {children}
         <Analytics />
       </body>
