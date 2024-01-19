@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { fetchCollectionArticles } from "@/app/action";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -23,11 +23,11 @@ const Page = async ({ params: { category } }: Props) => {
   const articles = await fetchArticles(categoryCapitalized);
   return (
     <div className="bg-[#FAFAFA] text-gray-900">
-      <Header />
       <CategoryArticlesLayout articles={articles} />
       <MostViewed articles={articles} />
-      <Discovery collection={categoryCapitalized} />
-      <Footer />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Discovery collection={categoryCapitalized} />
+      </Suspense>
     </div>
   );
 };

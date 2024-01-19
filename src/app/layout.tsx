@@ -3,6 +3,8 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 // Importing Roboto font
@@ -38,8 +40,11 @@ export default function RootLayout({
     gtag('config', '${GA_MEASUREMENT_ID}');
   `}
         </Script>
+        <Header />
         {children}
+
         <Analytics />
+        <Footer />
       </body>
     </html>
   );

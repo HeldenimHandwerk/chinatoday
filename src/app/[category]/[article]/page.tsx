@@ -10,6 +10,7 @@ import { Article } from "@/app/types/Article";
 import TextToSpeechButton from "./components/TextToSpeechButton";
 import formatDate from "@/app/utils/formatDate";
 import type { Metadata, ResolvingMetadata } from "next";
+import { Suspense } from "react";
 
 type ArticleData = {
   title: string;
@@ -79,6 +80,7 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
   const { article: articleData, relatedArticles } = await fetchArticleData(
     article
   );
+
   const { title, text, image, updatedAt } = articleData;
 
   const insertAdsBasedOnLength = (text: string) => {
@@ -134,7 +136,6 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
 
   return (
     <main>
-      <Header />
       <div className="container mx-auto my-5 p-6 bg-gray-100 mb-8 rounded-md shadow-sm ">
         <div className="mb-8">
           {image && (
@@ -170,22 +171,22 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
           <div className="container text-lg text-gray-700 leading-relaxed mb-6 lg:w-[60vw] md:w-[70vw] mx-auto ">
             {insertAdsBasedOnLength(text)}
           </div>
-
-          <section className="related-articles mt-10">
-            <h2 className="text-4xl font-semibold mb-4 shadow-lg bg-red-200 text-red-800 rounded-md p-3">
-              Related Articles
-            </h2>
-            <div className="grid md:grid-cols-3 gap-4 ">
-              {relatedArticles.map((article) => (
-                <ArticleCard
-                  key={article.id}
-                  article={article}
-                  style={undefined}
-                />
-              ))}
-            </div>
-          </section>
-
+          <Suspense fallback={<div>Loading...</div>}>
+            <section className="related-articles mt-10">
+              <h2 className="text-4xl font-semibold mb-4 shadow-lg bg-red-200 text-red-800 rounded-md p-3">
+                Related Articles
+              </h2>
+              <div className="grid md:grid-cols-3 gap-4 ">
+                {relatedArticles.map((article) => (
+                  <ArticleCard
+                    key={article.id}
+                    article={article}
+                    style={undefined}
+                  />
+                ))}
+              </div>
+            </section>
+          </Suspense>
           <div className="text-center mt-10">
             <Link href="/">
               <div className="py-2 px-4 bg-red-200 hover:bg-red-300 text-red-800 transition duration-300 ease-in-out rounded-full shadow">
@@ -195,7 +196,6 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
           </div>
         </div>
       </div>
-      <Footer />
     </main>
   );
 };

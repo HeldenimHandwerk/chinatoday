@@ -15,12 +15,10 @@ export default function Home() {
   ];
   return (
     <main>
-      <Header />
       <BentoArticles />
       {collections.map((collection, index) => (
         <CategoryFeatures key={index} collection={collection} />
       ))}
-      <Footer />
     </main>
   );
 }

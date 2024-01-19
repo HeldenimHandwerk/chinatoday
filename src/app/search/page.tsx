@@ -11,7 +11,6 @@ const SearchIndexPage = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen">
-      <Header />
       <div className="flex flex-1 container mx-auto py-10 items-center justify-center">
         <div className="w-full max-w-lg">
           <form
@@ -37,8 +36,6 @@ const SearchIndexPage = () => {
           </form>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 };

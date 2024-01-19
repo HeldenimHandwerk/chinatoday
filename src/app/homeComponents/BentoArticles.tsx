@@ -3,6 +3,7 @@ import { fetchArticles } from "@/app/action";
 import Link from "next/link";
 import { Article } from "../types/Article";
 import formatDate from "@/app/utils/formatDate";
+
 const fetchHomeArticles = async (): Promise<Article[]> => {
   const articles = await fetchArticles(`filters[HeroBreaking][$eq]=true`);
 

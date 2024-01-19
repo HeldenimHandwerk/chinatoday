@@ -18,7 +18,6 @@ const SearchResultsPage: React.FC<Props> = async ({
 
   return (
     <div className="bg-gray-100 min-h-screen">
-      <Header />
       <div className="container mx-auto py-10 px-4 sm:px-0">
         {articles.length > 0 ? (
           <div className="grid grid-cols-1 gap-6">
@@ -56,7 +55,6 @@ const SearchResultsPage: React.FC<Props> = async ({
           </div>
         )}
       </div>
-      <Footer />
     </div>
   );
 };
