@@ -14,9 +14,11 @@ const Discovery = async (category: any) => {
     "Sport",
     "Reisen",
   ];
-  collections = collections.filter(
-    (c) => c.toLowerCase() !== category.collection.toLowerCase()
-  );
+  if (category) {
+    collections = collections.filter(
+      (c) => c.toLowerCase() !== category.collection.toLowerCase()
+    );
+  }
 
   let displayedArticles: ArticleType[] = [];
 
@@ -39,7 +41,7 @@ const Discovery = async (category: any) => {
     <section className="bg-[#FAFAFA] pb-10 pt-20 lg:pb-20 lg:pt-10">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-black mb-4">Entdecke Mehr</h1>
+          <h1 className="text-4xl font-bold text-black mb-4">Entdecken</h1>
           <p className="max-w-2xl mx-auto text-lg text-gray-600">
             Erkunden Sie eine Vielzahl von Themen und Einsichten aus unseren
             neuesten Artikeln.
@@ -88,8 +90,9 @@ const SingleCard: React.FC<ArticleProps> = ({ article }) => {
           <Image
             src={imageUrl}
             alt={title}
-            fill
-            className=" absolute inset-0 w-full h-full object-cover object-center"
+            width={article.attributes.image?.data?.attributes?.width}
+            height={article.attributes.image?.data?.attributes?.height}
+            className="w-full h-full object-cover hover:scale-105 transition-all duration-500 opacity-90"
           />
         </div>
         <div className="flex flex-col justify-between p-4 sm:w-1/2">

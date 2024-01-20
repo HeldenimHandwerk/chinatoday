@@ -18,7 +18,7 @@ const Footer = () => {
         <div className="flex flex-wrap justify-between">
           <div className="w-full px-4 lg:w-3/12 mb-10">
             <div className="w-40 max-w-full">
-              <a href="/#" className="block py-5 lg:py-3">
+              <Link href="/#" className="block py-5 lg:py-3">
                 <Image
                   src={logo}
                   alt="logo"
@@ -26,19 +26,19 @@ const Footer = () => {
                   height={500}
                   className="w-full h-full"
                 />
-              </a>
+              </Link>
 
               {/* Social Icons */}
               <div className="flex items-center">
-                <a href="/#" className="px-3 text-black hover:text-gray-700">
+                <Link href="/#" className="px-3 text-black hover:text-gray-700">
                   <FaInstagram size="25px" />
-                </a>
-                <a href="/#" className="px-3 text-black hover:text-gray-700">
+                </Link>
+                <Link href="/#" className="px-3 text-black hover:text-gray-700">
                   <FaTiktok size="25px" />
-                </a>
-                <a href="/#" className="px-3 text-black hover:text-gray-700">
+                </Link>
+                <Link href="/#" className="px-3 text-black hover:text-gray-700">
                   <FaYoutube size="25px" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -48,15 +48,15 @@ const Footer = () => {
             </h4>
             <div className="grid grid-cols-2">
               <div className="w-full">
-                <NavLink link="/#" label="Politik" />
-                <NavLink link="/#" label="Wirtshcaft" />
-                <NavLink link="/#" label="Kultur" />
-                <NavLink link="/#" label="Greenenergy" />
+                <NavLink link="/poltik" label="Politik" />
+                <NavLink link="/wirtschaft" label="Wirtshcaft" />
+                <NavLink link="/kultur" label="Kultur" />
+                <NavLink link="/greenenergy" label="Greenenergy" />
               </div>
               <div className="w-full">
-                <NavLink link="/#" label="Mobilität" />
-                <NavLink link="/#" label="Sport" />
-                <NavLink link="/#" label="Reisen" />
+                <NavLink link="/mobilität" label="Mobilität" />
+                <NavLink link="/sport" label="Sport" />
+                <NavLink link="/reisen" label="Reisen" />
               </div>
             </div>
           </div>
@@ -89,12 +89,12 @@ type NavLinkProps = { label: string; link: string };
 const NavLink = ({ label, link }: NavLinkProps) => {
   return (
     <li>
-      <a
+      <Link
         href={link}
         className="inline-block text-base leading-loose text-black/70 underline-offset-2 hover:text-black hover:underline"
       >
         {label}
-      </a>
+      </Link>
     </li>
   );
 };

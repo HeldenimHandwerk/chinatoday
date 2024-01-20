@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { search } from "@/app/action";
 import { Article } from "@/app/types/Article";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Image from "next/image";
+import { Suspense } from "react";
+import Discovery from "@/app/[category]/components/Discovery";
 
 interface Props {
   params: {
@@ -50,8 +50,14 @@ const SearchResultsPage: React.FC<Props> = async ({
             ))}
           </div>
         ) : (
-          <div className="text-center text-lg text-gray-600">
-            No articles found for your query.
+          <div className="flex flex-col">
+            <h3 className="text-center text-lg text-gray-600 mb-10">
+              Hey, tut uns leid, aber der Artikel konnte nicht gefunden werden.
+              Sie können jedoch gerne andere Artikel durchstöbern.
+            </h3>
+            <Suspense fallback={<div>loading... </div>}>
+              <Discovery collection={""} />
+            </Suspense>
           </div>
         )}
       </div>
