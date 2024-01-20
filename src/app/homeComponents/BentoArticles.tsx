@@ -2,7 +2,6 @@ import Image from "next/image";
 import { fetchArticles } from "@/app/action";
 import Link from "next/link";
 import { Article } from "../types/Article";
-import formatDate from "@/app/utils/formatDate";
 
 const fetchHomeArticles = async (): Promise<Article[]> => {
   const articles = await fetchArticles(`filters[HeroBreaking][$eq]=true`);
@@ -114,13 +113,10 @@ export default async function BentoArticles() {
               />
             </div>
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-800 to-transparent p-6">
-              <div className="text-white text-sm">
-                {formatDate(article.attributes.updatedAt)}
-              </div>
               <h1
                 className={`text-xl ${
-                  index === 0 ? "sm:text-2xl" : "sm:text-lg"
-                } font-bold text-white leading-tight mb-2 shadow-md`}
+                  index === 0 ? "sm:text-2xl" : "sm:text-md"
+                } font-bold text-white leading-tight mb-2 hover:text-red-500 transition-colors duration-300`}
               >
                 {article.attributes.title}
               </h1>

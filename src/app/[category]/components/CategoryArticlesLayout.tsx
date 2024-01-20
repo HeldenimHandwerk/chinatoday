@@ -145,7 +145,7 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
           />
           {isHighlighted && (
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-              <h1 className="text-white font-bold mb-2 text-2xl hover:text-red-400 transition-colors duration-300">
+              <h1 className="text-white font-bold mb-2 text-2xl hover:text-red-500 transition-colors duration-300">
                 {article?.attributes.title}
               </h1>
               <h3 className="text-white mb-4 truncate text-lg">
@@ -159,7 +159,7 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
         </div>
         {!isHighlighted && (
           <div className="p-4">
-            <h1 className="font-bold text-black mb-2 line-clamp-2 text-lg hover:text-red-400 transition-colors duration-300">
+            <h1 className="font-bold text-black mb-2 line-clamp-2 text-lg hover:text-red-500 transition-colors duration-300">
               {article?.attributes.title}
             </h1>
             <h3 className="text-gray-600 mb-4 truncate text-md">

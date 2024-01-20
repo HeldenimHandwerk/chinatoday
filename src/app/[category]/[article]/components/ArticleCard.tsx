@@ -25,7 +25,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, style }) => {
         />
       </div>
       <div className="p-4 flex-grow flex flex-col justify-between corner-border">
-        <h1 className="text-2xl sm:text-lg font-bold text-black leading-tight mb-2 ">
+        <h1 className="text-2xl sm:text-lg font-bold text-black leading-tight mb-2 hover:text-red-500 transition-colors duration-300">
           {article.attributes.title}
         </h1>
 

@@ -1,9 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import { HiOutlineMail } from "react-icons/hi";
-import { FaInstagram, FaTiktok, FaYoutube, FaMobileAlt } from "react-icons/fa";
+import { FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
 import logo from "../../public/images/logo.png";
 import NewsLetterSignUpForm from "./NewsLetterSignUpForm";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -41,22 +42,25 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="w-full px-4 sm:w-1/2 md:w-1/4 lg:w-2/12 mb-10 whitespace-nowrap">
-            <LinkGroup header="Company">
-              <NavLink link="/#" label="About company" />
-              <NavLink link="/#" label="Company services" />
-              <NavLink link="/#" label="Job opportunities" />
-              <NavLink link="/#" label="Creative people" />
-            </LinkGroup>
+          <div className="w-full lg:w-4/12 mb-10 px-4 flex flex-col">
+            <h4 className="mb-9 text-lg font-semibold text-black">
+              Categorien
+            </h4>
+            <div className="grid grid-cols-2">
+              <div className="w-full">
+                <NavLink link="/#" label="Politik" />
+                <NavLink link="/#" label="Wirtshcaft" />
+                <NavLink link="/#" label="Kultur" />
+                <NavLink link="/#" label="Greenenergy" />
+              </div>
+              <div className="w-full">
+                <NavLink link="/#" label="Mobilität" />
+                <NavLink link="/#" label="Sport" />
+                <NavLink link="/#" label="Reisen" />
+              </div>
+            </div>
           </div>
-          <div className="w-full px-4 sm:w-1/2 md:w-1/4 lg:w-2/12 mb-10 whitespace-nowrap">
-            <LinkGroup header="Customer">
-              <NavLink link="/#" label="Client support" />
-              <NavLink link="/#" label="Latest news" />
-              <NavLink link="/#" label="Company story" />
-              <NavLink link="/#" label="Pricing packages" />
-            </LinkGroup>
-          </div>
+
           <div className="w-full px-4 sm:w-full md:w-1/2 lg:w-3/12">
             <ContactInfo />
           </div>
@@ -70,26 +74,13 @@ const Footer = () => {
             &copy; {new Date().getFullYear()} China Today
           </p>
           <div className="flex space-x-3">
-            <BottomNavLink link="/#" label="Privacy policy" />
-            <BottomNavLink link="/#" label="Legal notice" />
-            <BottomNavLink link="/#" label="Terms of service" />
+            <BottomNavLink link="/#" label="Impressum" />
+            <BottomNavLink link="/#" label="Datenschutzerklärung" />
+            <BottomNavLink link="/#" label="Cookies" />
           </div>
         </div>
       </div>
     </footer>
-  );
-};
-
-type LinkGroupProps = { children: React.ReactNode; header: string };
-
-const LinkGroup = ({ children, header }: LinkGroupProps) => {
-  return (
-    <div className="w-full px-4 sm:w-1/2 lg:w-3/12 2xl:w-2/12">
-      <div className="mb-10 w-full">
-        <h4 className="mb-9 text-lg font-semibold text-black"> {header} </h4>
-        <ul className="space-y-3">{children}</ul>
-      </div>
-    </div>
   );
 };
 
@@ -108,19 +99,15 @@ const NavLink = ({ label, link }: NavLinkProps) => {
   );
 };
 
-const ContactInfo = () => {
+const ContactInfo: React.FC = () => {
   return (
     <div className="mb-6 lg:mb-0">
-      <h4 className="text-lg font-semibold mb-3">Contact Info</h4>
+      <h4 className="text-lg font-semibold mb-10">Kontakt & Hilfe</h4>
       <ul>
         <li className="flex items-center mb-2">
           <HiOutlineMail className="text-red-600 mr-2" />
           <span>info@yourmail.com</span>
         </li>
-        {/* <li className="flex items-center">
-          <FaMobileAlt className="text-red-600 mr-2" />
-          <span>401 Broadway, 24th Floor, London</span>
-        </li> */}
       </ul>
     </div>
   );
@@ -133,12 +120,12 @@ type BottomNavLinkProps = {
 
 const BottomNavLink = ({ label, link }: BottomNavLinkProps) => {
   return (
-    <a
+    <Link
       href={link}
       className="px-3 sm:text-base text-sm text-gray-7 hover:text-black"
     >
       {label}
-    </a>
+    </Link>
   );
 };
 

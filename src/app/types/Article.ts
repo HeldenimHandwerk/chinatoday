@@ -4,6 +4,7 @@ export type Article = {
   attributes: {
     title: string;
     text: string;
+    ImageSource: string;
     updatedAt: string;
     Headline: boolean;
     slug: string;

@@ -82,7 +82,7 @@ export default async function CategoryFeatures({
               />
             </div>
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 rounded-b-lg ">
-              <h2 className="text-2xl font-bold text-white mb-2">
+              <h2 className="text-2xl font-bold text-white mb-2 hover:text-red-500 transition-colors duration-300">
                 {articles[0].attributes.title}
               </h2>
               <p className="text-white truncate-3-lines">
@@ -110,7 +110,7 @@ export default async function CategoryFeatures({
               />
             </div>
             <div className="p-4 flex-grow flex flex-col justify-between">
-              <h1 className="text-2xl sm:text-lg font-bold text-black leading-tight mb-2 ">
+              <h1 className="text-2xl sm:text-lg font-bold text-black leading-tight mb-2 hover:text-red-500 transition-colors duration-300">
                 {article.attributes.title}
               </h1>
               <p className="text-gray-600 text-base sm:text-lg truncate-3-lines leading-relaxed shadow-sm">

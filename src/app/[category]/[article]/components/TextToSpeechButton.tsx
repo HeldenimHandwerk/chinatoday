@@ -104,6 +104,7 @@ const TextToSpeechButton: React.FC<TextToSpeechButtonProps> = ({ text }) => {
 
   const formatDuration = (durationSeconds: number) => {
     const minutes = Math.floor(durationSeconds / 60);
+    if (minutes === 0) return "Weniger als 1 Minute";
     return `${minutes} ${minutes === 1 ? "Minute" : "Minuten"}`;
   };
 

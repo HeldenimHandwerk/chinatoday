@@ -1,15 +1,13 @@
 import { fetchArticles } from "@/app/action";
 import Image from "next/image";
 import Link from "next/link";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { fetchCollectionArticles } from "@/app/action";
 import picture from "../../../../public/images/Aldi-Banner.jpg";
 import ArticleCard from "./components/ArticleCard";
 import { Article } from "@/app/types/Article";
 import TextToSpeechButton from "./components/TextToSpeechButton";
 import formatDate from "@/app/utils/formatDate";
-import type { Metadata, ResolvingMetadata } from "next";
+import type { Metadata } from "next";
 import { Suspense } from "react";
 
 type ArticleData = {
@@ -17,6 +15,7 @@ type ArticleData = {
   text: string;
   image: any; // Adjust the type as needed
   updatedAt: string;
+  source: string;
 };
 
 const fetchArticleData = async (
@@ -39,6 +38,7 @@ const fetchArticleData = async (
       text: articleData.text,
       image: articleData.image,
       updatedAt: formattedDate,
+      source: articleData.ImageSource,
     },
     relatedArticles,
   };
@@ -81,7 +81,7 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
     article
   );
 
-  const { title, text, image, updatedAt } = articleData;
+  const { title, text, image, updatedAt, source } = articleData;
 
   const insertAdsBasedOnLength = (text: string) => {
     const sentenceEndRegex = /\. [A-Z]/;
@@ -150,9 +150,8 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
 
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-4 rounded-b-lg">
                 <h3>
-                  <span className="text-white text-sm">
-                    Published: {updatedAt}
-                  </span>
+                  <span className="text-white text-sm">{updatedAt}</span>
+                  <span className="text-gray-300 text-sm"> © {source}</span>
                 </h3>
                 <h1 className="md:text-5xl text-3xl font-bold text-white sm:p-5 flex justify-center items-center">
                   {title}
@@ -190,7 +189,7 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
           <div className="text-center mt-10">
             <Link href="/">
               <div className="py-2 px-4 bg-red-200 hover:bg-red-300 text-red-800 transition duration-300 ease-in-out rounded-full shadow">
-                Back to Home
+                Zurück zur Startseite
               </div>
             </Link>
           </div>
