@@ -1,41 +1,41 @@
 // MostViewed.jsx or MostViewed.tsx
-import React from "react";
-import { Article } from "../../types/Article";
-import Image from "next/image";
-import Link from "next/link";
-import formatDate from "../../utils/formatDate";
-import Carousel from "./Carousel";
+import React from 'react'
+import { Article } from '../../types/Article'
+import Image from 'next/image'
+import Link from 'next/link'
+import formatDate from '../../utils/formatDate'
+import Carousel from './Carousel'
 
-export default function MostViewed({ articles }: { articles: Article[] }) {
+export default function Toplist({ articles }: { articles: Article[] }) {
   const filteredArticles = articles.filter(
     (article: Article) => article.attributes.CategoryBreaking !== true
-  );
+  )
 
   // Most Viewed Articles
   const mostViewedArticles = filteredArticles
     .sort((a, b) => b.attributes.view - a.attributes.view)
-    .slice(0, Math.min(5, filteredArticles.length));
+    .slice(0, Math.min(5, filteredArticles.length))
 
   const mostViewedArticleIds = new Set(
-    mostViewedArticles.map((article) => article.id)
-  );
+    mostViewedArticles.map(article => article.id)
+  )
 
   // Editor's Picks: Assuming you have a way to identify these articles
   const editorsPicks = filteredArticles
     .filter(
-      (article) =>
+      article =>
         !mostViewedArticleIds.has(
           article.id
         ) /* && some condition for editor's pick */
     )
-    .slice(0, Math.min(5, filteredArticles.length - mostViewedArticles.length));
+    .slice(0, Math.min(5, filteredArticles.length - mostViewedArticles.length))
 
-  const editorsPicksIds = new Set(editorsPicks.map((article) => article.id));
+  const editorsPicksIds = new Set(editorsPicks.map(article => article.id))
 
   // Swiper Articles: Remaining articles, excluding Most Viewed and Editor's Picks
   const swiperArticles = filteredArticles
     .filter(
-      (article) =>
+      article =>
         !mostViewedArticleIds.has(article.id) &&
         !editorsPicksIds.has(article.id)
     )
@@ -48,7 +48,7 @@ export default function MostViewed({ articles }: { articles: Article[] }) {
           mostViewedArticles.length -
           editorsPicks.length
       )
-    );
+    )
 
   // Settings for react-slick
   const settings = {
@@ -60,8 +60,8 @@ export default function MostViewed({ articles }: { articles: Article[] }) {
     autoplay: true,
     autoplaySpeed: 2000,
     pauseOnHover: true,
-    arrows: true, // Enable navigation arrows
-  };
+    arrows: true // Enable navigation arrows
+  }
 
   return (
     <>
@@ -72,7 +72,7 @@ export default function MostViewed({ articles }: { articles: Article[] }) {
 
       <section className="bg-gray-100 py-10 lg:mb-20">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {/* Editors Picks Section */}
             <div>
               <h3 className="mb-6 text-3xl font-bold text-gray-800 md:text-4xl">
@@ -96,16 +96,16 @@ export default function MostViewed({ articles }: { articles: Article[] }) {
         </div>
       </section>
     </>
-  );
+  )
 }
 
 interface ArticleCardProps {
-  article: Article;
+  article: Article
 }
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
-  const { title, updatedAt: published } = article.attributes;
-  const imageUrl = article.attributes.image?.data?.attributes?.url;
+  const { title, updatedAt: published } = article.attributes
+  const imageUrl = article.attributes.image?.data?.attributes?.url
 
   return (
     <Link
@@ -113,11 +113,11 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
       className="mb-8 block w-full"
     >
       <div className="flex flex-wrap items-center">
-        <div className="w-full lg:w-6/12 xl:w-6/12  lg:mb-0">
+        <div className="w-full lg:mb-0 lg:w-6/12  xl:w-6/12">
           <Image
             src={imageUrl}
             alt={title}
-            className="rounded-md object-cover h-[200px] w-full"
+            className="h-[200px] w-full rounded-md object-cover"
             width={600}
             height={400}
           />
@@ -127,12 +127,12 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
             <span className="text-sm text-gray-600">
               {formatDate(published)}
             </span>
-            <h1 className="mb-2 text-xl font-semibold text-gray-800  hover:text-red-500 transition-colors duration-300">
+            <h1 className="mb-2 text-xl font-semibold text-gray-800  transition-colors duration-300 hover:text-red-500">
               {title}
             </h1>
           </div>
         </div>
       </div>
     </Link>
-  );
-};
+  )
+}

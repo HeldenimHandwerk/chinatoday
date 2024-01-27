@@ -1,10 +1,10 @@
-import React from "react";
-import Image from "next/image";
-import { HiOutlineMail } from "react-icons/hi";
-import { FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
-import logo from "../../public/images/logo.png";
-import NewsLetterSignUpForm from "./NewsLetterSignUpForm";
-import Link from "next/link";
+import React from 'react'
+import Image from 'next/image'
+import { HiOutlineMail } from 'react-icons/hi'
+import { FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa'
+import logo from '../../../public/images/logo.png'
+import NewsLetterSignUpForm from './NewsLetterSignUpForm'
+import Link from 'next/link'
 
 const Footer = () => {
   return (
@@ -16,7 +16,7 @@ const Footer = () => {
       {/* Links and Info */}
       <div className="container mx-auto pt-2 ">
         <div className="flex flex-wrap justify-between">
-          <div className="w-full px-4 lg:w-3/12 mb-10">
+          <div className="mb-10 w-full px-4 lg:w-3/12">
             <div className="w-40 max-w-full">
               <Link href="/#" className="block py-5 lg:py-3">
                 <Image
@@ -24,7 +24,7 @@ const Footer = () => {
                   alt="logo"
                   width={500}
                   height={500}
-                  className="w-full h-full"
+                  className="h-full w-full"
                 />
               </Link>
 
@@ -42,14 +42,14 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="w-full lg:w-4/12 mb-10 px-4 flex flex-col">
+          <div className="mb-10 flex w-full flex-col px-4 lg:w-4/12">
             <h4 className="mb-9 text-lg font-semibold text-black">
-              Categorien
+              kategorien
             </h4>
             <div className="grid grid-cols-2">
               <div className="w-full">
                 <NavLink link="/poltik" label="Politik" />
-                <NavLink link="/wirtschaft" label="Wirtshcaft" />
+                <NavLink link="/Wirtschaft" label="Wirtschaft" />
                 <NavLink link="/kultur" label="Kultur" />
                 <NavLink link="/greenenergy" label="Greenenergy" />
               </div>
@@ -69,7 +69,7 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="mt-12 bg-red-600 py-8">
-        <div className="container mx-auto flex flex-wrap justify-between items-center">
+        <div className="container mx-auto flex flex-wrap items-center justify-between">
           <p className="text-base text-white">
             &copy; {new Date().getFullYear()} China Today
           </p>
@@ -81,10 +81,10 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-type NavLinkProps = { label: string; link: string };
+type NavLinkProps = { label: string; link: string }
 
 const NavLink = ({ label, link }: NavLinkProps) => {
   return (
@@ -96,37 +96,37 @@ const NavLink = ({ label, link }: NavLinkProps) => {
         {label}
       </Link>
     </li>
-  );
-};
+  )
+}
 
 const ContactInfo: React.FC = () => {
   return (
     <div className="mb-6 lg:mb-0">
-      <h4 className="text-lg font-semibold mb-10">Kontakt & Hilfe</h4>
+      <h4 className="mb-10 text-lg font-semibold">Kontakt & Hilfe</h4>
       <ul>
-        <li className="flex items-center mb-2">
-          <HiOutlineMail className="text-red-600 mr-2" />
+        <li className="mb-2 flex items-center">
+          <HiOutlineMail className="mr-2 text-red-600" />
           <span>info@yourmail.com</span>
         </li>
       </ul>
     </div>
-  );
-};
+  )
+}
 
 type BottomNavLinkProps = {
-  label: string;
-  link: string;
-};
+  label: string
+  link: string
+}
 
 const BottomNavLink = ({ label, link }: BottomNavLinkProps) => {
   return (
     <Link
       href={link}
-      className="px-3 sm:text-base text-sm text-gray-7 hover:text-black"
+      className="px-3 text-sm text-gray-7 hover:text-black sm:text-base"
     >
       {label}
     </Link>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

@@ -1,37 +1,37 @@
-"use client";
+'use client'
 
 // pages/SubscribePage.tsx
-import { HiOutlineMail } from "react-icons/hi";
-import { sendemail } from "../app/action";
-import { useState } from "react";
+import { HiOutlineMail } from 'react-icons/hi'
+import { sendemail } from '../action'
+import { useState } from 'react'
 
 export default function SubscribePage() {
-  const [message, setMessage] = useState("");
-  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState('')
+  const [email, setEmail] = useState('')
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
 
     sendemail(formData)
-      .then((response) => {
-        setMessage(response.message || "");
-        setEmail("");
+      .then(response => {
+        setMessage(response.message || '')
+        setEmail('')
       })
-      .catch((error) => {
-        setMessage(error.message || "An error occurred");
-      });
-  };
+      .catch(error => {
+        setMessage(error.message || 'An error occurred')
+      })
+  }
 
   return (
-    <div className="container mx-auto py-10 px-4">
-      <div className="flex flex-wrap justify-center items-center">
-        <div className="w-full lg:w-1/2 px-4 mb-5">
+    <div className="container mx-auto px-4 py-10">
+      <div className="flex flex-wrap items-center justify-center">
+        <div className="mb-5 w-full px-4 lg:w-1/2">
           <h3 className="text-2xl font-bold text-black sm:text-[28px] sm:leading-snug">
             Signup for latest news and insights from China today
           </h3>
         </div>
-        <div className="w-full lg:w-1/2 px-4">
+        <div className="w-full px-4 lg:w-1/2">
           <form className="flex flex-wrap" onSubmit={handleSubmit}>
             <div className="relative mb-3 mr-5 w-full max-w-[370px]">
               <input
@@ -42,7 +42,7 @@ export default function SubscribePage() {
                 className="h-[52px] w-full rounded-md border border-red-600 bg-white/5 pl-14 pr-5 text-black  outline-none  focus-visible:shadow-none"
                 required
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={e => setEmail(e.target.value)}
                 autoCapitalize="off"
                 autoCorrect="off"
               />
@@ -55,7 +55,7 @@ export default function SubscribePage() {
               type="submit"
               value=""
               name="subscribe"
-              className="mb-3 h-[52px] rounded-md border border-transparent px-7 font-medium hover:bg-opacity-90 border-gray-5 hover:border-gray-400 focus:outline-none focus-visible:shadow-none py-2 bg-red-600 hover:bg-red-700 text-white transition duration-300 ease-in-out shadow"
+              className="mb-3 h-[52px] rounded-md border border-gray-5 border-transparent bg-red-600 px-7 py-2 font-medium text-white shadow transition duration-300 ease-in-out hover:border-gray-400 hover:bg-red-700 hover:bg-opacity-90 focus:outline-none focus-visible:shadow-none"
             >
               Subscribe
             </button>
@@ -64,5 +64,5 @@ export default function SubscribePage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

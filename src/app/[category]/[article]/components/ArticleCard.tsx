@@ -1,43 +1,46 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { Article } from "@/app/types/Article";
-import formatDate from "@/app/utils/formatDate";
+import React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Article } from '@/app/types/Article'
+import formatDate from '@/app/utils/formatDate'
+import ArticleText from '@/app/utils/ArticleText'
 
 interface ArticleCardProps {
-  article: Article;
-  style: any;
+  article: Article
+  style: any
 }
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ article, style }) => {
   return (
     <Link
       href={`/${article.attributes.collection.data.attributes.slug}/${article.attributes.slug}`}
-      className={`bg-white rounded-xl overflow-hidden shadow  flex flex-col ${style} `}
+      className={`flex flex-col overflow-hidden rounded-xl  bg-white shadow ${style} `}
     >
-      <div className="w-full h-64 relative">
+      <div className="relative h-64 w-full">
         <Image
           src={article.attributes.image?.data?.attributes?.url}
           alt={article.attributes.title}
           width={article.attributes.image?.data?.attributes?.width}
           height={article.attributes.image?.data?.attributes?.height}
-          className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
+          className="h-full w-full object-cover transition-all duration-500 hover:scale-105"
         />
       </div>
-      <div className="p-4 flex-grow flex flex-col justify-between corner-border">
-        <h1 className="text-2xl sm:text-lg font-bold text-black leading-tight mb-2 hover:text-red-500 transition-colors duration-300">
+      <div className="corner-border flex flex-grow flex-col justify-between p-4">
+        <h1 className="mb-2 text-2xl font-bold leading-tight text-black transition-colors duration-300 hover:text-red-500 sm:text-lg">
           {article.attributes.title}
         </h1>
 
-        <p className="text-gray-600 text-base sm:text-lg truncate-3-lines leading-relaxed ">
-          {article.attributes.text}
-        </p>
-        <div className="text-black text-sm">
+        <ArticleText
+          text={article.attributes.text}
+          className="truncate-3-lines text-base leading-relaxed text-gray-600 sm:text-lg "
+        />
+
+        <div className="text-sm text-black">
           {formatDate(article.attributes.updatedAt)}
         </div>
       </div>
     </Link>
-  );
-};
+  )
+}
 
-export default ArticleCard;
+export default ArticleCard

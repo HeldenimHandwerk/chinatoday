@@ -1,72 +1,72 @@
-"use client";
+'use client'
 
-import { useState, useEffect, FormEvent } from "react";
-import Image from "next/image";
-import logo from "../../public/images/logo.png";
-import { FaInstagram, FaTiktok, FaYoutube, FaSearch } from "react-icons/fa";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import Stockticker from "./StockTicker";
-import Link from "next/link";
+import { useState, useEffect, FormEvent } from 'react'
+import Image from 'next/image'
+import logo from '../../../public/images/logo.png'
+import { FaInstagram, FaTiktok, FaYoutube, FaSearch } from 'react-icons/fa'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import Stockticker from './StockTicker'
+import Link from 'next/link'
 
 const categories = [
-  { name: "Home", link: "/" },
-  { name: "Politik", link: "politik" },
-  { name: "Wirtschaft", link: "wirtschaft" },
-  { name: "Kultur", link: "kultur" },
-  { name: "Greenenergy", link: "greenenergy" },
-  { name: "Mobilität", link: "mobilität" },
-  { name: "Sport", link: "sport" },
-  { name: "Reisen", link: "reisen" },
-];
+  { name: 'Home', link: '/' },
+  { name: 'Politik', link: 'politik' },
+  { name: 'Wirtschaft', link: 'wirtschaft' },
+  { name: 'Kultur', link: 'kultur' },
+  { name: 'Greenenergy', link: 'greenenergy' },
+  { name: 'Mobilität', link: 'mobilität' },
+  { name: 'Sport', link: 'sport' },
+  { name: 'Reisen', link: 'reisen' }
+]
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [showElements, setShowElements] = useState<boolean>(true);
-  const [lastScrollY, setLastScrollY] = useState<number>(0);
-  const [cumulativeScroll, setCumulativeScroll] = useState<number>(0);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [showElements, setShowElements] = useState<boolean>(true)
+  const [lastScrollY, setLastScrollY] = useState<number>(0)
+  const [cumulativeScroll, setCumulativeScroll] = useState<number>(0)
+  const [searchQuery, setSearchQuery] = useState('')
 
   const handleSearchChange = (event: FormEvent) => {
-    setSearchQuery((event.target as HTMLInputElement).value); // Update the search query state on change
-  };
+    setSearchQuery((event.target as HTMLInputElement).value) // Update the search query state on change
+  }
 
   useEffect(() => {
-    let animationFrameId: number;
-    const scrollThreshold: number = 10; // Adjust this threshold as needed
+    let animationFrameId: number
+    const scrollThreshold: number = 10 // Adjust this threshold as needed
 
     const handleScroll = () => {
-      const currentScrollY: number = window.scrollY;
-      const scrollDelta: number = Math.abs(currentScrollY - lastScrollY);
-      setCumulativeScroll((prev) => prev + scrollDelta);
+      const currentScrollY: number = window.scrollY
+      const scrollDelta: number = Math.abs(currentScrollY - lastScrollY)
+      setCumulativeScroll(prev => prev + scrollDelta)
 
       if (cumulativeScroll > scrollThreshold) {
         if (currentScrollY < lastScrollY) {
-          setShowElements(true);
+          setShowElements(true)
         } else {
-          setShowElements(false);
+          setShowElements(false)
         }
-        setCumulativeScroll(0);
+        setCumulativeScroll(0)
       }
 
-      setLastScrollY(currentScrollY);
-    };
+      setLastScrollY(currentScrollY)
+    }
 
     const onScroll = () => {
-      cancelAnimationFrame(animationFrameId);
-      animationFrameId = requestAnimationFrame(handleScroll);
-    };
+      cancelAnimationFrame(animationFrameId)
+      animationFrameId = requestAnimationFrame(handleScroll)
+    }
 
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener('scroll', onScroll)
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, [lastScrollY, cumulativeScroll]);
+      window.removeEventListener('scroll', onScroll)
+      cancelAnimationFrame(animationFrameId)
+    }
+  }, [lastScrollY, cumulativeScroll])
 
   return (
     <div className="sticky top-0 z-20">
-      <header className=" flex w-full items-center bg-white shadow-md relative">
+      <header className=" relative flex w-full items-center bg-white shadow-md">
         <div className="container mx-auto flex justify-between px-4">
           {/* Logo */}
           <div className="w-40 max-w-full px-4">
@@ -76,20 +76,20 @@ export default function Header() {
                 alt="logo"
                 width={500}
                 height={500}
-                className="w-full h-full"
+                className="h-full w-full"
               />
             </Link>
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex flex-1 items-center justify-center">
+          <div className="hidden flex-1 items-center justify-center md:flex">
             {/* Search Bar */}
             <form
               className="relative flex max-w-[230px] lg:max-w-full"
-              onSubmit={(e) => {
-                e.preventDefault();
+              onSubmit={e => {
+                e.preventDefault()
                 // Redirect to the search page with the query
-                window.location.href = `/search/${searchQuery}`;
+                window.location.href = `/search/${searchQuery}`
               }}
             >
               <input
@@ -109,7 +109,7 @@ export default function Header() {
           </div>
 
           {/* Social Media Icons */}
-          <div className="hidden md:flex  items-center justify-end">
+          <div className="hidden items-center  justify-end md:flex">
             <div className="flex items-center space-x-4">
               <Link
                 href="https://www.instagram.com/"
@@ -152,14 +152,14 @@ export default function Header() {
 
           {/* Mobile Menu */}
           {isOpen && (
-            <div className="absolute inset-x-0 top-[100%] bg-white border border-t-0 shadow-lg p-4 z-20 md:hidden space-y-5">
+            <div className="absolute inset-x-0 top-[100%] z-20 space-y-5 border border-t-0 bg-white p-4 shadow-lg md:hidden">
               {/* Mobile Search Bar */}
               <form
                 className="mb-4 flex"
-                onSubmit={(e) => {
-                  e.preventDefault();
+                onSubmit={e => {
+                  e.preventDefault()
                   // Redirect to the search page with the query
-                  window.location.href = `/search/${searchQuery}`;
+                  window.location.href = `/search/${searchQuery}`
                 }}
               >
                 <input
@@ -174,12 +174,12 @@ export default function Header() {
                 </button>
               </form>
 
-              <ul className="flex flex-col space-y-5  justify-start">
+              <ul className="flex flex-col justify-start  space-y-5">
                 {categories.map((category, index) => (
                   <li key={index}>
                     <Link
                       href={`/${category.link}`}
-                      className="text-black hover:text-gray-700 text-lg"
+                      className="text-lg text-black hover:text-gray-700"
                     >
                       {category.name}
                     </Link>
@@ -187,7 +187,7 @@ export default function Header() {
                 ))}
               </ul>
               {/* Mobile Social Media Icons */}
-              <div className="flex flex-row gap-5 items-center">
+              <div className="flex flex-row items-center gap-5">
                 <Link
                   href="https://www.instagram.com/"
                   target="_blank"
@@ -218,8 +218,8 @@ export default function Header() {
         </div>
       </header>
       <nav
-        className={`bg-gray-100 shadow hidden md:flex ${
-          showElements ? "md:show " : "hide"
+        className={`hidden bg-gray-100 shadow md:flex ${
+          showElements ? 'md:show ' : 'hide'
         }`}
       >
         <div className="container mx-auto px-4">
@@ -228,7 +228,7 @@ export default function Header() {
               <li key={index}>
                 <Link
                   href={`/${category.link}`}
-                  className=" text-black lg:text-lg md:text-md overflow-hidden hover:border-b-2 hover:border-black transition"
+                  className=" md:text-md overflow-hidden text-black transition hover:border-b-2 hover:border-black lg:text-lg"
                 >
                   {category.name}
                 </Link>
@@ -237,7 +237,7 @@ export default function Header() {
           </ul>
         </div>
       </nav>
-      <Stockticker className={`${showElements ? "show" : "hide"}`} />
+      <Stockticker className={`${showElements ? 'show' : 'hide'}`} />
     </div>
-  );
+  )
 }
