@@ -163,7 +163,7 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
             </div>
           )}
           <TextToSpeechButton text={text} />
-          <div>{ck}</div>
+          <div dangerouslySetInnerHTML={{ __html: ck }} />
           {!image && (
             <div className="mb-4 rounded-lg bg-red-200 p-4 text-red-800 shadow">
               <h1 className="text-2xl font-bold text-gray-900">{title}</h1>
