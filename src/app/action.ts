@@ -14,7 +14,6 @@ export async function fetchArticles(filters: string): Promise<Article[]> {
   const response = await fetch(
     `https://jellyfish-app-qw7fr.ondigitalocean.app/api/articles?populate=*&sort=updatedAt:desc&${filters}`,
     {
-      cache: 'no-store',
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
       }
@@ -37,7 +36,6 @@ export async function fetchCollectionArticles(
     const response = await fetch(
       `https://jellyfish-app-qw7fr.ondigitalocean.app/api/collections?populate[articles][populate]=*&filters[name][$eq]=${collection}&sort=updatedAt:desc`,
       {
-        cache: 'no-store',
         headers: {
           Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
         }
