@@ -24,6 +24,8 @@ const Page = async ({ params: { category } }: Props) => {
   return (
     <div className="bg-[#FAFAFA] text-gray-900">
       <CategoryArticlesLayout articles={articles} />
+      <p>{Date.now()}</p>
+
       <MostViewed articles={articles} />
       <Suspense fallback={<div>Loading...</div>}>
         <Discovery collection={categoryCapitalized} />

@@ -1,7 +1,6 @@
 import Header from './utils/Header'
 import BentoArticles from './homeComponents/BentoArticles'
 import CategoryFeatures from './homeComponents/categoryFeatures'
-import Footer from './utils/Footer'
 
 export default function Home() {
   const collections = [

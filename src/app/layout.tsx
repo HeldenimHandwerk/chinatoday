@@ -40,6 +40,14 @@ export default function RootLayout({
     gtag('config', '${GA_MEASUREMENT_ID}');
   `}
         </Script>
+        <script
+          id="usercentrics-cmp"
+          async
+          data-eu-mode="true"
+          data-settings-id="pDXGKZHhvtjmIK"
+          src="https://app.eu.usercentrics.eu/browser-ui/latest/loader.js"
+        ></script>
+
         <Header />
         {children}
 
