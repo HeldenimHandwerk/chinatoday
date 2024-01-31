@@ -1,4 +1,3 @@
-import Header from './utils/Header'
 import BentoArticles from './homeComponents/BentoArticles'
 import CategoryFeatures from './homeComponents/categoryFeatures'
 

@@ -75,7 +75,7 @@ const Footer = () => {
           </p>
           <div className="flex space-x-3">
             <BottomNavLink link="/#" label="Impressum" />
-            <BottomNavLink link="/#" label="Datenschutzerklärung" />
+            <BottomNavLink link="/datenschutz" label="Datenschutzerklärung" />
             <BottomNavLink link="/#" label="Cookies" />
           </div>
         </div>

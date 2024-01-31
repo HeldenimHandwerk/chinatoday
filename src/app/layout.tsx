@@ -5,6 +5,7 @@ import { Analytics } from '@vercel/analytics/react'
 import Script from 'next/script'
 import Header from '@/app/utils/Header'
 import Footer from '@/app/utils/Footer'
+import Cookies from '@/app/utils/cookies'
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
 
 // Importing Roboto font
@@ -40,17 +41,9 @@ export default function RootLayout({
     gtag('config', '${GA_MEASUREMENT_ID}');
   `}
         </Script>
-        <script
-          id="usercentrics-cmp"
-          async
-          data-eu-mode="true"
-          data-settings-id="pDXGKZHhvtjmIK"
-          src="https://app.eu.usercentrics.eu/browser-ui/latest/loader.js"
-        ></script>
 
         <Header />
-        {children}
-
+        <Cookies>{children}</Cookies>
         <Analytics />
         <Footer />
       </body>
