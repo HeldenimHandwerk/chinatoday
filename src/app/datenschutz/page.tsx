@@ -88,7 +88,9 @@ const datenschutz = () => {
             Detaillierte Informationen zu diesen Analyseprogrammen finden Sie in
             der folgenden Datenschutzerkl&auml;rung.
           </p>
-          <h2 className="mt-3 text-3xl font-bold text-black">2. Hosting</h2>
+          <h2 className="mt-4 text-3xl font-semibold text-gray-600">
+            2. Hosting
+          </h2>
           <p className="mt-2 text-gray-600">
             Wir hosten die Inhalte unserer Website bei folgendem Anbieter:
           </p>
@@ -135,7 +137,7 @@ const datenschutz = () => {
             Websitebesucher nur nach unseren Weisungen und unter Einhaltung der
             DSGVO verarbeitet.
           </p>
-          <h2 className="mt-3 text-3xl font-bold text-black">
+          <h2 className="mt-4 text-3xl font-semibold text-gray-600">
             3. Allgemeine Hinweise und Pflicht&shy;informationen
           </h2>
           <h3 className="mt-3 text-2xl font-medium text-gray-500">
@@ -403,7 +405,7 @@ const datenschutz = () => {
             ausdr&uuml;cklich rechtliche Schritte im Falle der unverlangten
             Zusendung von Werbeinformationen, etwa durch Spam-E-Mails, vor.
           </p>
-          <h2 className="mt-3 text-3xl font-bold text-black">
+          <h2 className="mt-4 text-3xl font-semibold text-gray-600">
             4. Datenerfassung auf dieser Website
           </h2>
           <h3 className="mt-3 text-2xl font-medium text-gray-500">Cookies</h3>{' '}
@@ -523,7 +525,7 @@ const datenschutz = () => {
             Technologien einzuholen. Rechtsgrundlage hierf&uuml;r ist Art. 6
             Abs. 1 lit. c DSGVO.
           </p>
-          <h2 className="mt-3 text-3xl font-bold text-black">
+          <h2 className="mt-4 text-3xl font-semibold text-gray-600">
             5. Analyse-Tools und Werbung
           </h2>
           <h3 className="mt-3 text-2xl font-medium text-gray-500">
@@ -644,7 +646,9 @@ const datenschutz = () => {
             Datenschutzbeh&ouml;rden bei der Nutzung von Google Analytics
             vollst&auml;ndig um.
           </p>
-          <h2 className="mt-3 text-3xl font-bold text-black">6. Newsletter</h2>
+          <h2 className="mt-4 text-3xl font-semibold text-gray-600">
+            6. Newsletter
+          </h2>
           <h3 className="mt-3 text-2xl font-medium text-gray-500">
             Newsletter&shy;daten
           </h3>{' '}
@@ -770,7 +774,7 @@ const datenschutz = () => {
             Websitebesucher nur nach unseren Weisungen und unter Einhaltung der
             DSGVO verarbeitet.
           </p>
-          <h2 className="mt-3 text-3xl font-bold text-black">
+          <h2 className="mt-4 text-3xl font-semibold text-gray-600">
             7. Plugins und Tools
           </h2>
           <h3 className="mt-3 text-2xl font-medium text-gray-500">
