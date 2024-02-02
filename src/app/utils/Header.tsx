@@ -7,7 +7,7 @@ import { FaInstagram, FaTiktok, FaYoutube, FaSearch } from 'react-icons/fa'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Stockticker from './StockTicker'
 import Link from 'next/link'
-
+import { useRouter } from 'next/navigation'
 const categories = [
   { name: 'Home', link: '/' },
   { name: 'Politik', link: 'politik' },
@@ -20,6 +20,7 @@ const categories = [
 ]
 
 export default function Header() {
+  const router = useRouter()
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [showElements, setShowElements] = useState<boolean>(true)
   const [lastScrollY, setLastScrollY] = useState<number>(0)
@@ -39,8 +40,10 @@ export default function Header() {
       const scrollDelta: number = Math.abs(currentScrollY - lastScrollY)
       setCumulativeScroll(prev => prev + scrollDelta)
 
-      if (cumulativeScroll > scrollThreshold) {
-        if (currentScrollY < lastScrollY) {
+      if (cumulativeScroll > scrollThreshold || currentScrollY === 0) {
+        // Check if at the top of the page
+        if (currentScrollY < lastScrollY || currentScrollY === 0) {
+          // Added check for currentScrollY === 0
           setShowElements(true)
         } else {
           setShowElements(false)
@@ -89,7 +92,7 @@ export default function Header() {
               onSubmit={e => {
                 e.preventDefault()
                 // Redirect to the search page with the query
-                window.location.href = `/search/${searchQuery}`
+                router.push(`/search/${searchQuery}/1`)
               }}
             >
               <input

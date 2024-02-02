@@ -10,6 +10,8 @@ import formatDate from '@/app/utils/formatDate'
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import ArticleText from '@/app/utils/ArticleText'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 type ArticleData = {
   title: string
   text: string
@@ -31,7 +33,7 @@ const fetchArticleData = async (
   const relatedResponse = await fetchCollectionArticles(articleCategory)
   const relatedArticles = relatedResponse.slice(0, 3)
   //format the date
-  const formattedDate = formatDate(articleData.updatedAt)
+  const formattedDate = formatDate(articleData?.updatedAt)
   // Return the main article data and related articles
   return {
     article: {
@@ -141,27 +143,29 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
     <main>
       <div className="container mx-auto my-5 mb-8 rounded-md bg-gray-100 p-6 shadow-sm ">
         <div className="mb-8">
-          {image && (
-            <div className="relative mb-8 h-[450px] w-full rounded-lg shadow-lg">
-              <Image
-                src={image?.data?.attributes?.url}
-                alt={title}
-                width={image?.data?.attributes?.width}
-                height={image?.data?.attributes?.height}
-                className="h-full w-full rounded-lg object-cover"
-              />
+          <Suspense fallback={<Skeleton count={5} />}>
+            {image && (
+              <div className="relative mb-8 h-[450px] w-full rounded-lg shadow-lg">
+                <Image
+                  src={image?.data?.attributes?.url}
+                  alt={title}
+                  width={image?.data?.attributes?.width}
+                  height={image?.data?.attributes?.height}
+                  className="h-full w-full rounded-lg object-cover"
+                />
 
-              <div className="absolute bottom-0 left-0 right-0 rounded-b-lg bg-gradient-to-t from-black via-black/80 to-transparent p-4">
-                <h3>
-                  <span className="text-sm text-white">{updatedAt}</span>
-                  <span className="text-sm text-gray-300"> © {source}</span>
-                </h3>
-                <h1 className="justify-left flex items-center text-3xl font-bold text-white sm:p-5 md:text-5xl">
-                  {title}
-                </h1>
+                <div className="absolute bottom-0 left-0 right-0 rounded-b-lg bg-gradient-to-t from-black via-black/80 to-transparent p-4">
+                  <h3>
+                    <span className="text-sm text-white">{updatedAt}</span>
+                    <span className="text-sm text-gray-300"> © {source}</span>
+                  </h3>
+                  <h1 className="justify-left flex items-center text-3xl font-bold text-white sm:p-5 md:text-5xl">
+                    {title}
+                  </h1>
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </Suspense>
           <TextToSpeechButton text={text} />
           <div dangerouslySetInnerHTML={{ __html: ck }} />
           {!image && (

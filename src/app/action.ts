@@ -15,6 +15,8 @@ export async function fetchArticles(filters: string): Promise<Article[]> {
     `https://jellyfish-app-qw7fr.ondigitalocean.app/api/articles?populate=*&sort=updatedAt:desc&${filters}`,
     {
       headers: {
+        cache: 'force-cache',
+
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
       }
     }
@@ -37,6 +39,8 @@ export async function fetchCollectionArticles(
       `https://jellyfish-app-qw7fr.ondigitalocean.app/api/collections?populate[articles][populate]=*&filters[name][$eq]=${collection}&sort=updatedAt:desc`,
       {
         headers: {
+          cache: 'force-cache',
+
           Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
         }
       }
@@ -187,14 +191,16 @@ function streamToBuffer(stream: Readable): Promise<Buffer> {
   })
 }
 
-export async function search(query: string) {
+export async function search(query: string, page: string) {
   try {
     // Construct the URL with query parameters for Strapi's built-in filter
     const url = new URL(
-      `https://jellyfish-app-qw7fr.ondigitalocean.app/api/articles?populate=*&sort=updatedAt:desc&`
+      `https://jellyfish-app-qw7fr.ondigitalocean.app/api/articles?populate=*&sort=updatedAt:desc&pagination[pageSize]=10&`
     )
     url.searchParams.append('filters[title][$containsi]=', query)
-
+    url.searchParams.append('&', '')
+    url.searchParams.append('pagination[page]=', page)
+    console.log(url)
     const response = await fetch(url.toString(), {
       cache: 'no-store',
       headers: {
@@ -207,7 +213,7 @@ export async function search(query: string) {
 
     const data = await response.json()
 
-    return data.data
+    return data
   } catch (error) {
     return { error: (error as Error).message }
   }

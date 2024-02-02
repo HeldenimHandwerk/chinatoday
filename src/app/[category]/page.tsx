@@ -1,7 +1,5 @@
 import React, { Suspense } from 'react'
 import { fetchCollectionArticles } from '@/app/action'
-import Header from '@/app/utils/Header'
-import Footer from '@/app/utils/Footer'
 import MostViewed from './components/MostViewed'
 import CategoryArticlesLayout from './components/CategoryArticlesLayout'
 import Discovery from './components/Discovery'
