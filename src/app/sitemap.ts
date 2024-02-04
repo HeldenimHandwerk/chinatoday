@@ -27,7 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Dynamic paths from categories
   const dynamicCategoriesPaths: MetadataRoute.Sitemap = categories.map(
     (category: Article) => ({
-      url: `${process.env.Next_PUBLIC_BASE_URL}/${category.attributes.slug}`,
+      url: `https://chidddddddddasdadasdadadasdasdday.vercel.app/${category.attributes.slug}`,
       lastModified: new Date(category.attributes.updatedAt).toISOString(),
       changeFrequency: 'daily', // Specified as a literal type
       priority: 0.7
@@ -37,19 +37,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Static paths
   return [
     {
-      url: `${process.env.Next_PUBLIC_BASE_URL}`,
+      url: `https://chidddddddddasdadasdadadasdasdday.vercel.app`,
       lastModified: new Date().toISOString(),
       changeFrequency: 'daily', // Specified as a literal type
       priority: 0.7
     },
     {
-      url: `${process.env.Next_PUBLIC_BASE_URL}/search`,
+      url: `https://chidddddddddasdadasdadadasdasdday.vercel.app/search`,
       lastModified: new Date().toISOString(),
       changeFrequency: 'daily', // Specified as a literal type
       priority: 0.7
     },
     {
-      url: `${process.env.Next_PUBLIC_BASE_URL}/datenschutz`,
+      url: `https://chidddddddddasdadasdadadasdasdday.vercel.app/datenschutz`,
       lastModified: new Date().toISOString(),
       changeFrequency: 'daily', // Specified as a literal type
       priority: 0.7
