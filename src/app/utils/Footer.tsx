@@ -31,18 +31,21 @@ const Footer = () => {
               {/* Social Icons */}
               <div className="flex items-center">
                 <Link
+                  aria-label="instagram"
                   href="https://www.instagram.com/china-today"
                   className="px-3 text-black hover:text-gray-700"
                 >
                   <FaInstagram size="25px" />
                 </Link>
                 <Link
+                  aria-label="Tiktok"
                   href="https://www.tiktok.com/@china-today"
                   className="px-3 text-black hover:text-gray-700"
                 >
                   <FaTiktok size="25px" />
                 </Link>
                 <Link
+                  aria-label="Youtube"
                   href="https://www.youtube.com/channel/china-today"
                   className="px-3 text-black hover:text-gray-700"
                 >

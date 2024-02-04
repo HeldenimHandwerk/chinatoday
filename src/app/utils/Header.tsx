@@ -107,7 +107,7 @@ export default function Header() {
                 type="submit"
                 className="absolute left-4 top-1/2 -translate-y-1/2"
               >
-                <FaSearch />
+                <FaSearch name="search" />
               </button>
             </form>
           </div>
@@ -179,7 +179,7 @@ export default function Header() {
                   className="flex-grow rounded border border-gray-300 bg-white py-2 pl-3 pr-5 text-black"
                 />
                 <button name="search" type="submit" className="ml-2">
-                  <FaSearch />
+                  <FaSearch name="search" />
                 </button>
               </form>
 
@@ -198,6 +198,7 @@ export default function Header() {
               {/* Mobile Social Media Icons */}
               <div className="flex flex-row items-center gap-5">
                 <Link
+                  aria-label="instagram"
                   href="https://www.instagram.com/china-today"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -206,6 +207,7 @@ export default function Header() {
                   <FaInstagram size={24} />
                 </Link>
                 <Link
+                  aria-label="tiktok"
                   href="https://www.tiktok.com/@china-today"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -214,6 +216,7 @@ export default function Header() {
                   <FaTiktok size={24} />
                 </Link>
                 <Link
+                  aria-label="youtube"
                   href="https://www.youtube.com/channel/china-today"
                   target="_blank"
                   rel="noopener noreferrer"
