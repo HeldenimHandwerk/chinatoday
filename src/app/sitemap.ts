@@ -17,7 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Dynamic paths from articles
   const dynamicArticlesPaths: MetadataRoute.Sitemap = articles.map(
     (article: Article) => ({
-      url: `${process.env.Next_PUBLIC_BASE_URL}/${article.attributes?.collection?.data?.attributes?.slug}/${article?.attributes?.slug}`,
+      url: `https://chidddddddddasdadasdadadasdasdday.vercel.app/${article.attributes?.collection?.data?.attributes?.slug}/${article?.attributes?.slug}`,
       lastModified: new Date(article?.attributes?.updatedAt).toISOString(),
       changeFrequency: 'daily', // Specified as a literal type
       priority: 0.7
