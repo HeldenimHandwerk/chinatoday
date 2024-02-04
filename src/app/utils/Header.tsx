@@ -103,6 +103,7 @@ export default function Header() {
                 className="w-full rounded-lg border border-gray-300 bg-white py-2 pl-12 pr-5 text-black placeholder-gray-400 outline-none focus:border-gray-400 focus-visible:shadow-none"
               />
               <button
+                name="search"
                 type="submit"
                 className="absolute left-4 top-1/2 -translate-y-1/2"
               >
@@ -172,7 +173,7 @@ export default function Header() {
                   onChange={handleSearchChange}
                   className="flex-grow rounded border border-gray-300 bg-white py-2 pl-3 pr-5 text-black"
                 />
-                <button className="ml-2">
+                <button name="search" type="submit" className="ml-2">
                   <FaSearch />
                 </button>
               </form>
@@ -192,7 +193,7 @@ export default function Header() {
               {/* Mobile Social Media Icons */}
               <div className="flex flex-row items-center gap-5">
                 <Link
-                  href="https://www.instagram.com/"
+                  href="https://www.instagram.com/china-today"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-black hover:text-gray-700"
@@ -200,7 +201,7 @@ export default function Header() {
                   <FaInstagram size={24} />
                 </Link>
                 <Link
-                  href="https://www.tiktok.com/"
+                  href="https://www.tiktok.com/@china-today"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-black hover:text-gray-700"
@@ -208,7 +209,7 @@ export default function Header() {
                   <FaTiktok size={24} />
                 </Link>
                 <Link
-                  href="https://www.youtube.com/"
+                  href="https://www.youtube.com/channel/china-today"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-black hover:text-gray-700"

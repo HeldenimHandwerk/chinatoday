@@ -46,7 +46,7 @@ const Footer = () => {
             <h4 className="mb-9 text-lg font-semibold text-black">
               kategorien
             </h4>
-            <div className="grid grid-cols-2">
+            <ul className="grid grid-cols-2">
               <div className="w-full">
                 <NavLink link="/kategorien/poltik" label="Politik" />
                 <NavLink link="/kategorien/wirtschaft" label="Wirtschaft" />
@@ -58,7 +58,7 @@ const Footer = () => {
                 <NavLink link="/kategorien/sport" label="Sport" />
                 <NavLink link="/kategorien/reisen" label="Reisen" />
               </div>
-            </div>
+            </ul>
           </div>
 
           <div className="w-full px-4 sm:w-full md:w-1/2 lg:w-3/12">
@@ -68,7 +68,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="mt-12 bg-red-600 py-8">
+      <div className="mt-12 bg-red-700 py-8">
         <div className="container mx-auto flex flex-wrap items-center justify-between">
           <p className="text-base text-white">
             &copy; {new Date().getFullYear()} China Today
@@ -104,7 +104,7 @@ const ContactInfo: React.FC = () => {
       <h4 className="mb-10 text-lg font-semibold">Kontakt & Hilfe</h4>
       <ul>
         <li className="mb-2 flex items-center">
-          <HiOutlineMail className="mr-2 text-red-600" />
+          <HiOutlineMail className="mr-2 text-red-700" />
           <span>info@yourmail.com</span>
         </li>
       </ul>
@@ -121,7 +121,7 @@ const BottomNavLink = ({ label, link }: BottomNavLinkProps) => {
   return (
     <Link
       href={link}
-      className="px-3 text-sm text-gray-7 hover:text-black sm:text-base"
+      className="px-3 text-sm text-white hover:text-black sm:text-base"
     >
       {label}
     </Link>

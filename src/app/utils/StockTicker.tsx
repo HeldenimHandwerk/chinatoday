@@ -20,14 +20,14 @@ const StockTickerItem: React.FC<{ symbol: string; stock: Stock }> = ({
       <span className="font-bold text-white">{symbol}</span>
       <span
         className={`text-sm ${
-          stock.change < 0 ? 'text-green-500' : 'text-red-500'
+          stock.change < 0 ? 'text-green-700' : 'text-red-700'
         }`}
       >
         ${stock.price.toFixed(2)}
       </span>
       <span
         className={`text-xs ${
-          stock.change < 0 ? 'text-green-500' : 'text-red-500'
+          stock.change < 0 ? 'text-green-700' : 'text-red-700'
         }`}
       >
         ({stock.changePercent.toFixed(2)}%)
