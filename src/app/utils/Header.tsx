@@ -107,7 +107,7 @@ export default function Header() {
                 type="submit"
                 className="absolute left-4 top-1/2 -translate-y-1/2"
               >
-                <FaSearch name="search" />
+                <FaSearch />
               </button>
             </form>
           </div>
@@ -116,6 +116,7 @@ export default function Header() {
           <div className="hidden items-center  justify-end md:flex">
             <div className="flex items-center space-x-4">
               <Link
+                aira-label="instagram"
                 href="https://www.instagram.com/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -125,6 +126,7 @@ export default function Header() {
               </Link>
 
               <Link
+                aira-label="tiktok"
                 href="https://www.tiktok.com/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -133,6 +135,7 @@ export default function Header() {
                 <FaTiktok size={24} />
               </Link>
               <Link
+                aira-label="youtube"
                 href="https://www.youtube.com/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -179,7 +182,7 @@ export default function Header() {
                   className="flex-grow rounded border border-gray-300 bg-white py-2 pl-3 pr-5 text-black"
                 />
                 <button name="search" type="submit" className="ml-2">
-                  <FaSearch name="search" />
+                  <FaSearch />
                 </button>
               </form>
 

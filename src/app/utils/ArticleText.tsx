@@ -9,8 +9,8 @@ type ArticleTextProps = {
 
 export default function ArticleText({ text, ...props }: ArticleTextProps) {
   return (
-    <p {...props}>
+    <h4 {...props}>
       <ReactMarkdown>{text}</ReactMarkdown>
-    </p>
+    </h4>
   )
 }
