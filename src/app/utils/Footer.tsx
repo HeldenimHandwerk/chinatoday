@@ -46,19 +46,19 @@ const Footer = () => {
             <h4 className="mb-9 text-lg font-semibold text-black">
               kategorien
             </h4>
-            <ul className="grid grid-cols-2">
-              <div className="w-full">
+            <div className="grid grid-cols-2">
+              <ul className="w-full">
                 <NavLink link="/kategorien/poltik" label="Politik" />
                 <NavLink link="/kategorien/wirtschaft" label="Wirtschaft" />
                 <NavLink link="/kategorien/kultur" label="Kultur" />
                 <NavLink link="/kategorien/greenenergy" label="Greenenergy" />
-              </div>
-              <div className="w-full">
+              </ul>
+              <ul className="w-full">
                 <NavLink link="/kategorien/mobilitaet" label="Mobilität" />
                 <NavLink link="/kategorien/sport" label="Sport" />
                 <NavLink link="/kategorien/reisen" label="Reisen" />
-              </div>
-            </ul>
+              </ul>
+            </div>
           </div>
 
           <div className="w-full px-4 sm:w-full md:w-1/2 lg:w-3/12">

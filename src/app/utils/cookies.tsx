@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import React from 'react'
 import { CookifyConsent } from 'react-cookify'
 
@@ -42,12 +43,12 @@ export default function Cookies({ children }: { children: React.ReactNode }) {
                 Willkommen! Um Ihr Erlebnis zu verbessern, verwenden wir Cookies
                 und halten uns an die DSGVO. Weitere Informationen finden Sie in
                 unserer{' '}
-                <a
+                <Link
                   href="/datenschutz"
                   style={{ textDecoration: 'underline', fontWeight: 500 }}
                 >
                   Datenschutzrichtlinie{' '}
-                </a>
+                </Link>
                 .
               </>
             ),
@@ -73,12 +74,12 @@ export default function Cookies({ children }: { children: React.ReactNode }) {
                 bieten und Präferenzen zu speichern. Sie können Ihre
                 Cookie-Einstellungen jederzeit verwalten. Um mehr über unseren
                 Einsatz von Cookies zu erfahren, schauen Sie sich gerne unsere{' '}
-                <a
+                <Link
                   href="/datenschutz"
                   style={{ textDecoration: 'underline', fontWeight: 500 }}
                 >
                   Datenschutzrichtlinie
-                </a>
+                </Link>
                 .
               </>
             ),

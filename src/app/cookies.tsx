@@ -1,11 +1,12 @@
 'use client'
 
+import Link from 'next/link'
 import React from 'react'
 import { CookifyConsent } from 'react-cookify'
 
 export default function Cookies({ children }: { children: React.ReactNode }) {
   return (
-    <CookifyConsent 
+    <CookifyConsent
       settings={{
         options: {
           name: 'cookie-consent',
@@ -41,12 +42,12 @@ export default function Cookies({ children }: { children: React.ReactNode }) {
               <>
                 Welcome! To enhance your experience, we use cookies and comply
                 with GDPR. For more information feel free to check out our{' '}
-                <a
+                <Link
                   href="#"
                   style={{ textDecoration: 'underline', fontWeight: 500 }}
                 >
                   privacy policy
-                </a>
+                </Link>
                 .
               </>
             ),
@@ -72,12 +73,12 @@ export default function Cookies({ children }: { children: React.ReactNode }) {
                 preferences. You can manage your cookie preferences at any time.
                 To learn more about our use of cookies feel free to check out
                 our{' '}
-                <a
+                <Link
                   href="#"
                   style={{ textDecoration: 'underline', fontWeight: 500 }}
                 >
                   privacy policy
-                </a>
+                </Link>
                 .
               </>
             ),

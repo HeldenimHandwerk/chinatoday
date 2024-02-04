@@ -63,7 +63,7 @@ const SearchResultsPage = async ({ params }: Props) => {
               <div className="mb-12 inline-flex rounded bg-white p-3 shadow-[0px_1px_3px_0px_rgba(0,0,0,0.13)]">
                 <ul className="-mx-[6px] flex items-center">
                   <li className="px-[6px]">
-                    <a
+                    <Link
                       href={`/search/${searchTerm}/${currentPage - 1}`}
                       className="flex h-6 min-w-[24px] items-center justify-center rounded px-1 text-base text-body-color hover:bg-[#EDEFF1] "
                     >
@@ -80,7 +80,7 @@ const SearchResultsPage = async ({ params }: Props) => {
                           ></path>
                         </svg>
                       </span>
-                    </a>
+                    </Link>
                   </li>
 
                   {/* Dynamic Page Links */}
@@ -94,7 +94,7 @@ const SearchResultsPage = async ({ params }: Props) => {
                   ))}
 
                   <li>
-                    <a
+                    <Link
                       href={`/search/${searchTerm}/${currentPage + 1}`}
                       className="flex h-6 min-w-[24px] items-center justify-center rounded px-1 text-base text-body-color hover:bg-[#EDEFF1] "
                     >
@@ -111,7 +111,7 @@ const SearchResultsPage = async ({ params }: Props) => {
                           ></path>
                         </svg>
                       </span>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

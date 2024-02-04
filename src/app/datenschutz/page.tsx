@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 const datenschutz = () => {
   return (
     <div className="container mx-auto h-full px-4 py-6 md:px-12">
@@ -475,13 +477,13 @@ const datenschutz = () => {
             und diese datenschutzkonform zu dokumentieren. Anbieter dieser
             Technologie ist die Usercentrics GmbH, Sendlinger Stra&szlig;e 7,
             80331 M&uuml;nchen, Website:{' '}
-            <a
+            <Link
               href="https://usercentrics.com/de/"
               target="_blank"
               rel="noopener noreferrer"
             >
               https://usercentrics.com/de/
-            </a>{' '}
+            </Link>{' '}
             (im Folgenden &bdquo;Usercentrics&ldquo;).
           </p>{' '}
           <p className="mt-2 text-gray-600">
@@ -569,13 +571,13 @@ const datenschutz = () => {
             Die Daten&uuml;bertragung in die USA wird auf die
             Standardvertragsklauseln der EU-Kommission gest&uuml;tzt. Details
             finden Sie hier:{' '}
-            <a
+            <Link
               href="https://privacy.google.com/businesses/controllerterms/mccs/"
               target="_blank"
               rel="noopener noreferrer"
             >
               https://privacy.google.com/businesses/controllerterms/mccs/
-            </a>
+            </Link>
             .
           </p>{' '}
           <p className="mt-2 text-gray-600">
@@ -587,13 +589,13 @@ const datenschutz = () => {
             dem DPF zertifizierte Unternehmen verpflichtet sich, diese
             Datenschutzstandards einzuhalten. Weitere Informationen hierzu
             erhalten Sie vom Anbieter unter folgendem Link:{' '}
-            <a
+            <Link
               href="https://www.dataprivacyframework.gov/s/participant-search/participant-detail?contact=true&id=a2zt000000001L5AAI&status=Active"
               target="_blank"
               rel="noopener noreferrer"
             >
               https://www.dataprivacyframework.gov/s/participant-search/participant-detail?contact=true&id=a2zt000000001L5AAI&status=Active
-            </a>
+            </Link>
           </p>
           <h4>IP Anonymisierung</h4>{' '}
           <p className="mt-2 text-gray-600">
@@ -618,25 +620,25 @@ const datenschutz = () => {
             Sie k&ouml;nnen die Erfassung und Verarbeitung Ihrer Daten durch
             Google verhindern, indem Sie das unter dem folgenden Link
             verf&uuml;gbare Browser-Plugin herunterladen und installieren:{' '}
-            <a
+            <Link
               href="https://tools.google.com/dlpage/gaoptout?hl=de"
               target="_blank"
               rel="noopener noreferrer"
             >
               https://tools.google.com/dlpage/gaoptout?hl=de
-            </a>
+            </Link>
             .
           </p>{' '}
           <p className="mt-2 text-gray-600">
             Mehr Informationen zum Umgang mit Nutzerdaten bei Google Analytics
             finden Sie in der Datenschutzerkl&auml;rung von Google:{' '}
-            <a
+            <Link
               href="https://support.google.com/analytics/answer/6004245?hl=de"
               target="_blank"
               rel="noopener noreferrer"
             >
               https://support.google.com/analytics/answer/6004245?hl=de
-            </a>
+            </Link>
             .
           </p>
           <h4>Auftragsverarbeitung</h4>{' '}
@@ -703,21 +705,21 @@ const datenschutz = () => {
             Die Daten&uuml;bertragung in die USA wird auf die
             Standardvertragsklauseln der EU-Kommission gest&uuml;tzt. Details
             finden Sie hier:{' '}
-            <a
+            <Link
               href="https://mailchimp.com/eu-us-data-transfer-statement/"
               target="_blank"
               rel="noopener noreferrer"
             >
               https://mailchimp.com/eu-us-data-transfer-statement/
-            </a>{' '}
+            </Link>{' '}
             und{' '}
-            <a
+            <Link
               href="https://mailchimp.com/legal/data-processing-addendum/#Annex_C_-_Standard_Contractual_Clauses"
               target="_blank"
               rel="noopener noreferrer"
             >
               https://mailchimp.com/legal/data-processing-addendum/#Annex_C_-_Standard_Contractual_Clauses
-            </a>
+            </Link>
             .
           </p>{' '}
           <p className="mt-2 text-gray-600">
@@ -739,13 +741,13 @@ const datenschutz = () => {
           <p className="mt-2 text-gray-600">
             N&auml;heres entnehmen Sie den Datenschutzbestimmungen von Mailchimp
             unter:{' '}
-            <a
+            <Link
               href="https://mailchimp.com/legal/terms/"
               target="_blank"
               rel="noopener noreferrer"
             >
               https://mailchimp.com/legal/terms/
-            </a>
+            </Link>
             .
           </p>
           <p className="mt-2 text-gray-600">
@@ -757,13 +759,13 @@ const datenschutz = () => {
             dem DPF zertifizierte Unternehmen verpflichtet sich, diese
             Datenschutzstandards einzuhalten. Weitere Informationen hierzu
             erhalten Sie vom Anbieter unter folgendem Link:{' '}
-            <a
+            <Link
               href="https://www.dataprivacyframework.gov/s/participant-search/participant-detail?contact=true&id=a2zt0000000TXVKAA4&status=Active"
               target="_blank"
               rel="noopener noreferrer"
             >
               https://www.dataprivacyframework.gov/s/participant-search/participant-detail?contact=true&id=a2zt0000000TXVKAA4&status=Active
-            </a>
+            </Link>
           </p>
           <h4>Auftragsverarbeitung</h4>{' '}
           <p className="mt-2 text-gray-600">
@@ -807,21 +809,21 @@ const datenschutz = () => {
           </p>{' '}
           <p className="mt-2 text-gray-600">
             Weitere Informationen zu Google Fonts finden Sie unter{' '}
-            <a
+            <Link
               href="https://developers.google.com/fonts/faq"
               target="_blank"
               rel="noopener noreferrer"
             >
               https://developers.google.com/fonts/faq
-            </a>{' '}
+            </Link>{' '}
             und in der Datenschutzerkl&auml;rung von Google:{' '}
-            <a
+            <Link
               href="https://policies.google.com/privacy?hl=de"
               target="_blank"
               rel="noopener noreferrer"
             >
               https://policies.google.com/privacy?hl=de
-            </a>
+            </Link>
             .
           </p>
           <p className="mt-2 text-gray-600">
@@ -833,13 +835,13 @@ const datenschutz = () => {
             dem DPF zertifizierte Unternehmen verpflichtet sich, diese
             Datenschutzstandards einzuhalten. Weitere Informationen hierzu
             erhalten Sie vom Anbieter unter folgendem Link:{' '}
-            <a
+            <Link
               href="https://www.dataprivacyframework.gov/s/participant-search/participant-detail?contact=true&id=a2zt000000001L5AAI&status=Active"
               target="_blank"
               rel="noopener noreferrer"
             >
               https://www.dataprivacyframework.gov/s/participant-search/participant-detail?contact=true&id=a2zt000000001L5AAI&status=Active
-            </a>
+            </Link>
           </p>
         </div>
       </div>

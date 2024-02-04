@@ -145,7 +145,11 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <div className="flex items-center md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} className="p-2">
+            <button
+              name="sidebar toggle"
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2"
+            >
               {isOpen ? (
                 <XMarkIcon className="h-8 w-8" />
               ) : (
