@@ -120,6 +120,7 @@ const TextToSpeechButton: React.FC<TextToSpeechButtonProps> = ({ text }) => {
     return (
       <div className="flex items-center space-x-4 rounded-lg border bg-gray-100 p-3 shadow-lg">
         <button
+          name="play-button"
           onClick={handlePlayButtonClick}
           className="text-6xl text-red-600 transition-all duration-300 hover:scale-105"
         >
@@ -140,6 +141,7 @@ const TextToSpeechButton: React.FC<TextToSpeechButtonProps> = ({ text }) => {
         <FaSpinner className="animate-spin text-red-600" size="24px" />
       ) : (
         <button
+          name="play-button"
           onClick={handlePlayButtonClick}
           className={`text-red-600 ${buttonClass}`}
           disabled={!audioUrl}
@@ -147,7 +149,11 @@ const TextToSpeechButton: React.FC<TextToSpeechButtonProps> = ({ text }) => {
           {isPlaying ? <FaPause size="24px" /> : <FaPlay size="24px" />}
         </button>
       )}
-      <button onClick={handleStop} className={`text-red-600 ${buttonClass}`}>
+      <button
+        name="stop button"
+        onClick={handleStop}
+        className={`text-red-600 ${buttonClass}`}
+      >
         <FaStop size="24px" />
       </button>
       <div className={progressBarClass} onClick={handleProgressBarClick}>

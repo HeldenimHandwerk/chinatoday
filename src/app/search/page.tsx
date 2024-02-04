@@ -28,6 +28,7 @@ const SearchIndexPage = () => {
               className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-black placeholder-gray-400 outline-none focus:border-gray-400 focus-visible:shadow-none"
             />
             <button
+              name="search-button"
               type="submit"
               className="absolute right-3 top-1/2 -translate-y-1/2 transform text-gray-500 hover:text-gray-700"
             >
