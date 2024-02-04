@@ -172,6 +172,7 @@ export default function Header() {
               >
                 <input
                   type="text"
+                  name="search"
                   placeholder="Search here..."
                   value={searchQuery}
                   onChange={handleSearchChange}
