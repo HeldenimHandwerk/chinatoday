@@ -2,7 +2,7 @@ import { fetchArticles } from '@/app/action'
 import Image from 'next/image'
 import Link from 'next/link'
 import { fetchCollectionArticles } from '@/app/action'
-import picture from '../../../../public/images/Aldi-Banner.jpg'
+import picture from '../../../../../public/images/Aldi-Banner.jpg'
 import ArticleCard from './components/ArticleCard'
 import { Article } from '@/app/types/Article'
 import TextToSpeechButton from './components/TextToSpeechButton'
@@ -12,13 +12,39 @@ import { Suspense } from 'react'
 import ArticleText from '@/app/utils/ArticleText'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+
 type ArticleData = {
   title: string
   text: string
   ck: string
-  image: any // Adjust the type as needed
+  image: any
   updatedAt: string
   source: string
+}
+
+export const generateMetadata = async ({
+  params: { article }
+}: {
+  params: { article: string }
+}): Promise<Metadata> => {
+  const { article: articleData } = await fetchArticleData(article)
+
+  return {
+    title: `${articleData.title}`,
+    description: `${articleData.text}`,
+    openGraph: {
+      title: `${articleData.title}`,
+      description: `${articleData.text}`,
+      images: [
+        {
+          url: `${articleData.image?.data?.attributes?.url}`,
+          width: articleData.image?.data?.attributes?.width,
+          height: articleData.image?.data?.attributes?.height,
+          alt: `${articleData.title}`
+        }
+      ]
+    }
+  }
 }
 
 const fetchArticleData = async (
@@ -29,7 +55,7 @@ const fetchArticleData = async (
   const articleData = articleResponse[0]?.attributes
 
   // Fetch related articles based on the article category
-  const articleCategory = articleData?.collection.data.attributes.name
+  const articleCategory = articleData?.collection.data.attributes.slug
   const relatedResponse = await fetchCollectionArticles(articleCategory)
   const relatedArticles = relatedResponse.slice(0, 3)
   //format the date
@@ -37,12 +63,12 @@ const fetchArticleData = async (
   // Return the main article data and related articles
   return {
     article: {
-      title: articleData.title,
-      text: articleData.text,
-      ck: articleData.ck,
-      image: articleData.image,
+      title: articleData?.title,
+      text: articleData?.text,
+      ck: articleData?.ck,
+      image: articleData?.image,
       updatedAt: formattedDate,
-      source: articleData.ImageSource
+      source: articleData?.ImageSource
     },
     relatedArticles
   }
@@ -61,19 +87,6 @@ const AdImage = () => {
   )
 }
 
-export const generateMetadata = async ({
-  params: { article }
-}: {
-  params: { article: string }
-}): Promise<Metadata> => {
-  const { article: articleData } = await fetchArticleData(article)
-
-  return {
-    title: `${articleData.title}`,
-    description: `${articleData.text}`
-  }
-}
-
 interface Props {
   params: {
     article: string
@@ -89,8 +102,8 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
   const insertAdsBasedOnLength = (text: string) => {
     const sentenceEndRegex = /\. [A-Z]/
     const findNextSentenceEnd = (text: string, startIndex: number): number => {
-      const match = sentenceEndRegex.exec(text.slice(startIndex))
-      return match ? startIndex + match.index + 1 : text.length
+      const match = sentenceEndRegex.exec(text?.slice(startIndex))
+      return match ? startIndex + match.index + 1 : text?.length
     }
 
     const createTextElement = (key: string, text: string) => (
@@ -102,13 +115,13 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
     )
 
     const elements: React.ReactNode[] = []
-    const totalLength = text.length
+    const totalLength = text?.length
     let lastIndex = 0
     let adIndex = 1
 
     // Insert the first sentence as a title
     const firstSentenceEnd = findNextSentenceEnd(text, 0)
-    elements.push(createTextElement('title', text.slice(0, firstSentenceEnd)))
+    elements.push(createTextElement('title', text?.slice(0, firstSentenceEnd)))
     lastIndex = firstSentenceEnd
 
     // Define positions for ads
@@ -122,7 +135,7 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
       elements.push(
         createTextElement(
           `text-${adIndex}`,
-          text.slice(lastIndex, nextSentenceEnd)
+          text?.slice(lastIndex, nextSentenceEnd)
         )
       )
       // Add the ad
@@ -134,7 +147,7 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
 
     // Add any remaining text after the last ad
     if (lastIndex < totalLength) {
-      elements.push(createTextElement('text-end', text.slice(lastIndex)))
+      elements.push(createTextElement('text-end', text?.slice(lastIndex)))
     }
     return elements
   }

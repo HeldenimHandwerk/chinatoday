@@ -13,7 +13,7 @@ interface ArticleCardProps {
 const ArticleCard: React.FC<ArticleCardProps> = ({ article, style }) => {
   return (
     <Link
-      href={`/${article.attributes.collection.data.attributes.slug}/${article.attributes.slug}`}
+      href={`/kategorien/${article.attributes.collection.data.attributes.slug}/${article.attributes.slug}`}
       className={`flex flex-col overflow-hidden rounded-xl  bg-white shadow ${style} `}
     >
       <div className="relative h-64 w-full">

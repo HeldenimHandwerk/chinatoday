@@ -2,10 +2,11 @@
 
 import React, { useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
-import Discover from '../[category]/components/Discovery'
+import { useRouter } from 'next/navigation'
 
 const SearchIndexPage = () => {
   const [query, setQuery] = useState('')
+  const router = useRouter()
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -15,7 +16,8 @@ const SearchIndexPage = () => {
             className="relative flex items-center"
             onSubmit={e => {
               e.preventDefault()
-              window.location.href = `/search/${query}`
+              // Redirect to the search page with the query
+              router.push(`/search/${query}/1`)
             }}
           >
             <input

@@ -2,7 +2,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Article as ArticleType } from '../../types/Article'
+import { Article as ArticleType } from '@/app/types/Article'
 import formatDate from '@/app/utils/formatDate'
 import ArticleText from '@/app/utils/ArticleText'
 const updateOldestArticle = async (oldestArticle: ArticleType) => {
@@ -132,7 +132,7 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
     style={style}
   >
     <Link
-      href={`/${article?.attributes.collection.data.attributes.slug}/${article?.attributes.slug}`}
+      href={`/kategorien/${article?.attributes.collection.data.attributes.slug}/${article?.attributes.slug}`}
     >
       <div className="block h-full">
         <div

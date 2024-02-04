@@ -3,13 +3,13 @@ import CategoryFeatures from './homeComponents/categoryFeatures'
 
 export default function Home() {
   const collections = [
-    'Politik',
-    'Wirtschaft',
-    'Kultur',
-    'Greenenergy',
-    'Mobilität',
-    'Reisen',
-    'Sport'
+    'politik',
+    'wirtschaft',
+    'kultur',
+    'greenenergy',
+    'mobilitaet',
+    'reisen',
+    'sport'
   ]
   return (
     <main>

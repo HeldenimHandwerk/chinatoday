@@ -3,7 +3,7 @@ import { search } from '@/app/action'
 import { Article } from '@/app/types/Article'
 import Image from 'next/image'
 import { Suspense } from 'react'
-import Discovery from '@/app/[category]/components/Discovery'
+import Discovery from '@/app/kategorien/[category]/components/Discovery'
 import ArticleText from '@/app/utils/ArticleText'
 
 interface Props {
@@ -17,7 +17,6 @@ const SearchResultsPage = async ({ params }: Props) => {
   const [searchTerm, pageNumber] = params.query
 
   const articles = await search(searchTerm, pageNumber.toString())
-  console.log(articles)
 
   // Calculating the total number of pages for pagination
   const totalPages = articles.meta.pagination.pageCount
@@ -49,7 +48,9 @@ const SearchResultsPage = async ({ params }: Props) => {
                     className="truncate-3-lines mb-4 text-base sm:text-lg"
                   />
 
-                  <Link href={`/article/${result.attributes.slug}`}>
+                  <Link
+                    href={`/kategorien/${result.attributes.collection.data.attributes.slug}/${result.attributes.slug}`}
+                  >
                     <div className="text-red-600 transition-colors duration-300 hover:text-red-800">
                       Mehr lesen
                     </div>

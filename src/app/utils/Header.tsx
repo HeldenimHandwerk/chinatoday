@@ -10,13 +10,13 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 const categories = [
   { name: 'Home', link: '/' },
-  { name: 'Politik', link: 'politik' },
-  { name: 'Wirtschaft', link: 'wirtschaft' },
-  { name: 'Kultur', link: 'kultur' },
-  { name: 'Greenenergy', link: 'greenenergy' },
-  { name: 'Mobilität', link: 'mobilität' },
-  { name: 'Sport', link: 'sport' },
-  { name: 'Reisen', link: 'reisen' }
+  { name: 'Politik', link: 'kategorien/politik' },
+  { name: 'Wirtschaft', link: 'kategorien/wirtschaft' },
+  { name: 'Kultur', link: 'kategorien/kultur' },
+  { name: 'Greenenergy', link: 'kategorien/greenenergy' },
+  { name: 'Mobilität', link: 'kategorien/mobilitaet' },
+  { name: 'Sport', link: 'kategorien/sport' },
+  { name: 'Reisen', link: 'kategorien/reisen' }
 ]
 
 export default function Header() {
@@ -162,7 +162,7 @@ export default function Header() {
                 onSubmit={e => {
                   e.preventDefault()
                   // Redirect to the search page with the query
-                  window.location.href = `/search/${searchQuery}`
+                  router.push(`/search/${searchQuery}/1`)
                 }}
               >
                 <input

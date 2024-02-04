@@ -109,7 +109,7 @@ const TextToSpeechButton: React.FC<TextToSpeechButtonProps> = ({ text }) => {
   }
 
   const estimatedDuration = () => {
-    const wordCount = text.split(' ').length
+    const wordCount = text?.split(' ').length
     const durationInMinutes = wordCount / 200 // Average reading speed
     const durationInSeconds = durationInMinutes * 60
     return formatDuration(durationInSeconds)

@@ -48,15 +48,15 @@ const Footer = () => {
             </h4>
             <div className="grid grid-cols-2">
               <div className="w-full">
-                <NavLink link="/poltik" label="Politik" />
-                <NavLink link="/Wirtschaft" label="Wirtschaft" />
-                <NavLink link="/kultur" label="Kultur" />
-                <NavLink link="/greenenergy" label="Greenenergy" />
+                <NavLink link="/kategorien/poltik" label="Politik" />
+                <NavLink link="/kategorien/wirtschaft" label="Wirtschaft" />
+                <NavLink link="/kategorien/kultur" label="Kultur" />
+                <NavLink link="/kategorien/greenenergy" label="Greenenergy" />
               </div>
               <div className="w-full">
-                <NavLink link="/mobilität" label="Mobilität" />
-                <NavLink link="/sport" label="Sport" />
-                <NavLink link="/reisen" label="Reisen" />
+                <NavLink link="/kategorien/mobilitaet" label="Mobilität" />
+                <NavLink link="/kategorien/sport" label="Sport" />
+                <NavLink link="/kategorien/reisen" label="Reisen" />
               </div>
             </div>
           </div>
@@ -76,7 +76,6 @@ const Footer = () => {
           <div className="flex space-x-3">
             <BottomNavLink link="/#" label="Impressum" />
             <BottomNavLink link="/datenschutz" label="Datenschutzerklärung" />
-            <BottomNavLink link="/#" label="Cookies" />
           </div>
         </div>
       </div>

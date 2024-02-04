@@ -9,7 +9,7 @@ export type Article = {
     Headline: boolean
     slug: string
     view: number
-    ck: any
+    ck: string
     CategoryBreaking: boolean
     image: {
       data: {

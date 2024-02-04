@@ -36,7 +36,7 @@ export async function fetchCollectionArticles(
 ): Promise<Article[]> {
   try {
     const response = await fetch(
-      `https://jellyfish-app-qw7fr.ondigitalocean.app/api/collections?populate[articles][populate]=*&filters[name][$eq]=${collection}&sort=updatedAt:desc`,
+      `https://jellyfish-app-qw7fr.ondigitalocean.app/api/collections?populate[articles][populate]=*&filters[slug][$eq]=${collection}&sort=updatedAt:desc`,
       {
         headers: {
           cache: 'force-cache',
@@ -200,7 +200,6 @@ export async function search(query: string, page: string) {
     url.searchParams.append('filters[title][$containsi]=', query)
     url.searchParams.append('&', '')
     url.searchParams.append('pagination[page]=', page)
-    console.log(url)
     const response = await fetch(url.toString(), {
       cache: 'no-store',
       headers: {

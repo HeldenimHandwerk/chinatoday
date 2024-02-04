@@ -3,7 +3,7 @@
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import { Article } from '../../types/Article'
+import { Article } from '@/app/types/Article'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -33,7 +33,7 @@ export default function Carousel({ articles }: CarouselProps) {
           {articles.map((article: Article) => (
             <div key={article.id} className=" h-[300px] md:h-[500px]">
               <Link
-                href={`/${article.attributes.collection.data.attributes.slug}/${article.attributes.slug}`}
+                href={`/kategorien/${article.attributes.collection.data.attributes.slug}/${article.attributes.slug}`}
               >
                 <div className="relative h-full w-full">
                   <Image

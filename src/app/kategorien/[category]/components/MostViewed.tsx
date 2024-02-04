@@ -1,9 +1,9 @@
 // MostViewed.jsx or MostViewed.tsx
 import React from 'react'
-import { Article } from '../../types/Article'
+import { Article } from '@/app/types/Article'
 import Image from 'next/image'
 import Link from 'next/link'
-import formatDate from '../../utils/formatDate'
+import formatDate from '@/app/utils/formatDate'
 import Carousel from './Carousel'
 
 export default function Toplist({ articles }: { articles: Article[] }) {
@@ -109,7 +109,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
 
   return (
     <Link
-      href={`/${article.attributes.collection.data.attributes.slug}/${article.attributes.slug}`}
+      href={`/kategorien/${article.attributes.collection.data.attributes.slug}/${article.attributes.slug}`}
       className="mb-8 block w-full"
     >
       <div className="flex flex-wrap items-center">
