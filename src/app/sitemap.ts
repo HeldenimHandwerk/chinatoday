@@ -5,7 +5,7 @@ import { fetchArticles } from '@/app/action'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = await fetchArticles('')
   const fetchCategories = await fetch(
-    `https://jellyfish-app-qw7fr.ondigitalocean.app/api/collections`,
+    `https://chinatoday-strapi-cusbi.ondigitalocean.app/api/collections`,
     {
       headers: {
         cache: 'force-cache',

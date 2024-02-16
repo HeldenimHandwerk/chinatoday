@@ -7,10 +7,11 @@ export type Article = {
     ImageSource: string
     updatedAt: string
     Headline: boolean
+    CategoryBreaking: boolean
+    HeroBreaking: boolean
     slug: string
     view: number
     ck: string
-    CategoryBreaking: boolean
     image: {
       data: {
         attributes: {

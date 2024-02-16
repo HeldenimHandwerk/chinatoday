@@ -7,14 +7,11 @@ import ArticleText from '../utils/ArticleText'
 async function fetchArticles(collection: string) {
   let articles = await fetchCollectionArticles(collection)
 
-  articles.sort(
-    (a: Article, b: Article) =>
-      new Date(b.attributes.updatedAt).getTime() -
-      new Date(a.attributes.updatedAt).getTime()
-  )
-
   var filteredArticles = articles.filter(
-    (article: Article) => article.attributes.CategoryBreaking === true
+    (article: Article) =>
+      article.attributes.CategoryBreaking === true &&
+      article.attributes.Headline === false &&
+      article.attributes.HeroBreaking === false
   )
   // Check the length after filtering
   if (filteredArticles.length > 6) {
@@ -30,7 +27,7 @@ async function fetchArticles(collection: string) {
 const updateOldestArticle = async (oldestArticle: Article) => {
   // Make an API request to update the 'Breaking' status of the oldest article.
   const response = await fetch(
-    `https://jellyfish-app-qw7fr.ondigitalocean.app/api/articles/${oldestArticle.id}`,
+    `https://chinatoday-strapi-cusbi.ondigitalocean.app/api/articles/${oldestArticle.id}`,
     {
       method: 'PUT',
       cache: 'no-store',

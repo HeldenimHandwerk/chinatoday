@@ -9,18 +9,20 @@ import {
 
 import { Readable } from 'stream'
 import { Article } from '@/app/types/Article'
+import { revalidatePath } from 'next/cache'
 
 export async function fetchArticles(filters: string): Promise<Article[]> {
   const response = await fetch(
-    `https://jellyfish-app-qw7fr.ondigitalocean.app/api/articles?populate=*&sort=updatedAt:desc&${filters}`,
+    `https://chinatoday-strapi-cusbi.ondigitalocean.app/api/articles?populate=*&sort=updatedAt:desc&${filters}`,
     {
       headers: {
         cache: 'force-cache',
-
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
-      }
+      },
+      next: { revalidate: 1 }
     }
   )
+  revalidatePath('/api/articles')
 
   if (!response.ok) {
     throw new Error(`Error: ${response.status}`)
@@ -36,13 +38,12 @@ export async function fetchCollectionArticles(
 ): Promise<Article[]> {
   try {
     const response = await fetch(
-      `https://jellyfish-app-qw7fr.ondigitalocean.app/api/collections?populate[articles][populate]=*&filters[slug][$eq]=${collection}&sort=updatedAt:desc`,
+      `https://chinatoday-strapi-cusbi.ondigitalocean.app/api/collections?populate[articles][populate]=*&filters[slug][$eq]=${collection}&sort=updatedAt:desc`,
       {
         headers: {
-          cache: 'force-cache',
-
           Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
-        }
+        },
+        next: { revalidate: 1 }
       }
     )
 
@@ -51,7 +52,9 @@ export async function fetchCollectionArticles(
     }
 
     const jsonData = await response.json()
+
     const articles = jsonData.data[0]?.attributes.articles.data
+
     return articles || [] // Return an empty array if articles is undefined
   } catch (error) {
     console.error('Error in fetchCollectionArticles:', error)
@@ -195,7 +198,7 @@ export async function search(query: string, page: string) {
   try {
     // Construct the URL with query parameters for Strapi's built-in filter
     const url = new URL(
-      `https://jellyfish-app-qw7fr.ondigitalocean.app/api/articles?populate=*&sort=updatedAt:desc&pagination[pageSize]=10&`
+      `https://chinatoday-strapi-cusbi.ondigitalocean.app/api/articles?populate=*&sort=updatedAt:desc&pagination[pageSize]=10&`
     )
     url.searchParams.append('filters[title][$containsi]=', query)
     url.searchParams.append('&', '')

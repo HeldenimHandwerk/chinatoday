@@ -8,10 +8,10 @@ import ArticleText from '@/app/utils/ArticleText'
 const updateOldestArticle = async (oldestArticle: ArticleType) => {
   // Make an API request to update the 'Breaking' status of the oldest article.
   const response = await fetch(
-    `https://jellyfish-app-qw7fr.ondigitalocean.app/api/articles/${oldestArticle.id}`,
+    `https://chinatoday-strapi-cusbi.ondigitalocean.app/api/articles/${oldestArticle.id}`,
     {
       method: 'PUT',
-      cache: 'no-store',
+
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
@@ -44,10 +44,9 @@ export default async function CategoryArticlesLayout({
   )
 
   if (featureArticles.length > 6) {
-    // Assuming the last one in filteredArticles is the oldest
-    const oldestArticle = featureArticles.reverse()[0]
-    await updateOldestArticle(oldestArticle) // Now awaited
-    featureArticles.pop()
+    // Find the oldest article without modifying the original order
+    const oldestArticle = featureArticles[featureArticles.length - 1]
+    await updateOldestArticle(oldestArticle) // Assuming this correctly updates the article's status
   }
 
   // Extract the highlighted articles (3rd and 4th if they exist)

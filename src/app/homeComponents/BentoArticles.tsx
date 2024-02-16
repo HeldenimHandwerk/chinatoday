@@ -1,28 +1,27 @@
 import Image from 'next/image'
-import { fetchArticles } from '@/app/action'
 import Link from 'next/link'
 import { Article } from '../types/Article'
 import ArticleText from '../utils/ArticleText'
+import { fetchArticles } from '@/app/action'
 
 const fetchHomeArticles = async (): Promise<Article[]> => {
-  const articles = await fetchArticles(`filters[HeroBreaking][$eq]=true`)
+  const articles = await fetchArticles('filters[HeroBreaking]=true')
 
-  // Sort articles by 'updatedAt' descending
-  articles.sort(
-    (a: Article, b: Article) =>
-      new Date(b.attributes.updatedAt).getTime() -
-      new Date(a.attributes.updatedAt).getTime()
-  )
-
-  // Identify the old and new headlines
+  // Filter articles with Headline set to true
   const headlineArticles = articles.filter(
-    (article: { attributes: { Headline: any } }) => article.attributes.Headline
+    article => article.attributes.Headline
   )
 
-  // If there's more than one headline, update the older one
   if (headlineArticles.length > 1) {
-    await updateHeadlineStatus(headlineArticles[1].id) // Remove headline status from the old headline
-    headlineArticles[1].attributes.Headline = false // Update local state
+    // Update the headline status of the oldest headline article
+    await updateHeadlineStatus(headlineArticles[1].id)
+    // Manually update the local state to reflect the change
+    headlineArticles[1].attributes.Headline = false
+
+    // Re-sort articles after updating the local state
+    articles.sort(
+      (a, b) => Number(b.attributes.Headline) - Number(a.attributes.Headline)
+    )
   }
 
   // Re-sort to ensure the headline is first
@@ -32,22 +31,19 @@ const fetchHomeArticles = async (): Promise<Article[]> => {
   )
 
   // Remove the oldest non-headline article if count exceeds 5
+  // Logic for removing the oldest non-headline article if count exceeds 5
   if (articles.length > 6) {
-    // Find the oldest non-headline article
     const oldestNonHeadlineIndex = articles
       .slice()
       .reverse()
-      .findIndex(
-        (article: { attributes: { Headline: any } }) =>
-          !article.attributes.Headline
-      )
+      .findIndex(article => !article.attributes.Headline)
     const actualIndex =
       oldestNonHeadlineIndex >= 0
         ? articles.length - 1 - oldestNonHeadlineIndex
         : -1
     if (actualIndex !== -1) {
       await updateHeroBreakingStatus(articles[actualIndex].id)
-      articles.splice(actualIndex, 1)
+      articles.splice(actualIndex, 1) // Update local state to reflect removal
     }
   }
 
@@ -69,11 +65,12 @@ const updateHeroBreakingStatus = async (articleId: number) => {
 // General function to update an article
 const updateArticle = async (articleId: number, updatedData: object) => {
   const response = await fetch(
-    `https://jellyfish-app-qw7fr.ondigitalocean.app/api/articles/${articleId}`,
+    `https://chinatoday-strapi-cusbi.ondigitalocean.app/api/articles/${articleId}`,
     {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        cache: 'no-store',
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
       },
       body: JSON.stringify(updatedData)
