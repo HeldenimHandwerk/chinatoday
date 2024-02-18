@@ -86,7 +86,7 @@ const Footer = () => {
             &copy; {new Date().getFullYear()} China Today
           </p>
           <div className="flex space-x-3">
-            <BottomNavLink link="/#" label="Impressum" />
+            <BottomNavLink link="/impressum" label="Impressum" />
             <BottomNavLink link="/datenschutz" label="Datenschutzerklärung" />
           </div>
         </div>
