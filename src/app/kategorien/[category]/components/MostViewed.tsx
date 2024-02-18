@@ -114,7 +114,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
             <span className="text-sm text-gray-600">
               {formatDate(published)}
             </span>
-            <h1 className="mb-2 text-xl font-semibold text-gray-800  transition-colors duration-300 hover:text-red-500">
+            <h1 className="mb-2 text-xl font-semibold text-gray-800  transition-colors duration-300 hover:text-red-400">
               {title}
             </h1>
           </div>

@@ -11,7 +11,6 @@ export type Article = {
     HeroBreaking: boolean
     slug: string
     view: number
-    ck: string
     image: {
       data: {
         attributes: {

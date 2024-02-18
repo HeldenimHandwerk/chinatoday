@@ -4,7 +4,6 @@ import { Article } from '@/app/types/Article'
 import Image from 'next/image'
 import { Suspense } from 'react'
 import Discovery from '@/app/kategorien/[category]/components/Discovery'
-import ArticleText from '@/app/utils/ArticleText'
 
 interface Props {
   params: {
@@ -43,8 +42,8 @@ const SearchResultsPage = async ({ params }: Props) => {
                   <h1 className="mb-2 text-lg font-semibold text-gray-800">
                     {result.attributes.title}
                   </h1>
-                  <ArticleText
-                    text={result.attributes.text}
+                  <p
+                    dangerouslySetInnerHTML={{ __html: result.attributes.text }}
                     className="truncate-3-lines mb-4 text-base sm:text-lg"
                   />
 

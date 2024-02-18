@@ -4,7 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Article as ArticleType } from '@/app/types/Article'
 import formatDate from '@/app/utils/formatDate'
-import ArticleText from '@/app/utils/ArticleText'
 const updateOldestArticle = async (oldestArticle: ArticleType) => {
   // Make an API request to update the 'Breaking' status of the oldest article.
   const response = await fetch(
@@ -127,7 +126,7 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
   isHighlighted
 }) => (
   <div
-    className={'relative overflow-hidden rounded-lg shadow-lg '}
+    className={'relative h-full overflow-hidden rounded-lg shadow-lg'}
     style={style}
   >
     <Link
@@ -145,13 +144,16 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
           />
           {isHighlighted && (
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-4">
-              <h1 className="mb-2 text-2xl font-bold text-white transition-colors duration-300 hover:text-red-500">
+              <h1 className="mb-2 text-2xl font-bold text-white transition-colors duration-300 hover:text-red-400">
                 {article?.attributes.title}
               </h1>
-              <ArticleText
-                text={article?.attributes.text}
-                className="mb-4 truncate text-lg text-white"
-              />
+
+              {/* <div
+                className=" mb-4 text-lg text-white"
+                dangerouslySetInnerHTML={{
+                  __html: article.attributes.text.slice(0, 50) + '...'
+                }}
+              /> */}
 
               <div className="text-xs text-white">
                 Updated: {formatDate(article?.attributes.updatedAt)}
@@ -160,18 +162,13 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
           )}
         </div>
         {!isHighlighted && (
-          <div className="p-4">
-            <h1 className="mb-2 line-clamp-2 text-lg font-bold text-black transition-colors duration-300 hover:text-red-500">
+          <div className="flex h-1/2 flex-col justify-between p-2">
+            <h1 className="text-lg font-bold text-black transition-colors duration-300 hover:text-red-400">
               {article?.attributes.title}
             </h1>
-            <ArticleText
-              text={article?.attributes.text}
-              className="text-md mb-4 truncate text-gray-600"
-            />
-
-            <div className="text-xs text-gray-500">
-              Updated: {formatDate(article?.attributes.updatedAt)}
-            </div>
+            <span className="self-end text-xs text-gray-500">
+              Gepostet: {formatDate(article?.attributes.updatedAt)}
+            </span>
           </div>
         )}
       </div>

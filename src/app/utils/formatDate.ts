@@ -4,7 +4,7 @@ export default function formatDate(dateString: string) {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
-  })} at ${date.toLocaleTimeString('en-US', {
+  })} um ${date.toLocaleTimeString('en-US', {
     hour: '2-digit',
     minute: '2-digit'
   })}`

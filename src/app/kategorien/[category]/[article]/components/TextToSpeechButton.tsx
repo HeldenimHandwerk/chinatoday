@@ -54,12 +54,18 @@ const TextToSpeechButton: React.FC<TextToSpeechButtonProps> = ({ text }) => {
     }, 1000) as unknown as number
   }
 
+  const convertHtmlToSsml = (html: string): string => {
+    const div = document.createElement('div')
+    div.innerHTML = html
+    return div.textContent || div.innerText || ''
+  }
+
   const handlePlayButtonClick = async () => {
     setShowControls(true)
     if (!audioUrl) {
       setIsLoading(true)
       try {
-        const url: string = await textToSpeech(text)
+        const url: string = await textToSpeech(convertHtmlToSsml(text))
         setAudioUrl(url)
         if (audioRef.current) {
           audioRef.current.src = url
@@ -115,7 +121,6 @@ const TextToSpeechButton: React.FC<TextToSpeechButtonProps> = ({ text }) => {
     return formatDuration(durationInSeconds)
   }
 
-  // JSX rendering...
   if (!showControls) {
     return (
       <div className="flex items-center space-x-4 rounded-lg border bg-gray-100 p-3 shadow-lg">

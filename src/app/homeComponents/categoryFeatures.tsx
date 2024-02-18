@@ -2,7 +2,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { fetchCollectionArticles } from '@/app/action'
 import { Article } from '../types/Article'
-import ArticleText from '../utils/ArticleText'
 
 async function fetchArticles(collection: string) {
   let articles = await fetchCollectionArticles(collection)
@@ -69,7 +68,7 @@ export default async function CategoryFeatures({
         <Link
           href={`/kategorien/${articles[0].attributes.collection.data.attributes.slug}/${articles[0].attributes.slug}`}
         >
-          <div className="relative mb-8 h-[500px] w-full rounded-lg shadow-lg">
+          <div className="relative mb-8 h-[400px] w-full rounded-lg shadow-lg">
             {/* Enhanced shadow */}
             <div className="absolute inset-0 w-full  overflow-hidden opacity-100 transition-all duration-500 group-hover:scale-105">
               <Image
@@ -80,12 +79,9 @@ export default async function CategoryFeatures({
               />
             </div>
             <div className="absolute bottom-0 left-0 right-0 rounded-b-lg bg-gradient-to-t from-black via-black/80 to-transparent p-4 ">
-              <h2 className="mb-2 text-2xl font-bold text-white transition-colors duration-300 hover:text-red-500">
+              <h1 className="mb-2 text-3xl font-bold text-white transition-colors duration-300 hover:text-red-400 sm:text-4xl">
                 {articles[0].attributes.title}
-              </h2>
-              <p className="truncate-3-lines text-white">
-                {articles[0].attributes.text}
-              </p>
+              </h1>
             </div>
           </div>
         </Link>
@@ -108,11 +104,11 @@ export default async function CategoryFeatures({
               />
             </div>
             <div className="flex flex-grow flex-col justify-between p-4">
-              <h1 className="mb-2 text-2xl font-bold leading-tight text-black transition-colors duration-300 hover:text-red-500 sm:text-lg">
+              <h1 className="mb-2 text-lg font-bold leading-tight text-black transition-colors duration-300 hover:text-red-400">
                 {article.attributes.title}
               </h1>
-              <ArticleText
-                text={article.attributes.text}
+              <h2
+                dangerouslySetInnerHTML={{ __html: article.attributes.text }}
                 className="truncate-3-lines text-base leading-relaxed text-gray-600 shadow-sm sm:text-lg"
               />
             </div>

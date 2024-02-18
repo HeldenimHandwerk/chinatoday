@@ -29,7 +29,7 @@ const Footer = () => {
               </Link>
 
               {/* Social Icons */}
-              <div className="flex items-center">
+              {/* <div className="flex items-center">
                 <Link
                   aria-label="instagram"
                   href="https://www.instagram.com/china-today"
@@ -51,7 +51,7 @@ const Footer = () => {
                 >
                   <FaYoutube size="25px" />
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="mb-10 flex w-full flex-col px-4 lg:w-4/12">

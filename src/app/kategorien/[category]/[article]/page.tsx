@@ -9,14 +9,13 @@ import TextToSpeechButton from './components/TextToSpeechButton'
 import formatDate from '@/app/utils/formatDate'
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
-import ArticleText from '@/app/utils/ArticleText'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import React from 'react'
 
 type ArticleData = {
   title: string
   text: string
-  ck: string
   image: any
   updatedAt: string
   source: string
@@ -65,7 +64,6 @@ const fetchArticleData = async (
     article: {
       title: articleData?.title,
       text: articleData?.text,
-      ck: articleData?.ck,
       image: articleData?.image,
       updatedAt: formattedDate,
       source: articleData?.ImageSource
@@ -79,7 +77,7 @@ const AdImage = () => {
     <Image
       className="h-92 w-full rounded-lg object-cover object-center py-10"
       src={picture}
-      alt={'www'}
+      alt={'Ad'}
       height={500}
       width={500}
       quality={100}
@@ -97,58 +95,37 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
   const { article: articleData, relatedArticles } =
     await fetchArticleData(article)
 
-  const { title, text, image, updatedAt, source, ck } = articleData
+  const { title, text, image, updatedAt, source } = articleData
 
-  const insertAdsBasedOnLength = (text: string) => {
-    const sentenceEndRegex = /\. [A-Z]/
-    const findNextSentenceEnd = (text: string, startIndex: number): number => {
-      const match = sentenceEndRegex.exec(text?.slice(startIndex))
-      return match ? startIndex + match.index + 1 : text?.length
-    }
-
-    const createTextElement = (key: string, text: string) => (
-      <ArticleText
-        key={key}
-        text={text}
-        className="my-4 text-base leading-relaxed"
-      />
-    )
-
+  const insertAdsBasedOnLength = (htmlContent: string): React.ReactNode[] => {
     const elements: React.ReactNode[] = []
-    const totalLength = text?.length
+    const totalLength = htmlContent.length
+    const adPositions = totalLength > 2000 ? [0.5, 0.75] : [0.5] // Example positions
+
     let lastIndex = 0
-    let adIndex = 1
-
-    // Insert the first sentence as a title
-    const firstSentenceEnd = findNextSentenceEnd(text, 0)
-    elements.push(createTextElement('title', text?.slice(0, firstSentenceEnd)))
-    lastIndex = firstSentenceEnd
-
-    // Define positions for ads
-    const adPositions = totalLength > 2000 ? [0.3, 0.6] : [0.5]
-
-    adPositions.forEach(percentage => {
+    adPositions.forEach((percentage, index) => {
       const position = Math.floor(totalLength * percentage)
-      const nextSentenceEnd = findNextSentenceEnd(text, position)
-
-      // Add text before the ad
+      const beforeAd = htmlContent.substring(lastIndex, position)
+      lastIndex = position
       elements.push(
-        createTextElement(
-          `text-${adIndex}`,
-          text?.slice(lastIndex, nextSentenceEnd)
-        )
+        <div
+          key={`text-${index}`}
+          dangerouslySetInnerHTML={{ __html: beforeAd }}
+        />
       )
-      // Add the ad
-      elements.push(<AdImage key={`ad-${adIndex}`} />)
-
-      lastIndex = nextSentenceEnd
-      adIndex++
+      elements.push(<AdImage key={`ad-${index}`} />)
     })
 
-    // Add any remaining text after the last ad
+    // Add remaining content, if any
     if (lastIndex < totalLength) {
-      elements.push(createTextElement('text-end', text?.slice(lastIndex)))
+      elements.push(
+        <div
+          key="text-end"
+          dangerouslySetInnerHTML={{ __html: htmlContent.substring(lastIndex) }}
+        />
+      )
     }
+
     return elements
   }
 
@@ -168,26 +145,25 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
                 />
 
                 <div className="absolute bottom-0 left-0 right-0 rounded-b-lg bg-gradient-to-t from-black via-black/80 to-transparent p-4">
+                  <h1 className="justify-left flex items-center text-3xl font-bold text-white sm:p-5 md:text-5xl">
+                    {title}
+                  </h1>
                   <h3>
                     <span className="text-sm text-white">{updatedAt}</span>
                     <span className="text-sm text-gray-300"> © {source}</span>
                   </h3>
-                  <h1 className="justify-left flex items-center text-3xl font-bold text-white sm:p-5 md:text-5xl">
-                    {title}
-                  </h1>
                 </div>
               </div>
             )}
           </Suspense>
           <TextToSpeechButton text={text} />
-          <div dangerouslySetInnerHTML={{ __html: text }} />
           {!image && (
             <div className="mb-4 rounded-lg bg-red-200 p-4 text-red-800 shadow">
               <h1 className="text-2xl font-bold text-gray-900">{title}</h1>
             </div>
           )}
 
-          <div className="container mx-auto mb-6 text-lg leading-relaxed text-gray-700 md:w-[70vw] lg:w-[60vw] ">
+          <div className=" m-10 mx-auto text-lg leading-relaxed text-gray-700 md:w-[70vw] lg:w-[60vw] ">
             {insertAdsBasedOnLength(text)}
           </div>
           <Suspense fallback={<div>Loading...</div>}>

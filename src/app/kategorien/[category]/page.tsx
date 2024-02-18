@@ -24,7 +24,7 @@ export const generateMetadata = async ({
 }): Promise<Metadata> => {
   return {
     title: `China Today - ${category.charAt(0).toUpperCase() + category.slice(1)}`,
-    description: `China Today - ${category.charAt(0).toUpperCase() + category.slice(1)}`
+    description: `Entdecken Sie mit China Today die neuesten Nachrichten, tiefgreifende Analysen und bahnbrechende Geschichten in ${category.charAt(0).toUpperCase() + category.slice(1)}. Von neuen Trends bis hin zu umfassenden Berichten bietet unsere Rubrik ${category.charAt(0).toUpperCase() + category.slice(1)} eine einzigartige Perspektive auf die wichtigsten Themen. Bleiben Sie mit den Experten von China Today informiert und der Zeit voraus. `
   }
 }
 

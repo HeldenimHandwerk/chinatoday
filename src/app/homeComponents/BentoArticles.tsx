@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Article } from '../types/Article'
-import ArticleText from '../utils/ArticleText'
 import { fetchArticles } from '@/app/action'
 
 const fetchHomeArticles = async (): Promise<Article[]> => {
@@ -112,16 +111,12 @@ export default async function BentoArticles() {
             </div>
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6">
               <h1
-                className={`text-xl ${
-                  index === 0 ? 'sm:text-2xl' : 'sm:text-md'
-                } mb-2 font-bold leading-tight text-white transition-colors duration-300 hover:text-red-500`}
+                className={` ${
+                  index === 0 ? 'text-xl sm:text-2xl' : 'sm:text-md text-lg'
+                } mb-2 font-bold leading-tight text-white transition-colors duration-300 hover:text-red-400`}
               >
                 {article.attributes.title}
               </h1>
-              <ArticleText
-                text={article.attributes.text}
-                className="truncate text-base leading-relaxed text-white sm:text-lg"
-              />
             </div>
           </Link>
         ))}

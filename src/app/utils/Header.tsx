@@ -8,8 +8,9 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Stockticker from './StockTicker'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+
 const categories = [
-  { name: 'Home', link: '/' },
+  { name: 'Startseite', link: '/' },
   { name: 'Politik', link: 'kategorien/politik' },
   { name: 'Wirtschaft', link: 'kategorien/wirtschaft' },
   { name: 'Kultur', link: 'kategorien/kultur' },
@@ -26,6 +27,7 @@ export default function Header() {
   const [lastScrollY, setLastScrollY] = useState<number>(0)
   const [cumulativeScroll, setCumulativeScroll] = useState<number>(0)
   const [searchQuery, setSearchQuery] = useState('')
+  const [pageName, setPageName] = useState<string>('Startseite')
 
   const handleSearchChange = (event: FormEvent) => {
     setSearchQuery((event.target as HTMLInputElement).value) // Update the search query state on change
@@ -97,7 +99,7 @@ export default function Header() {
             >
               <input
                 type="text"
-                placeholder="Search here..."
+                placeholder="Suche nach Artikeln..."
                 value={searchQuery}
                 onChange={handleSearchChange}
                 className="w-full rounded-lg border border-gray-300 bg-white py-2 pl-12 pr-5 text-black placeholder-gray-400 outline-none focus:border-gray-400 focus-visible:shadow-none"
@@ -176,7 +178,7 @@ export default function Header() {
                 <input
                   type="text"
                   name="search"
-                  placeholder="Search here..."
+                  placeholder="Suche nach Artikeln..."
                   value={searchQuery}
                   onChange={handleSearchChange}
                   className="flex-grow rounded border border-gray-300 bg-white py-2 pl-3 pr-5 text-black"
@@ -185,6 +187,7 @@ export default function Header() {
                   <FaSearch />
                 </button>
               </form>
+              <hr className="border-black-2" />
 
               <ul className="flex flex-col justify-start  space-y-5">
                 {categories.map((category, index) => (
@@ -192,6 +195,7 @@ export default function Header() {
                     <Link
                       href={`/${category.link}`}
                       className="text-lg text-black hover:text-gray-700"
+                      onClick={() => setIsOpen(false)}
                     >
                       {category.name}
                     </Link>
@@ -199,6 +203,7 @@ export default function Header() {
                 ))}
               </ul>
               {/* Mobile Social Media Icons */}
+              <hr className="border-black-2" />
               <div className="flex flex-row items-center gap-5">
                 <Link
                   aria-label="instagram"
@@ -243,7 +248,10 @@ export default function Header() {
               <li key={index}>
                 <Link
                   href={`/${category.link}`}
-                  className=" md:text-md overflow-hidden text-black transition hover:border-b-2 hover:border-black lg:text-lg"
+                  className={`md:text-md  overflow-hidden rounded-lg p-2 text-black transition  hover:bg-red-400 hover:text-white lg:text-lg ${pageName === category.name ? 'bg-red-400 text-white' : ''}`}
+                  onClick={() => {
+                    setPageName(category.name)
+                  }}
                 >
                   {category.name}
                 </Link>

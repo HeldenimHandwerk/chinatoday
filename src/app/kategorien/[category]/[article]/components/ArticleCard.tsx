@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Article } from '@/app/types/Article'
 import formatDate from '@/app/utils/formatDate'
-import ArticleText from '@/app/utils/ArticleText'
 
 interface ArticleCardProps {
   article: Article
@@ -26,13 +25,12 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, style }) => {
         />
       </div>
       <div className="corner-border flex flex-grow flex-col justify-between p-4">
-        <h1 className="mb-2 text-2xl font-bold leading-tight text-black transition-colors duration-300 hover:text-red-500 sm:text-lg">
+        <h1 className="mb-2 text-2xl font-bold leading-tight text-black transition-colors duration-300 hover:text-red-400 sm:text-lg">
           {article.attributes.title}
         </h1>
-
-        <ArticleText
-          text={article.attributes.text}
+        <div
           className="truncate-3-lines text-base leading-relaxed text-gray-600 sm:text-lg "
+          dangerouslySetInnerHTML={{ __html: article.attributes.text }}
         />
 
         <div className="text-sm text-black">

@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Article as ArticleType } from '@/app/types/Article'
 import { fetchArticles } from '@/app/action'
-import ArticleText from '@/app/utils/ArticleText'
 const Discovery = async (category: any) => {
   let collections = [
     'Politik',
@@ -81,11 +80,11 @@ const SingleCard: React.FC<ArticleProps> = ({ article }) => {
         </div>
         <div className="flex flex-col justify-between p-4 sm:w-1/2">
           <div>
-            <h1 className="mb-2 text-lg font-semibold text-black hover:text-red-500">
+            <h1 className="mb-2 text-lg font-semibold text-black hover:text-red-400">
               {article?.attributes?.title}
             </h1>
-            <ArticleText
-              text={article?.attributes?.text}
+            <div
+              dangerouslySetInnerHTML={{ __html: article.attributes.text }}
               className="lg:text-md truncate-3-lines text-sm text-gray-600"
             />
 
