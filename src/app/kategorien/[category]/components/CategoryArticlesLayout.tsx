@@ -42,7 +42,7 @@ export default async function CategoryArticlesLayout({
     (article: ArticleType) => article.attributes.CategoryBreaking === true
   )
 
-  if (featureArticles.length > 6) {
+  while (featureArticles.length > 6) {
     // Find the oldest article without modifying the original order
     const oldestArticle = featureArticles[featureArticles.length - 1]
     await updateOldestArticle(oldestArticle) // Assuming this correctly updates the article's status
@@ -92,7 +92,7 @@ export default async function CategoryArticlesLayout({
           style={{ height: '60%' }}
           isHighlighted={true}
         />
-        {articles.length > 3 && (
+        {featureArticles.length > 3 && (
           <ArticleComponent
             article={featureArticles[3]}
             style={{ height: '40%' }}
@@ -161,12 +161,15 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
             </div>
           )}
         </div>
+        {/* Text Section for Non-Highlighted Article */}
         {!isHighlighted && (
-          <div className="flex h-1/2 flex-col justify-between p-2">
-            <h1 className="text-lg font-bold text-black transition-colors duration-300 hover:text-red-400">
+          <div className="flex h-48 flex-col justify-between bg-white p-2">
+            {' '}
+            {/* Allocate remaining space for text */}
+            <h1 className="text-md break-words font-bold text-black lg:text-lg">
               {article?.attributes.title}
             </h1>
-            <span className="self-end text-xs text-gray-500">
+            <span className="mt-1 text-xs text-gray-500">
               Gepostet: {formatDate(article?.attributes.updatedAt)}
             </span>
           </div>
