@@ -164,9 +164,11 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
             </div>
           )}
 
-          <div className=" m-10 mx-auto text-lg leading-relaxed text-gray-700 md:w-[70vw] lg:w-[60vw] ">
-            {text}
-          </div>
+          <div
+            dangerouslySetInnerHTML={{ __html: text }}
+            className=" m-10 mx-auto text-lg leading-relaxed text-gray-700 md:w-[70vw] lg:w-[60vw] "
+          />
+
           <Suspense fallback={<div>Loading...</div>}>
             <section className="related-articles mt-10">
               <h2 className="mb-4 rounded-md bg-red-200 p-3 text-4xl font-semibold text-red-800 shadow-lg">
