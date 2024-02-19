@@ -48,15 +48,6 @@ export default async function CategoryArticlesLayout({
     await updateOldestArticle(oldestArticle) // Assuming this correctly updates the article's status
   }
 
-  // Extract the highlighted articles (3rd and 4th if they exist)
-  const highlightedArticles = featureArticles.slice(2, 4)
-
-  // Prepare the rest of the articles for mobile view
-  const restOfTheArticles = [
-    ...featureArticles.slice(0, 2), // First two articles
-    ...featureArticles.slice(4) // Articles after the 4th
-  ]
-
   return (
     <div className="flex h-full flex-col justify-between gap-4 px-4 py-4 md:flex-row md:overflow-hidden md:px-10">
       {/* Mobile view */}

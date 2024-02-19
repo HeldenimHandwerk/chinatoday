@@ -9,8 +9,10 @@ async function fetchArticles(collection: string) {
   var filteredArticles = articles.filter(
     (article: Article) =>
       article.attributes.CategoryBreaking === true &&
-      article.attributes.Headline === false &&
-      article.attributes.HeroBreaking === false
+      (article.attributes.Headline === false ||
+        article.attributes.Headline === null) &&
+      (article.attributes.HeroBreaking === false ||
+        article.attributes.HeroBreaking === null)
   )
   // Check the length after filtering
   if (filteredArticles.length > 6) {
@@ -107,7 +109,7 @@ export default async function CategoryFeatures({
               <h1 className="mb-2 text-lg font-bold leading-tight text-black transition-colors duration-300 hover:text-red-400">
                 {article.attributes.title}
               </h1>
-              <h2
+              <div
                 dangerouslySetInnerHTML={{ __html: article.attributes.text }}
                 className="truncate-3-lines text-base leading-relaxed text-gray-600 shadow-sm sm:text-lg"
               />
