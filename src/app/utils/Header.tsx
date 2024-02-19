@@ -75,7 +75,11 @@ export default function Header() {
         <div className="container mx-auto flex justify-between px-4">
           {/* Logo */}
           <div className="w-40 max-w-full px-4">
-            <Link href="/#" className="block w-full py-5 lg:py-3">
+            <Link
+              href="/#"
+              onClick={() => setPageName('Startseite')}
+              className="block w-full py-5 lg:py-3"
+            >
               <Image
                 src={logo}
                 alt="logo"

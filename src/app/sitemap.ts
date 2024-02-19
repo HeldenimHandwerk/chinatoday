@@ -17,7 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Dynamic paths from articles
   const dynamicArticlesPaths: MetadataRoute.Sitemap = articles.map(
     (article: Article) => ({
-      url: `https://chidddddddddasdadasdadadasdasdday.vercel.app/${article.attributes?.collection?.data?.attributes?.slug}/${article?.attributes?.slug}`,
+      url: `https://www.china-today.de${article.attributes?.collection?.data?.attributes?.slug}/${article?.attributes?.slug}`,
       lastModified: new Date(article?.attributes?.updatedAt).toISOString(),
       changeFrequency: 'daily', // Specified as a literal type
       priority: 0.7
@@ -27,7 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Dynamic paths from categories
   const dynamicCategoriesPaths: MetadataRoute.Sitemap = categories.map(
     (category: Article) => ({
-      url: `https://chidddddddddasdadasdadadasdasdday.vercel.app/${category.attributes.slug}`,
+      url: `https://www.china-today.de${category.attributes.slug}`,
       lastModified: new Date(category.attributes.updatedAt).toISOString(),
       changeFrequency: 'daily', // Specified as a literal type
       priority: 0.7
@@ -37,19 +37,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Static paths
   return [
     {
-      url: `https://chidddddddddasdadasdadadasdasdday.vercel.app`,
+      url: `https://www.china-today.de`,
       lastModified: new Date().toISOString(),
       changeFrequency: 'daily', // Specified as a literal type
       priority: 0.7
     },
     {
-      url: `https://chidddddddddasdadasdadadasdasdday.vercel.app/search`,
+      url: `https://www.china-today.de/search`,
       lastModified: new Date().toISOString(),
       changeFrequency: 'daily', // Specified as a literal type
       priority: 0.7
     },
     {
-      url: `https://chidddddddddasdadasdadadasdasdday.vercel.app/datenschutz`,
+      url: `https://www.china-today.de/datenschutz`,
       lastModified: new Date().toISOString(),
       changeFrequency: 'daily', // Specified as a literal type
       priority: 0.7

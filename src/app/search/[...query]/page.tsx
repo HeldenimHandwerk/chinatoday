@@ -42,7 +42,7 @@ const SearchResultsPage = async ({ params }: Props) => {
                   <h1 className="mb-2 text-lg font-semibold text-gray-800">
                     {result.attributes.title}
                   </h1>
-                  <p
+                  <div
                     dangerouslySetInnerHTML={{ __html: result.attributes.text }}
                     className="truncate-3-lines mb-4 text-base sm:text-lg"
                   />

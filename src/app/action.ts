@@ -19,7 +19,7 @@ export async function fetchArticles(filters: string): Promise<Article[]> {
         cache: 'force-cache',
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
       },
-      next: { revalidate: 1000 }
+      next: { revalidate: 3600 }
     }
   )
   revalidatePath('/api/articles')
@@ -29,7 +29,12 @@ export async function fetchArticles(filters: string): Promise<Article[]> {
   }
 
   const jsonData = await response.json()
-  var articles = jsonData.data
+  const currentDate = new Date()
+  const articles = jsonData.data.filter((article: Article) => {
+    const publishDate = new Date(article.attributes.dateOfPublish)
+    return publishDate <= currentDate
+  })
+
   return articles
 }
 
@@ -44,7 +49,7 @@ export async function fetchCollectionArticles(
           cache: 'force-cache',
           Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
         },
-        next: { revalidate: 1000 }
+        next: { revalidate: 3600 }
       }
     )
 
@@ -54,8 +59,13 @@ export async function fetchCollectionArticles(
 
     const jsonData = await response.json()
 
-    const articles = jsonData.data[0]?.attributes.articles.data
-
+    const currentDate = new Date()
+    const articles = jsonData.data[0]?.attributes.articles.data.filter(
+      (article: Article) => {
+        const publishDate = new Date(article.attributes.dateOfPublish)
+        return publishDate <= currentDate
+      }
+    )
     return articles || [] // Return an empty array if articles is undefined
   } catch (error) {
     console.error('Error in fetchCollectionArticles:', error)
