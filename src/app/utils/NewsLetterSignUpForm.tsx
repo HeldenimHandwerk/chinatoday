@@ -28,7 +28,8 @@ export default function SubscribePage() {
       <div className="flex flex-wrap items-center justify-center">
         <div className="mb-5 w-full px-4 lg:w-1/2">
           <h3 className="text-2xl font-bold text-black sm:text-[28px] sm:leading-snug">
-            Signup for latest news and insights from China today
+            Melden Sie sich für die neuesten Nachrichten und Einblicke aus
+            Chinatoday an{' '}
           </h3>
         </div>
         <div className="w-full px-4 lg:w-1/2">

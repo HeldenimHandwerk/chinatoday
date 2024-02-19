@@ -56,7 +56,7 @@ const Footer = () => {
           </div>
           <div className="mb-10 flex w-full flex-col px-4 lg:w-4/12">
             <h4 className="mb-9 text-lg font-semibold text-black">
-              kategorien
+              Kategorien
             </h4>
             <div className="grid grid-cols-2">
               <ul className="w-full">
