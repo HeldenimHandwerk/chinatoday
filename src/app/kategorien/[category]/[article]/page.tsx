@@ -165,7 +165,7 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
           )}
 
           <div className=" m-10 mx-auto text-lg leading-relaxed text-gray-700 md:w-[70vw] lg:w-[60vw] ">
-            {insertAdsBasedOnLength(text)}
+            {text}
           </div>
           <Suspense fallback={<div>Loading...</div>}>
             <section className="related-articles mt-10">

@@ -19,7 +19,7 @@ export async function fetchArticles(filters: string): Promise<Article[]> {
         cache: 'force-cache',
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
       },
-      next: { revalidate: 1 }
+      next: { revalidate: 600 }
     }
   )
   revalidatePath('/api/articles')
@@ -43,7 +43,7 @@ export async function fetchCollectionArticles(
         headers: {
           Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
         },
-        next: { revalidate: 1 }
+        next: { revalidate: 600 }
       }
     )
 
