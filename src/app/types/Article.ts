@@ -4,7 +4,7 @@ export type Article = {
   attributes: {
     title: string
     text: string
-    ImageSource: string
+    source: string
     updatedAt: string
     Headline: boolean
     CategoryBreaking: boolean

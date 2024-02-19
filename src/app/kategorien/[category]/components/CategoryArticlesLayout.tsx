@@ -144,7 +144,7 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
           />
           {isHighlighted && (
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-4">
-              <h1 className="mb-2 text-2xl font-bold text-white transition-colors duration-300 hover:text-red-400">
+              <h1 className="mb-2 text-2xl font-bold text-white transition-colors duration-300 hover:text-red-400 lg:text-3xl">
                 {article?.attributes.title}
               </h1>
 
@@ -166,7 +166,7 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
           <div className="flex h-48 flex-col justify-between bg-white p-2">
             {' '}
             {/* Allocate remaining space for text */}
-            <h1 className="text-md break-words font-bold text-black lg:text-lg">
+            <h1 className="text-md break-words p-4 font-bold text-black lg:text-xl">
               {article?.attributes.title}
             </h1>
             <span className="mt-1 text-xs text-gray-500">

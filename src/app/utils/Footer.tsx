@@ -63,7 +63,7 @@ const Footer = () => {
                 <NavLink link="/kategorien/poltik" label="Politik" />
                 <NavLink link="/kategorien/wirtschaft" label="Wirtschaft" />
                 <NavLink link="/kategorien/kultur" label="Kultur" />
-                <NavLink link="/kategorien/greenenergy" label="Greenenergy" />
+                {/* <NavLink link="/kategorien/technology" label="technology" /> */}
               </ul>
               <ul className="w-full">
                 <NavLink link="/kategorien/mobilitaet" label="Mobilität" />
@@ -117,7 +117,7 @@ const ContactInfo: React.FC = () => {
       <ul>
         <li className="mb-2 flex items-center">
           <HiOutlineMail className="mr-2 text-red-700" />
-          <span>info@yourmail.com</span>
+          <span>support@china-today.de</span>
         </li>
       </ul>
     </div>

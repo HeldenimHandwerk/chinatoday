@@ -60,13 +60,14 @@ const fetchArticleData = async (
   //format the date
   const formattedDate = formatDate(articleData?.updatedAt)
   // Return the main article data and related articles
+  console.log(articleData.source)
   return {
     article: {
       title: articleData?.title,
       text: articleData?.text,
       image: articleData?.image,
       updatedAt: formattedDate,
-      source: articleData?.ImageSource
+      source: articleData?.source
     },
     relatedArticles
   }

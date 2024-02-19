@@ -8,7 +8,7 @@ const Discovery = async (category: any) => {
     'Politik',
     'Wirtschaft',
     'Kultur',
-    'Greenenergy',
+    'technologie',
     'Mobilität',
     'Sport',
     'Reisen'

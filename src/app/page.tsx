@@ -6,7 +6,7 @@ export default function Home() {
     'politik',
     'wirtschaft',
     'kultur',
-    'greenenergy',
+    'technologie',
     'mobilitaet',
     'reisen',
     'sport'

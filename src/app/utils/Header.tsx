@@ -14,7 +14,7 @@ const categories = [
   { name: 'Politik', link: 'kategorien/politik' },
   { name: 'Wirtschaft', link: 'kategorien/wirtschaft' },
   { name: 'Kultur', link: 'kategorien/kultur' },
-  { name: 'Greenenergy', link: 'kategorien/greenenergy' },
+  // { name: 'technology', link: 'kategorien/technology' },
   { name: 'Mobilität', link: 'kategorien/mobilitaet' },
   { name: 'Sport', link: 'kategorien/sport' },
   { name: 'Reisen', link: 'kategorien/reisen' }
