@@ -13,8 +13,11 @@ const updateOldestArticle = async (oldestArticle: ArticleType) => {
 
       headers: {
         'Content-Type': 'application/json',
+        cache: 'no-store',
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`
       },
+      next: { revalidate: 1 },
+
       body: JSON.stringify({
         data: { CategoryBreaking: false }
       })
@@ -49,6 +52,8 @@ export default async function CategoryArticlesLayout({
     //set it locally to false
     oldestArticle.attributes.CategoryBreaking = false
   }
+
+  featureArticles.slice(0, 5)
 
   return (
     <div className="flex h-full flex-col justify-between gap-4 px-4 py-4 md:flex-row md:overflow-hidden md:px-10">

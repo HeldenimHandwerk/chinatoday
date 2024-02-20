@@ -33,10 +33,10 @@ const Page = async ({ params: { category } }: Props) => {
   return (
     <div className="bg-[#FAFAFA] text-gray-900">
       <CategoryArticlesLayout articles={articles} />
-      {/* <MostViewed articles={articles} />
+      <MostViewed articles={articles} />
       <Suspense fallback={<div>Loading...</div>}>
         <Discovery collection={category} />
-      </Suspense> */}
+      </Suspense>
     </div>
   )
 }
