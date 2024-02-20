@@ -46,6 +46,8 @@ export default async function CategoryArticlesLayout({
     // Find the oldest article without modifying the original order
     const oldestArticle = featureArticles[featureArticles.length - 1]
     await updateOldestArticle(oldestArticle) // Assuming this correctly updates the article's status
+    //set it locally to false
+    oldestArticle.attributes.CategoryBreaking = false
   }
 
   return (
