@@ -42,7 +42,7 @@ export default async function CategoryArticlesLayout({
     (article: ArticleType) => article.attributes.CategoryBreaking === true
   )
 
-  while (featureArticles.length > 6) {
+  if (featureArticles.length > 6) {
     // Find the oldest article without modifying the original order
     const oldestArticle = featureArticles[featureArticles.length - 1]
     await updateOldestArticle(oldestArticle) // Assuming this correctly updates the article's status
