@@ -60,7 +60,6 @@ const fetchArticleData = async (
   //format the date
   const formattedDate = formatDate(articleData?.updatedAt)
   // Return the main article data and related articles
-  console.log(articleData.source)
   return {
     article: {
       title: articleData?.title,

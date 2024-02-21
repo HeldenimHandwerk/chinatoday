@@ -11,6 +11,8 @@ body {
 
 .truncate-3-lines {
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   display: -webkit-box;
   -webkit-line-clamp: 3; /* Adjusted to 3 for consistency with the class name */
   -webkit-box-orient: vertical;
