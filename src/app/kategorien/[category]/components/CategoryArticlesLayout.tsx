@@ -152,8 +152,8 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
                 }}
               /> */}
 
-              <div className="text-xs text-white">
-                Updated: {formatDate(article?.attributes.updatedAt)}
+              <div className="text-xs text-white sm:text-sm md:text-base">
+                gepostet: {formatDate(article?.attributes.updatedAt)}
               </div>
             </div>
           )}
@@ -163,7 +163,7 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
           <div className="flex h-48 flex-col justify-between bg-white p-2">
             {' '}
             {/* Allocate remaining space for text */}
-            <h1 className="text-md break-words p-4 font-bold text-black lg:text-xl">
+            <h1 className="lg:text-md p-2  font-bold text-black sm:text-base md:text-sm  ">
               {article?.attributes.title}
             </h1>
             <span className="mt-1 text-xs text-gray-500">

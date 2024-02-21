@@ -111,9 +111,9 @@ export default async function CategoryFeatures({
               </h1>
               <div
                 dangerouslySetInnerHTML={{
-                  __html: article.attributes.text
+                  __html: article.attributes.text.slice(0, 100) + '...'
                 }}
-                className="truncate-3-lines text-base leading-relaxed text-gray-600  sm:text-lg"
+                className=" truncate-3-lines text-base leading-relaxed text-gray-600  sm:text-lg"
               />
             </div>
           </Link>
