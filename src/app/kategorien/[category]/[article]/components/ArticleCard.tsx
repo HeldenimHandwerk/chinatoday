@@ -29,8 +29,10 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, style }) => {
           {article.attributes.title}
         </h1>
         <div
+          dangerouslySetInnerHTML={{
+            __html: article.attributes.text.slice(0, 100) + '...'
+          }}
           className="truncate-3-lines text-base leading-relaxed text-gray-600  sm:text-lg"
-          dangerouslySetInnerHTML={{ __html: article.attributes.text }}
         />
 
         <div className="text-sm text-black">
