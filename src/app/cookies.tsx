@@ -29,6 +29,7 @@ export default function Cookies({ children }: { children: React.ReactNode }) {
         consent: {
           theme: 'dark',
           support: false,
+          icon: 'fingerprint',
 
           paused: {
             title: 'Consent Manger Notice',

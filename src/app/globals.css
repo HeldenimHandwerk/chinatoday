@@ -12,8 +12,15 @@ body {
 .truncate-3-lines {
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3; /* Adjusted to 3 for consistency with the class name */
   -webkit-box-orient: vertical;
+}
+
+/* Example: Adjusting for smaller screens */
+@media (max-width: 600px) {
+  .truncate-3-lines {
+    -webkit-line-clamp: 2; /* Show fewer lines on smaller screens */
+  }
 }
 
 .corner-border {
