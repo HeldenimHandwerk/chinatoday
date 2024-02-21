@@ -14,6 +14,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   )
   const { data: categories } = await fetchCategories.json()
+  //filter out the category undefined
+  const categoryData = categories.filter(categories.attributes !== undefined)
   // Dynamic paths from articles
   const dynamicArticlesPaths: MetadataRoute.Sitemap = articles.map(
     (article: Article) => ({
@@ -25,7 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   )
 
   // Dynamic paths from categories
-  const dynamicCategoriesPaths: MetadataRoute.Sitemap = categories.map(
+  const dynamicCategoriesPaths: MetadataRoute.Sitemap = categoryData.map(
     (category: Article) => ({
       url: `https://www.china-today.de/kategorien/${category.attributes.slug}`,
       lastModified: new Date(category.attributes.updatedAt).toISOString(),

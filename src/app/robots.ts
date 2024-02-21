@@ -9,6 +9,6 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
         allow: '/'
       }
     ],
-    sitemap: `https://chidddddddddasdadasdadadasdasdday.vercel.app/sitemap.xml`
+    sitemap: `https://chinatoday.de/sitemap.xml`
   }
 }
