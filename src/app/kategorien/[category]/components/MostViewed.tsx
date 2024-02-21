@@ -63,7 +63,7 @@ export default function Toplist({ articles }: { articles: Article[] }) {
             {/* Editors Picks Section */}
             <div>
               <h3 className="mb-6 text-3xl font-bold text-gray-800 md:text-4xl">
-                Editors Picks
+                Unsere Auswahl
               </h3>
               {editorsPicks.slice(0, 5).map((article: Article) => (
                 <ArticleCard key={article.id} article={article} />
@@ -73,7 +73,7 @@ export default function Toplist({ articles }: { articles: Article[] }) {
             {/* Most Viewed Section */}
             <div>
               <h3 className="mb-6 text-3xl font-bold text-gray-800 md:text-4xl">
-                Most Viewed
+                Meist gesehen
               </h3>
               {mostViewedArticles.slice(0, 5).map((article: Article) => (
                 <ArticleCard key={article.id} article={article} />

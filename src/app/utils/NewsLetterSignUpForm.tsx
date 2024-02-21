@@ -39,7 +39,7 @@ export default function SubscribePage() {
                 type="email"
                 name="email"
                 id="email-input"
-                placeholder="Enter your email address"
+                placeholder="Geben Sie Ihre E-Mail Adresse ein"
                 className="h-[52px] w-full rounded-md border border-red-600 bg-white/5 pl-14 pr-5 text-black  outline-none  focus-visible:shadow-none"
                 required
                 value={email}

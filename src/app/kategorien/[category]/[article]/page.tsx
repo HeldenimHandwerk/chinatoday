@@ -171,7 +171,7 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
           <Suspense fallback={<div>Loading...</div>}>
             <section className="related-articles mt-10">
               <h2 className="mb-4 rounded-md bg-red-200 p-3 text-4xl font-semibold text-red-800 shadow-lg">
-                Related Articles
+                Ähnliche Artikel
               </h2>
               <div className="grid gap-4 md:grid-cols-3 ">
                 {relatedArticles.map(article => (
