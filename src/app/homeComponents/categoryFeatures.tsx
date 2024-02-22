@@ -128,7 +128,7 @@ export default async function CategoryFeatures({
                 dangerouslySetInnerHTML={{
                   __html: truncateHtml(article.attributes.text, 100)
                 }}
-                className=" truncate-3-lines text-base leading-relaxed text-gray-600  sm:text-lg"
+                className="  text-base leading-relaxed text-gray-600  sm:text-lg"
               />
             </div>
           </Link>
