@@ -16,8 +16,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { data: categories } = await fetchCategories.json()
   //filter out the category undefined
   const categoryData = categories.filter(
-    categories.attributes !== 'uncategorized'
+    (category: { attributes: { slug: string } }) =>
+      category.attributes.slug !== 'uncategorized'
   )
+
   // Dynamic paths from articles
   const dynamicArticlesPaths: MetadataRoute.Sitemap = articles.map(
     (article: Article) => ({
