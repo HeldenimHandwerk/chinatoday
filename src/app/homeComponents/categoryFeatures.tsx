@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { fetchCollectionArticles } from '@/app/action'
 import { Article } from '../types/Article'
+import sanitizeHtml from 'sanitize-html'
 
 async function fetchArticles(collection: string) {
   let articles = await fetchCollectionArticles(collection)
@@ -47,6 +48,20 @@ const updateOldestArticle = async (oldestArticle: Article) => {
   }
 }
 
+function truncateHtml(html: any, maxLength: number) {
+  // First, remove HTML tags to get plain text
+  const plainText = sanitizeHtml(html, {
+    allowedTags: [], // No tags allowed, effectively converting HTML to plain text
+    allowedAttributes: {} // No attributes allowed
+  })
+
+  // Then, truncate the plain text
+  if (plainText.length <= maxLength) return html // Return original HTML if within maxLength
+  const truncatedText = plainText.slice(0, maxLength) + '...'
+
+  // Optionally, return the truncated text wrapped in a tag if needed
+  return `<p>${truncatedText}</p>`
+}
 export default async function CategoryFeatures({
   collection
 }: {
@@ -111,7 +126,7 @@ export default async function CategoryFeatures({
               </h1>
               <div
                 dangerouslySetInnerHTML={{
-                  __html: article.attributes.text.slice(0, 100) + '...'
+                  __html: truncateHtml(article.attributes.text, 100)
                 }}
                 className=" truncate-3-lines text-base leading-relaxed text-gray-600  sm:text-lg"
               />
