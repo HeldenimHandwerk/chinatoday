@@ -90,7 +90,10 @@ export default async function CategoryFeatures({
             <div className="absolute inset-0 w-full  overflow-hidden opacity-100 transition-all duration-500 group-hover:scale-105">
               <Image
                 src={articles[0].attributes.image?.data?.attributes?.url}
-                alt={articles[0].attributes.image?.data?.attributes?.alt}
+                alt={
+                  articles[0].attributes.image?.data?.attributes
+                    ?.alternativeText || articles[0].attributes.title
+                }
                 fill
                 className="object-cover object-center opacity-100 transition-all duration-500 hover:scale-105"
               />
@@ -114,7 +117,9 @@ export default async function CategoryFeatures({
             <div className="relative h-64 w-full">
               <Image
                 src={article.attributes.image?.data?.attributes?.url}
-                alt={article.attributes.image?.data?.attributes?.alt}
+                alt={
+                  article.attributes.image?.data?.attributes?.alternativeText
+                }
                 width={article.attributes.image?.data?.attributes?.width}
                 height={article.attributes.image?.data?.attributes?.height}
                 className="h-full w-full object-cover "

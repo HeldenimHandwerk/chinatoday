@@ -16,7 +16,7 @@ export type Article = {
       data: {
         attributes: {
           url: string
-          alt: string
+          alternativeText: string
           width: number
           height: number
         }

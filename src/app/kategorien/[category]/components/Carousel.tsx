@@ -38,7 +38,10 @@ export default function Carousel({ articles }: CarouselProps) {
                 <div className="relative h-full w-full">
                   <Image
                     src={article?.attributes?.image?.data?.attributes?.url}
-                    alt={article?.attributes?.image?.data?.attributes?.alt}
+                    alt={
+                      article.attributes.image?.data?.attributes
+                        ?.alternativeText || article.attributes.title
+                    }
                     fill
                     className="rounded-md object-cover object-center"
                   />

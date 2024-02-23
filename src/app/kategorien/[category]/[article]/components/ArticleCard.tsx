@@ -18,7 +18,10 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, style }) => {
       <div className="relative h-64 w-full">
         <Image
           src={article.attributes.image?.data?.attributes?.url}
-          alt={article.attributes.image?.data?.attributes?.alt}
+          alt={
+            article.attributes.image?.data?.attributes?.alternativeText ||
+            article.attributes.title
+          }
           width={article.attributes.image?.data?.attributes?.width}
           height={article.attributes.image?.data?.attributes?.height}
           className="h-full w-full object-cover transition-all duration-500 hover:scale-105"

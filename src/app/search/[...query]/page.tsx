@@ -33,7 +33,10 @@ const SearchResultsPage = async ({ params }: Props) => {
               >
                 <Image
                   src={result?.attributes?.image?.data?.attributes?.url}
-                  alt={result?.attributes?.image?.data?.attributes?.alt}
+                  alt={
+                    result.attributes.image?.data?.attributes
+                      ?.alternativeText || result.attributes.title
+                  }
                   width={result?.attributes?.image?.data?.attributes?.width}
                   height={result?.attributes?.image?.data?.attributes?.height}
                   className="h-48 w-full object-cover sm:w-[25%]"

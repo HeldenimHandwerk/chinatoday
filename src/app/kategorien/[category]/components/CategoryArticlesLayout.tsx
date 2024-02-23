@@ -135,7 +135,10 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
         >
           <Image
             src={article?.attributes?.image?.data?.attributes.url}
-            alt={article?.attributes.image?.data?.attributes.alt}
+            alt={
+              article.attributes.image?.data?.attributes?.alternativeText ||
+              article.attributes.title
+            }
             fill
             className="object-cover object-center transition-all duration-500 hover:scale-105"
           />

@@ -39,7 +39,7 @@ export const generateMetadata = async ({
           url: `${articleData.image?.data?.attributes?.url}`,
           width: articleData.image?.data?.attributes?.width,
           height: articleData.image?.data?.attributes?.height,
-          alt: `${articleData.image?.data?.attributes?.alt}`
+          alt: `${articleData.image?.data?.attributes?.alternativeText || articleData.title}`
         }
       ]
     }
@@ -138,7 +138,7 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
               <div className="relative mb-8 h-[450px] w-full rounded-lg shadow-lg">
                 <Image
                   src={image?.data?.attributes?.url}
-                  alt={image?.data?.attributes?.alt}
+                  alt={image?.data?.attributes?.alternativeText || title}
                   width={image?.data?.attributes?.width}
                   height={image?.data?.attributes?.height}
                   className="h-full w-full rounded-lg object-cover"

@@ -93,7 +93,8 @@ interface ArticleCardProps {
 const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
   const { title, updatedAt: published } = article.attributes
   const imageUrl = article.attributes.image?.data?.attributes?.url
-  const imageAlt = article.attributes.image?.data?.attributes?.alt
+  const imageAlt =
+    article.attributes.image?.data?.attributes?.alternativeText || title
 
   return (
     <Link
