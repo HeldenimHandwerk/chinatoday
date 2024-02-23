@@ -93,6 +93,7 @@ interface ArticleCardProps {
 const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
   const { title, updatedAt: published } = article.attributes
   const imageUrl = article.attributes.image?.data?.attributes?.url
+  const imageAlt = article.attributes.image?.data?.attributes?.alt
 
   return (
     <Link
@@ -103,7 +104,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
         <div className="w-full lg:mb-0 lg:w-6/12  xl:w-6/12">
           <Image
             src={imageUrl}
-            alt={title}
+            alt={imageAlt}
             className="h-[200px] w-full rounded-md object-cover"
             width={600}
             height={400}

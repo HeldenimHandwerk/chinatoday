@@ -72,7 +72,7 @@ const SingleCard: React.FC<ArticleProps> = ({ article }) => {
         <div className="relative h-60 w-full overflow-hidden rounded-md lg:h-auto lg:w-1/2">
           <Image
             src={article?.attributes.image?.data?.attributes?.url}
-            alt={article?.attributes?.title}
+            alt={article?.attributes?.image?.data?.attributes?.alt}
             width={article?.attributes.image?.data?.attributes?.width}
             height={article?.attributes?.image?.data?.attributes?.height}
             className="h-full w-full object-cover opacity-90 transition-all duration-500 hover:scale-105"

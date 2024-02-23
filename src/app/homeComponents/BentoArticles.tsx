@@ -103,7 +103,7 @@ export default async function BentoArticles() {
             <div className="absolute inset-0 w-full  overflow-hidden transition-all duration-500 group-hover:scale-105 ">
               <Image
                 src={article.attributes.image?.data?.attributes?.url}
-                alt={article.attributes.title}
+                alt={article.attributes.image?.data?.attributes?.alt}
                 width={article.attributes.image?.data?.attributes?.width}
                 height={article.attributes.image?.data?.attributes?.height}
                 className="h-full w-full object-cover opacity-90 transition-all duration-500 hover:scale-105"

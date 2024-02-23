@@ -82,7 +82,7 @@ export default function Header() {
             >
               <Image
                 src={logo}
-                alt="logo"
+                alt="China today logo"
                 width={500}
                 height={500}
                 className="h-full w-full"

@@ -21,7 +21,7 @@ const Footer = () => {
               <Link href="/#" className="block py-5 lg:py-3">
                 <Image
                   src={logo}
-                  alt="logo"
+                  alt="China Today Logo"
                   width={500}
                   height={500}
                   className="h-full w-full"
