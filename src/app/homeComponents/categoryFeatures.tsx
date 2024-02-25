@@ -70,7 +70,7 @@ export default async function CategoryFeatures({
   const articles = await fetchArticles(collection)
 
   return (
-    <div className="corner-border container mx-auto mb-8 rounded-lg bg-gray-100 p-6 shadow-sm">
+    <section className="corner-border container mx-auto mb-8 rounded-lg bg-gray-100 p-6 shadow-sm">
       <div className="mb-4 flex items-center justify-between bg-red-200 p-4 text-red-800  shadow">
         <span className="text-xl font-bold uppercase">{collection}</span>
         <Link
@@ -99,9 +99,9 @@ export default async function CategoryFeatures({
               />
             </div>
             <div className="absolute bottom-0 left-0 right-0 rounded-b-lg bg-gradient-to-t from-black via-black/80 to-transparent p-4 ">
-              <h1 className="mb-2 text-3xl font-bold text-white transition-colors duration-300 hover:text-red-400 sm:text-4xl">
+              <h2 className="mb-2 text-3xl font-bold text-white transition-colors duration-300 hover:text-red-400 sm:text-4xl">
                 {articles[0].attributes.title}
-              </h1>
+              </h2>
             </div>
           </div>
         </Link>
@@ -126,9 +126,9 @@ export default async function CategoryFeatures({
               />
             </div>
             <div className="flex flex-grow flex-col justify-between p-4">
-              <h1 className="mb-2 text-lg font-bold leading-tight text-black transition-colors duration-300 hover:text-red-400">
+              <h2 className="mb-2 text-lg font-bold leading-tight text-black transition-colors duration-300 hover:text-red-400">
                 {article.attributes.title}
-              </h1>
+              </h2>
               <div
                 dangerouslySetInnerHTML={{
                   __html: truncateHtml(article.attributes.text, 100)
@@ -139,6 +139,6 @@ export default async function CategoryFeatures({
           </Link>
         ))}
       </div>
-    </div>
+    </section>
   )
 }

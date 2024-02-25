@@ -22,7 +22,7 @@ const SearchResultsPage = async ({ params }: Props) => {
   const currentPage = articles.meta.pagination.page
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <main className="min-h-screen bg-gray-100">
       <div className="container mx-auto px-4 py-10 sm:px-0">
         {articles.data.length > 0 ? (
           <div className="grid grid-cols-1 gap-6">
@@ -131,7 +131,7 @@ const SearchResultsPage = async ({ params }: Props) => {
           </div>
         )}
       </div>
-    </div>
+    </main>
   )
 }
 

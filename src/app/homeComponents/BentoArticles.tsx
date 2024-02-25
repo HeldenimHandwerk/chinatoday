@@ -87,7 +87,7 @@ export default async function BentoArticles() {
   const articles = await fetchHomeArticles()
 
   return (
-    <div className="container mx-auto my-5">
+    <main className="container mx-auto my-5">
       <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {articles.map((article, index) => (
           <Link
@@ -113,17 +113,24 @@ export default async function BentoArticles() {
               />
             </div>
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6">
-              <h1
-                className={` ${
-                  index === 0 ? 'text-xl sm:text-2xl' : 'sm:text-md text-lg'
-                } mb-2 font-bold leading-tight text-white transition-colors duration-300 hover:text-red-400`}
-              >
-                {article.attributes.title}
-              </h1>
+              {index === 0 ? (
+                <h1
+                  className={`mb-2 text-xl font-bold leading-tight text-white transition-colors duration-300 hover:text-red-400 sm:text-2xl`}
+                >
+                  {article.attributes.title}
+                </h1>
+              ) : (
+                <h2
+                  className={`sm:text-md mb-2 text-lg font-bold leading-tight text-white transition-colors duration-300 hover:text-red-400`}
+                >
+                  {article.attributes.title}
+                </h2>
+              )}
+              {article.attributes.title}
             </div>
           </Link>
         ))}
       </div>
-    </div>
+    </main>
   )
 }

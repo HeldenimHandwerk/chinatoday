@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 const datenschutz = () => {
   return (
-    <div className="container mx-auto h-full px-4 py-6 md:px-12">
+    <main className="container mx-auto h-full px-4 py-6 md:px-12">
       <div className="flex flex-col justify-center text-left">
         <div className="corner-border flex items-center justify-center rounded-lg bg-gray-100 p-5 shadow">
           <h1 className="text-6xl font-bold text-red-500 md:text-9xl">
@@ -10,7 +10,7 @@ const datenschutz = () => {
           </h1>
         </div>
         <div className="mt-8 rounded-lg bg-white p-5 shadow">
-          <h1>Impressum</h1>
+          <h2>Impressum</h2>
           <h2>Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
           <p>
             Hartmann Public Relations GmbH
@@ -60,7 +60,7 @@ const datenschutz = () => {
           </p>{' '}
         </div>
       </div>
-    </div>
+    </main>
   )
 }
 

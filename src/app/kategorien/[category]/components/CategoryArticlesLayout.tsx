@@ -122,7 +122,7 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
   style,
   isHighlighted
 }) => (
-  <div
+  <main
     className={'relative h-full overflow-hidden rounded-lg shadow-lg'}
     style={style}
   >
@@ -166,9 +166,9 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
           <div className="flex h-48 flex-col justify-between bg-white p-2">
             {' '}
             {/* Allocate remaining space for text */}
-            <h1 className="xl:text-md p-2  font-bold text-black sm:text-base md:text-sm  2xl:text-2xl ">
+            <h2 className="xl:text-md p-2  font-bold text-black sm:text-base md:text-sm  2xl:text-2xl ">
               {article?.attributes.title}
-            </h1>
+            </h2>
             <span className="mt-1 text-xs text-gray-500">
               Gepostet: {formatDate(article?.attributes.updatedAt)}
             </span>
@@ -176,5 +176,5 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
         )}
       </div>
     </Link>
-  </div>
+  </main>
 )

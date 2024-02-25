@@ -46,9 +46,9 @@ export default function Carousel({ articles }: CarouselProps) {
                     className="rounded-md object-cover object-center"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-4">
-                    <h1 className="mb-2 text-2xl font-bold text-white transition-colors duration-300 hover:text-red-400">
+                    <h2 className="mb-2 text-2xl font-bold text-white transition-colors duration-300 hover:text-red-400">
                       {article?.attributes?.title}
-                    </h1>
+                    </h2>
                   </div>
                 </div>
               </Link>
