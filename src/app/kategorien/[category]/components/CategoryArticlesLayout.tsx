@@ -37,8 +37,8 @@ export default async function CategoryArticlesLayout({
   // Sort articles by 'updatedAt' descending
   articles.sort(
     (a: ArticleType, b: ArticleType) =>
-      new Date(b.attributes.updatedAt).getTime() -
-      new Date(a.attributes.updatedAt).getTime()
+      new Date(b.attributes.dateOfPublish).getTime() -
+      new Date(a.attributes.dateOfPublish).getTime()
   )
 
   const featureArticles = articles.filter(
@@ -52,6 +52,17 @@ export default async function CategoryArticlesLayout({
     //set it locally to false
     oldestArticle.attributes.CategoryBreaking = false
     featureArticles.slice(0, 6)
+  }
+
+  const calculateFontSize = (text: string) => {
+    const textLength = text.length
+    if (textLength < 10) {
+      return 'xl:text-lg'
+    } else if (textLength < 20) {
+      return 'md:text-sm'
+    } else {
+      return 'sm:text-base'
+    }
   }
 
   return (
@@ -156,7 +167,7 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
               /> */}
 
               <div className="text-xs text-white sm:text-sm md:text-base">
-                gepostet: {formatDate(article?.attributes.updatedAt)}
+                gepostet: {formatDate(article?.attributes.dateOfPublish)}
               </div>
             </div>
           )}
@@ -166,11 +177,17 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
           <div className="flex h-48 flex-col justify-between bg-white p-2">
             {' '}
             {/* Allocate remaining space for text */}
-            <h2 className="xl:text-md p-2  font-bold text-black sm:text-base md:text-sm  2xl:text-2xl ">
+            <h2
+              className={`p-2 font-bold text-black ${
+                article?.attributes.title.length > 150
+                  ? 'sm:text-base md:text-sm'
+                  : 'xl:text-lg'
+              }`}
+            >
               {article?.attributes.title}
             </h2>
             <span className="mt-1 text-xs text-gray-500">
-              Gepostet: {formatDate(article?.attributes.updatedAt)}
+              Gepostet: {formatDate(article?.attributes.dateOfPublish)}
             </span>
           </div>
         )}

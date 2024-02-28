@@ -39,7 +39,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, style }) => {
         />
 
         <div className="text-sm text-black">
-          {formatDate(article.attributes.updatedAt)}
+          {formatDate(article.attributes.dateOfPublish)}
         </div>
       </div>
     </Link>

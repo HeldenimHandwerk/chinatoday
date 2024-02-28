@@ -17,7 +17,7 @@ type ArticleData = {
   title: string
   text: string
   image: any
-  updatedAt: string
+  published: string
   source: string
 }
 
@@ -58,14 +58,14 @@ const fetchArticleData = async (
   const relatedResponse = await fetchCollectionArticles(articleCategory)
   const relatedArticles = relatedResponse.slice(0, 3)
   //format the date
-  const formattedDate = formatDate(articleData?.updatedAt)
+  const formattedDate = formatDate(articleData?.dateOfPublish)
   // Return the main article data and related articles
   return {
     article: {
       title: articleData?.title,
       text: articleData?.text,
       image: articleData?.image,
-      updatedAt: formattedDate,
+      published: formattedDate,
       source: articleData?.source
     },
     relatedArticles
@@ -95,7 +95,7 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
   const { article: articleData, relatedArticles } =
     await fetchArticleData(article)
 
-  const { title, text, image, updatedAt, source } = articleData
+  const { title, text, image, published, source } = articleData
 
   const insertAdsBasedOnLength = (htmlContent: string): React.ReactNode[] => {
     const elements: React.ReactNode[] = []
@@ -149,7 +149,7 @@ const Page: React.FC<Props> = async ({ params: { article } }) => {
                     {title}
                   </h1>
                   <h3>
-                    <span className="text-sm text-white">{updatedAt}</span>
+                    <span className="text-sm text-white">{published}</span>
                     <span className="text-sm text-gray-300"> © {source}</span>
                   </h3>
                 </div>

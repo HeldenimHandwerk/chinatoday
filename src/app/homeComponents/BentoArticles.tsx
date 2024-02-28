@@ -115,18 +115,17 @@ export default async function BentoArticles() {
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6">
               {index === 0 ? (
                 <h1
-                  className={`mb-2 text-xl font-bold leading-tight text-white transition-colors duration-300 hover:text-red-400 sm:text-2xl`}
+                  className={`mb-2 text-xl font-bold leading-tight text-white transition-colors duration-300 hover:text-red-400 lg:text-3xl`}
                 >
                   {article.attributes.title}
                 </h1>
               ) : (
                 <h2
-                  className={`sm:text-md mb-2 text-lg font-bold leading-tight text-white transition-colors duration-300 hover:text-red-400`}
+                  className={`sm:text-md mb-2 text-xl font-bold leading-tight text-white transition-colors duration-300 hover:text-red-400`}
                 >
                   {article.attributes.title}
                 </h2>
               )}
-              {article.attributes.title}
             </div>
           </Link>
         ))}

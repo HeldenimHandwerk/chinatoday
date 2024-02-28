@@ -9,9 +9,9 @@ export type Article = {
     Headline: boolean
     CategoryBreaking: boolean
     HeroBreaking: boolean
-    dateOfPublish: string | number | Date
+    dateOfPublish: string
     slug: string
-    view: number
+    views: number
     image: {
       data: {
         attributes: {

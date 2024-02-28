@@ -92,7 +92,7 @@ const SingleCard: React.FC<ArticleProps> = ({ article }) => {
             />
 
             <span className="text-xs text-gray-500 lg:text-sm">
-              {article?.attributes?.updatedAt}
+              {article?.attributes?.dateOfPublish}
             </span>
           </div>
           <div className="mt-2">

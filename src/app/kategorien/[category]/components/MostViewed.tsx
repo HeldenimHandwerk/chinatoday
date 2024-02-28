@@ -13,7 +13,7 @@ export default function Toplist({ articles }: { articles: Article[] }) {
 
   // Most Viewed Articles
   const mostViewedArticles = filteredArticles
-    .sort((a, b) => b.attributes.view - a.attributes.view)
+    .sort((a, b) => b.attributes.views - a.attributes.views)
     .slice(0, Math.min(5, filteredArticles.length))
 
   const mostViewedArticleIds = new Set(
@@ -91,7 +91,7 @@ interface ArticleCardProps {
 }
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
-  const { title, updatedAt: published } = article.attributes
+  const { title, dateOfPublish: published } = article.attributes
   const imageUrl = article.attributes.image?.data?.attributes?.url
   const imageAlt =
     article.attributes.image?.data?.attributes?.alternativeText || title

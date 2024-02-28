@@ -24,7 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const dynamicArticlesPaths: MetadataRoute.Sitemap = articles.map(
     (article: Article) => ({
       url: `https://www.china-today.de/kategorien/${article.attributes?.collection?.data?.attributes?.slug}/${article?.attributes?.slug}`,
-      lastModified: new Date(article?.attributes?.updatedAt).toISOString(),
+      lastModified: new Date(article?.attributes?.dateOfPublish).toISOString(),
       changeFrequency: 'daily', // Specified as a literal type
       priority: 0.7
     })
@@ -34,7 +34,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const dynamicCategoriesPaths: MetadataRoute.Sitemap = categoryData.map(
     (category: Article) => ({
       url: `https://www.china-today.de/kategorien/${category.attributes.slug}`,
-      lastModified: new Date(category.attributes.updatedAt).toISOString(),
+      lastModified: new Date(category.attributes.dateOfPublish).toISOString(),
       changeFrequency: 'daily', // Specified as a literal type
       priority: 0.7
     })
