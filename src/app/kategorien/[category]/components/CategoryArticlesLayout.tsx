@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Article as ArticleType } from '@/app/types/Article'
 import formatDate from '@/app/utils/formatDate'
+import sanitizeHtml from 'sanitize-html'
 const updateOldestArticle = async (oldestArticle: ArticleType) => {
   // Make an API request to update the 'Breaking' status of the oldest article.
   const response = await fetch(
@@ -27,6 +28,21 @@ const updateOldestArticle = async (oldestArticle: ArticleType) => {
   if (!response.ok) {
     throw new Error(`Error: ${response.status}`)
   }
+}
+
+function truncateHtml(html: any, maxLength: number) {
+  // First, remove HTML tags to get plain text
+  const plainText = sanitizeHtml(html, {
+    allowedTags: [], // No tags allowed, effectively converting HTML to plain text
+    allowedAttributes: {} // No attributes allowed
+  })
+
+  // Then, truncate the plain text
+  if (plainText.length <= maxLength) return html // Return original HTML if within maxLength
+  const truncatedText = plainText.slice(0, maxLength) + '...'
+
+  // Optionally, return the truncated text wrapped in a tag if needed
+  return `<p>${truncatedText}</p>`
 }
 
 export default async function CategoryArticlesLayout({
@@ -148,6 +164,13 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
                 {article?.attributes.title}
               </h1>
 
+              {/* <div
+                className=" mb-4 text-lg text-white"
+                dangerouslySetInnerHTML={{
+                  __html: article.attributes.text.slice(0, 50) + '...'
+                }}
+              /> */}
+
               <div className="text-xs text-white sm:text-sm md:text-base">
                 gepostet: {formatDate(article?.attributes.dateOfPublish)}
               </div>
@@ -168,6 +191,12 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
             >
               {article?.attributes.title}
             </h2>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: truncateHtml(article.attributes.text, 100)
+              }}
+              className=" leading-relaxed text-gray-600  sm:text-base"
+            />
             <span className="mt-1 text-xs text-gray-500">
               Gepostet: {formatDate(article?.attributes.dateOfPublish)}
             </span>

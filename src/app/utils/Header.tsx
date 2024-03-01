@@ -123,22 +123,12 @@ export default function Header() {
             <div className="flex items-center space-x-4">
               <Link
                 aira-label="instagram"
-                href="https://www.instagram.com/"
+                href="https://www.instagram.com/china.heute?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                 target="_blank"
                 rel="noopener noreferrer"
                 className=" hover:text-[#E1306C]" // Change the hover color here
               >
-                <FaInstagram size={24} />
-              </Link>
-
-              <Link
-                aira-label="tiktok"
-                href="https://www.tiktok.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-gray-700"
-              >
-                <FaTiktok size={24} />
+                <FaInstagram size={30} />
               </Link>
             </div>
           </div>
@@ -202,14 +192,14 @@ export default function Header() {
               <div className="flex flex-row items-center gap-5">
                 <Link
                   aria-label="instagram"
-                  href="https://www.instagram.com/china-today"
+                  href="https://www.instagram.com/china.heute?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-black hover:text-gray-700"
                 >
-                  <FaInstagram size={24} />
+                  <FaInstagram size={30} />
                 </Link>
-                <Link
+                {/* <Link
                   aria-label="tiktok"
                   href="https://www.tiktok.com/@china-today"
                   target="_blank"
@@ -217,7 +207,7 @@ export default function Header() {
                   className="text-black hover:text-gray-700"
                 >
                   <FaTiktok size={24} />
-                </Link>
+                </Link> */}
               </div>
             </div>
           )}
