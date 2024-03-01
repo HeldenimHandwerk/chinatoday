@@ -140,15 +140,6 @@ export default function Header() {
               >
                 <FaTiktok size={24} />
               </Link>
-              <Link
-                aira-label="youtube"
-                href="https://www.youtube.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-red-600"
-              >
-                <FaYoutube size={24} />
-              </Link>
             </div>
           </div>
 
@@ -226,15 +217,6 @@ export default function Header() {
                   className="text-black hover:text-gray-700"
                 >
                   <FaTiktok size={24} />
-                </Link>
-                <Link
-                  aria-label="youtube"
-                  href="https://www.youtube.com/channel/china-today"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-black hover:text-gray-700"
-                >
-                  <FaYoutube size={24} />
                 </Link>
               </div>
             </div>

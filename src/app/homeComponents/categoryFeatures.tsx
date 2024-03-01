@@ -15,13 +15,6 @@ async function fetchArticles(collection: string) {
       (article.attributes.HeroBreaking === false ||
         article.attributes.HeroBreaking === null)
   )
-  // Check the length after filtering
-  if (filteredArticles.length > 6) {
-    // Assuming the last one in filteredArticles is the oldest
-    const oldestArticle = filteredArticles.reverse()[0]
-    await updateOldestArticle(oldestArticle) // Now awaited
-    filteredArticles.pop() // Remove the oldest article from the array
-  }
 
   return filteredArticles.slice(0, 4) // Return up to 4 articles
 }

@@ -54,17 +54,6 @@ export default async function CategoryArticlesLayout({
     featureArticles.slice(0, 6)
   }
 
-  const calculateFontSize = (text: string) => {
-    const textLength = text.length
-    if (textLength < 10) {
-      return 'xl:text-lg'
-    } else if (textLength < 20) {
-      return 'md:text-sm'
-    } else {
-      return 'sm:text-base'
-    }
-  }
-
   return (
     <div className="flex h-full flex-col justify-between gap-4 px-4 py-4 md:flex-row md:overflow-hidden md:px-10">
       {/* Mobile view */}
@@ -158,13 +147,6 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
               <h1 className="mb-2 text-2xl font-bold text-white transition-colors duration-300 hover:text-red-400 lg:text-3xl">
                 {article?.attributes.title}
               </h1>
-
-              {/* <div
-                className=" mb-4 text-lg text-white"
-                dangerouslySetInnerHTML={{
-                  __html: article.attributes.text.slice(0, 50) + '...'
-                }}
-              /> */}
 
               <div className="text-xs text-white sm:text-sm md:text-base">
                 gepostet: {formatDate(article?.attributes.dateOfPublish)}
