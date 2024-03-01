@@ -88,7 +88,7 @@ export default async function CategoryFeatures({
                     ?.alternativeText || articles[0].attributes.title
                 }
                 fill
-                className="object-cover object-center opacity-100 transition-all duration-500 hover:scale-105"
+                className="object-cover object-top opacity-100 transition-all duration-500 hover:scale-105"
               />
             </div>
             <div className="absolute bottom-0 left-0 right-0 rounded-b-lg bg-gradient-to-t from-black via-black/80 to-transparent p-4 ">
