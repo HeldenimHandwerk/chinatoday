@@ -41,6 +41,11 @@ export default function RootLayout({
     gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
   `}
         </Script>
+        <script
+          src="https://assets.usestyle.ai/seonajsplugin"
+          defer
+          id="seona-js-plugin"
+        ></script>
 
         <Header />
         <Cookies>{children}</Cookies>
