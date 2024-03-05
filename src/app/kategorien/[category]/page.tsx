@@ -32,13 +32,13 @@ export const generateMetadata = async ({
 const Page = async ({ params: { category } }: Props) => {
   const articles = await fetchArticles(category)
   return (
-    <div className="bg-[#FAFAFA] text-gray-900">
+    <div className="h-full bg-[#FAFAFA] text-gray-900">
       <CategoryArticlesLayout articles={articles} />
       <Suspense fallback={<div>Loading...</div>}>
         <MostViewed articles={articles} />
         <Discovery collection={category} />
+        <Archive articles={articles} />
       </Suspense>
-      {/* <Archive articles={articles} /> */}
     </div>
   )
 }
