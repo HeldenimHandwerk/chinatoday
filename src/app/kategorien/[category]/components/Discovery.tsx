@@ -29,10 +29,13 @@ const Discovery = async (category: any) => {
     // Get the first (newest) article from each sorted collection
     // If the collection has articles, select a random article
     if (articlesInCollection.length > 0) {
-      const randomIndex = Math.floor(
-        Math.random() * articlesInCollection.length
+      const filteredArticles = articlesInCollection.filter(
+        article => article.attributes.views < 10
       )
-      displayedArticles.push(articlesInCollection[randomIndex])
+      if (filteredArticles.length > 0) {
+        const randomIndex = Math.floor(Math.random() * filteredArticles.length)
+        displayedArticles.push(filteredArticles[randomIndex])
+      }
     }
   }
 

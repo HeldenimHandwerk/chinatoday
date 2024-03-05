@@ -193,7 +193,7 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
             </h2>
             <div
               dangerouslySetInnerHTML={{
-                __html: truncateHtml(article.attributes.text, 100)
+                __html: truncateHtml(article.attributes.text, 50)
               }}
               className=" leading-relaxed text-gray-600  sm:text-base"
             />

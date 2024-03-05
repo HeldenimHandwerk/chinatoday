@@ -4,6 +4,7 @@ import MostViewed from './components/MostViewed'
 import CategoryArticlesLayout from './components/CategoryArticlesLayout'
 import Discovery from './components/Discovery'
 import type { Metadata } from 'next'
+import Archive from './components/Archive'
 
 interface Props {
   params: {
@@ -33,10 +34,11 @@ const Page = async ({ params: { category } }: Props) => {
   return (
     <div className="bg-[#FAFAFA] text-gray-900">
       <CategoryArticlesLayout articles={articles} />
-      <MostViewed articles={articles} />
       <Suspense fallback={<div>Loading...</div>}>
+        <MostViewed articles={articles} />
         <Discovery collection={category} />
       </Suspense>
+      {/* <Archive articles={articles} /> */}
     </div>
   )
 }
