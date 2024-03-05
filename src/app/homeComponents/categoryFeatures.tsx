@@ -80,9 +80,9 @@ export default async function CategoryFeatures({
         <Link
           href={`/kategorien/${articles[0].attributes.collection.data.attributes.slug}/${articles[0].attributes.slug}`}
         >
-          <div className="relative mb-8 h-[400px] w-full rounded-lg shadow-lg">
+          <div className="relative mb-8 h-[500px] w-full rounded-lg shadow-lg">
             {/* Enhanced shadow */}
-            <div className="absolute inset-0 w-full  overflow-hidden opacity-100 transition-all duration-500 group-hover:scale-105">
+            <div className="absolute inset-0 h-full w-full  overflow-hidden opacity-100 transition-all duration-500 group-hover:scale-105">
               <Image
                 src={articles[0].attributes.image?.data?.attributes?.url}
                 alt={
@@ -90,7 +90,7 @@ export default async function CategoryFeatures({
                     ?.alternativeText || articles[0].attributes.title
                 }
                 fill
-                className="object-cover object-center opacity-100 transition-all duration-500 hover:scale-105"
+                className="h-full object-cover object-center opacity-100 transition-all duration-500 hover:scale-105"
               />
             </div>
             <div className="absolute bottom-0 left-0 right-0 rounded-b-lg bg-gradient-to-t from-black via-black/80 to-transparent p-4 ">

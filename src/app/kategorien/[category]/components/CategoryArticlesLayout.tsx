@@ -147,7 +147,7 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
     >
       <div className="block h-full">
         <div
-          className={` w-full ${isHighlighted ? 'h-full ' : 'relative h-48'}`}
+          className={` w-full ${isHighlighted ? 'h-full ' : 'relative h-64'}`}
         >
           <Image
             src={article?.attributes?.image?.data?.attributes.url}
@@ -156,7 +156,7 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
               article.attributes.title
             }
             fill
-            className="object-cover object-center transition-all duration-500 hover:scale-105"
+            className="h-full object-cover object-center transition-all duration-500 hover:scale-105"
           />
           {isHighlighted && (
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/80 to-transparent p-4">
