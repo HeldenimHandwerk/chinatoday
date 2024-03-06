@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { Article } from '@/app/types/Article'
+import Link from 'next/link'
 
 interface ArchiveProps {
   articles: Article[]
@@ -38,7 +39,12 @@ const Archive: React.FC<ArchiveProps> = ({ articles }) => {
         >
           <div className="container grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {currentArticles.map((article, index) => (
-              <div key={index} className="rounded-lg bg-white p-4 shadow-lg ">
+              <Link
+                key={index}
+                className="rounded-lg bg-white p-4 shadow-lg "
+                href={`/kategorien/${article.attributes.collection.data.attributes.slug}/${article.attributes.slug}`}
+                title={article.attributes.title + '- China Today'}
+              >
                 <Image
                   src={article.attributes.image.data.attributes.url}
                   width={article.attributes.image.data.attributes.width}
@@ -52,7 +58,7 @@ const Archive: React.FC<ArchiveProps> = ({ articles }) => {
                 <h1 className="text-md mb-2 p-5  font-bold text-black transition-colors duration-300 hover:text-red-400 lg:text-xl">
                   {article.attributes.title}
                 </h1>
-              </div>
+              </Link>
             ))}
           </div>
           <div className="mb-20 mt-4 flex justify-center">

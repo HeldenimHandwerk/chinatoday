@@ -10,9 +10,9 @@ const datenschutz = () => {
           </h1>
         </div>
         <div className="mt-8 rounded-lg bg-white p-5 shadow">
-          <h1 className="text-4xl font-semibold text-gray-700">
+          <h2 className="text-4xl font-semibold text-gray-700">
             Datenschutz&shy;erkl&auml;rung
-          </h1>
+          </h2>
           <h2 className="mt-4 text-3xl font-semibold text-gray-600">
             1. Datenschutz auf einen Blick
           </h2>

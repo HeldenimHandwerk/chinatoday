@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 const datenschutz = () => {
   return (
     <main className="container mx-auto h-full px-4 py-6 md:px-12">

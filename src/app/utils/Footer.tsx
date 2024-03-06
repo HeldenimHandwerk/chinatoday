@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { HiOutlineMail } from 'react-icons/hi'
-import { FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa'
+import { FaInstagram, FaFacebook } from 'react-icons/fa'
 import logo from '../../../public/images/logo.png'
 import NewsLetterSignUpForm from './NewsLetterSignUpForm'
 import Link from 'next/link'
@@ -18,7 +18,11 @@ const Footer = () => {
         <div className="flex flex-wrap justify-between">
           <div className="mb-10 w-full px-4 lg:w-3/12">
             <div className="w-40 max-w-full">
-              <Link href="/#" className="block py-5 lg:py-3">
+              <Link
+                title="China today image"
+                href="/#"
+                className="block py-5 lg:py-3"
+              >
                 <Image
                   src={logo}
                   alt="China Today Logo"
@@ -29,29 +33,28 @@ const Footer = () => {
               </Link>
 
               {/* Social Icons */}
-              {/* <div className="flex items-center">
+              <div className="flex items-center justify-center">
                 <Link
-                  aria-label="instagram"
-                  href="https://www.instagram.com/china-today"
-                  className="px-3 text-black hover:text-gray-700"
+                  aira-label="instagram"
+                  title="Instagram China today"
+                  href="https://www.instagram.com/china.heute?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className=" hover:text-[#E1306C]"
                 >
                   <FaInstagram size="25px" />
                 </Link>
                 <Link
-                  aria-label="Tiktok"
-                  href="https://www.tiktok.com/@china-today"
-                  className="px-3 text-black hover:text-gray-700"
+                  aria-label="Facebook"
+                  title="Facebook China today"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.facebook.com/people/China-Today/61556889812221/?is_tour_completed=false"
+                  className="px-3 text-black hover:text-blue-700"
                 >
-                  <FaTiktok size="25px" />
+                  <FaFacebook size="25px" />
                 </Link>
-                <Link
-                  aria-label="Youtube"
-                  href="https://www.youtube.com/channel/china-today"
-                  className="px-3 text-black hover:text-gray-700"
-                >
-                  <FaYoutube size="25px" />
-                </Link>
-              </div> */}
+              </div>
             </div>
           </div>
           <div className="mb-10 flex w-full flex-col px-4 lg:w-4/12">
@@ -101,6 +104,7 @@ const NavLink = ({ label, link }: NavLinkProps) => {
   return (
     <li>
       <Link
+        title={label}
         href={link}
         className="inline-block text-base leading-loose text-black/70 underline-offset-2 hover:text-black hover:underline"
       >
@@ -132,6 +136,7 @@ type BottomNavLinkProps = {
 const BottomNavLink = ({ label, link }: BottomNavLinkProps) => {
   return (
     <Link
+      title={label}
       href={link}
       className="px-3 text-sm text-white hover:text-black sm:text-base"
     >

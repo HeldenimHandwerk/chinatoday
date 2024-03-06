@@ -3,21 +3,29 @@
 import { useState, useEffect, FormEvent } from 'react'
 import Image from 'next/image'
 import logo from '../../../public/images/logo.png'
-import { FaInstagram, FaTiktok, FaYoutube, FaSearch } from 'react-icons/fa'
+import { FaInstagram, FaFacebook, FaSearch } from 'react-icons/fa'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Stockticker from './StockTicker'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 const categories = [
-  { name: 'Startseite', link: '/' },
-  { name: 'Politik', link: 'kategorien/politik' },
-  { name: 'Wirtschaft', link: 'kategorien/wirtschaft' },
-  { name: 'Kultur', link: 'kategorien/kultur' },
+  { title: 'China today home', name: 'Startseite', link: '/' },
+  { name: 'Politik', link: 'kategorien/politik', title: 'Politik China today' },
+  {
+    name: 'Wirtschaft',
+    link: 'kategorien/wirtschaft',
+    title: 'Wirtschaft China today'
+  },
+  { name: 'Kultur', link: 'kategorien/kultur', title: 'Kultur China today' },
   // { name: 'technology', link: 'kategorien/technology' },
-  { name: 'Mobilität', link: 'kategorien/mobilitaet' },
-  { name: 'Sport', link: 'kategorien/sport' },
-  { name: 'Reisen', link: 'kategorien/reisen' }
+  {
+    name: 'Mobilität',
+    link: 'kategorien/mobilitaet',
+    title: 'Mobilität China today'
+  },
+  { name: 'Sport', link: 'kategorien/sport', title: 'Sport China today' },
+  { name: 'Reisen', link: 'kategorien/reisen', title: 'Reisen China today' }
 ]
 
 export default function Header() {
@@ -76,6 +84,7 @@ export default function Header() {
           {/* Logo */}
           <div className="w-40 max-w-full px-4">
             <Link
+              title="China today home"
               href="/#"
               onClick={() => setPageName('Startseite')}
               className="block w-full py-5 lg:py-3"
@@ -123,12 +132,23 @@ export default function Header() {
             <div className="flex items-center space-x-4">
               <Link
                 aira-label="instagram"
+                title="Instagram China today"
                 href="https://www.instagram.com/china.heute?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                 target="_blank"
                 rel="noopener noreferrer"
-                className=" hover:text-[#E1306C]" // Change the hover color here
+                className=" hover:text-[#E1306C]"
               >
                 <FaInstagram size={30} />
+              </Link>
+              <Link
+                aria-label="Facebook"
+                title="Facebook China today"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.facebook.com/people/China-Today/61556889812221/?is_tour_completed=false"
+                className="px-3 text-black hover:text-blue-700"
+              >
+                <FaFacebook size={30} />
               </Link>
             </div>
           </div>
@@ -153,16 +173,16 @@ export default function Header() {
             <div className="absolute inset-x-0 top-[100%] z-20 space-y-5 border border-t-0 bg-white p-4 shadow-lg md:hidden">
               {/* Mobile Search Bar */}
               <form
-                className="mb-4 flex"
+                className="relative flex  w-full"
                 onSubmit={e => {
                   e.preventDefault()
                   // Redirect to the search page with the query
                   router.push(`/search/${searchQuery}/1`)
+                  setIsOpen(false)
                 }}
               >
                 <input
                   type="text"
-                  name="search"
                   placeholder="Suche nach Artikeln..."
                   value={searchQuery}
                   onChange={handleSearchChange}
@@ -178,6 +198,7 @@ export default function Header() {
                 {categories.map((category, index) => (
                   <li key={index}>
                     <Link
+                      title={category.title}
                       href={`/${category.link}`}
                       className="text-lg text-black hover:text-gray-700"
                       onClick={() => setIsOpen(false)}
@@ -191,23 +212,25 @@ export default function Header() {
               <hr className="border-black-2" />
               <div className="flex flex-row items-center gap-5">
                 <Link
-                  aria-label="instagram"
+                  aira-label="instagram"
+                  title="Instagram China today"
                   href="https://www.instagram.com/china.heute?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-black hover:text-gray-700"
+                  className=" hover:text-[#E1306C]"
                 >
                   <FaInstagram size={30} />
                 </Link>
-                {/* <Link
-                  aria-label="tiktok"
-                  href="https://www.tiktok.com/@china-today"
+                <Link
+                  aria-label="Facebook"
+                  title="Facebook China today"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-black hover:text-gray-700"
+                  href="https://www.facebook.com/people/China-Today/61556889812221/?is_tour_completed=false"
+                  className="px-3 text-black hover:text-blue-700"
                 >
-                  <FaTiktok size={24} />
-                </Link> */}
+                  <FaFacebook size={30} />
+                </Link>
               </div>
             </div>
           )}
@@ -223,6 +246,7 @@ export default function Header() {
             {categories.map((category, index) => (
               <li key={index}>
                 <Link
+                  title={category.title + ' - China Today'}
                   href={`/${category.link}`}
                   className={`md:text-md  overflow-hidden rounded-lg p-2 text-black transition  hover:bg-red-400 hover:text-white lg:text-lg ${pageName === category.name ? 'bg-red-400 text-white' : ''}`}
                   onClick={() => {

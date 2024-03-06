@@ -12,6 +12,7 @@ interface ArticleCardProps {
 const ArticleCard: React.FC<ArticleCardProps> = ({ article, style }) => {
   return (
     <Link
+      title={article?.attributes.title + ' - China Today'}
       href={`/kategorien/${article.attributes.collection.data.attributes.slug}/${article.attributes.slug}`}
       className={`flex flex-col overflow-hidden rounded-xl  bg-white shadow ${style} `}
     >

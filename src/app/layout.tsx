@@ -14,9 +14,24 @@ const roboto = Roboto({
 })
 
 export const metadata: Metadata = {
-  title: 'China Today | Home',
+  title: 'China Today | Aktuelle Nachrichten',
   description:
-    'Entdecken Sie aktuelle Nachrichten und tiefgehende Berichte aus China auf Deutsch. Bleiben Sie mit unserem Portal über Politik, Wirtschaft, Kultur und das soziale Leben in China informiert. Täglich frische Nachrichten, sorgfältig recherchiert und verständlich aufbereitet'
+    'Informieren Sie sich über Politik, Wirtschaft, Kultur und das gesellschaftliche Leben in China mit täglichen Nachrichten und Berichten auf Deutsch. Erhalten Sie frische, gut recherchierte Updates.',
+  openGraph: {
+    title: 'China Today | Aktuelle Nachrichten',
+    description:
+      'Informieren Sie sich über Politik, Wirtschaft, Kultur und das gesellschaftliche Leben in China mit täglichen Nachrichten und Berichten auf Deutsch. Erhalten Sie frische, gut recherchierte Updates.',
+    type: 'website',
+    url: 'https://www.china-today.de/',
+    images: [
+      {
+        url: 'https://www.china-today.de/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.02bcd769.png&w=1080&q=75',
+        width: 800,
+        height: 600,
+        alt: 'China Today Image'
+      }
+    ]
+  }
 }
 
 export default function RootLayout({

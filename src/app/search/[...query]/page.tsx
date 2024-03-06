@@ -4,11 +4,40 @@ import { Article } from '@/app/types/Article'
 import Image from 'next/image'
 import { Suspense } from 'react'
 import Discovery from '@/app/kategorien/[category]/components/Discovery'
+import { Metadata } from 'next'
 
 interface Props {
   params: {
     query: string
     page: string
+  }
+}
+
+export const generateMetadata = (
+  searchTerm: string,
+  pageNumber: string
+): Metadata => {
+  const title = `Suchergebnisse für "${searchTerm}" | China Today`
+  const description = `Entdecken Sie Artikel zu "${searchTerm}" auf China Today. Bleiben Sie informiert mit den neuesten Nachrichten und tiefgehenden Analysen.`
+  const url = `https://www.china-today.de/search/${searchTerm}/${pageNumber}`
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      url,
+      images: [
+        {
+          url: 'https://www.china-today.de/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.02bcd769.png&w=1080&q=75',
+          width: 800,
+          height: 600,
+          alt: 'China Today Image'
+        }
+      ]
+    }
   }
 }
 
@@ -51,6 +80,7 @@ const SearchResultsPage = async ({ params }: Props) => {
                   />
 
                   <Link
+                    title={result?.attributes.title + ' - China Today'}
                     href={`/kategorien/${result.attributes.collection.data.attributes.slug}/${result.attributes.slug}`}
                   >
                     <div className="text-red-600 transition-colors duration-300 hover:text-red-800">
@@ -66,6 +96,7 @@ const SearchResultsPage = async ({ params }: Props) => {
                 <ul className="-mx-[6px] flex items-center">
                   <li className="px-[6px]">
                     <Link
+                      title={`Zurück zu Seite ${currentPage - 1}`}
                       href={`/search/${searchTerm}/${currentPage - 1}`}
                       className="flex h-6 min-w-[24px] items-center justify-center rounded px-1 text-base text-body-color hover:bg-[#EDEFF1] "
                     >
@@ -97,6 +128,7 @@ const SearchResultsPage = async ({ params }: Props) => {
 
                   <li>
                     <Link
+                      title={`Weiter zu Seite ${currentPage + 1}`}
                       href={`/search/${searchTerm}/${currentPage + 1}`}
                       className="flex h-6 min-w-[24px] items-center justify-center rounded px-1 text-base text-body-color hover:bg-[#EDEFF1] "
                     >
@@ -147,6 +179,7 @@ const PageLink = ({ pageSrc, count, isActive }: PageLinkProps) => {
   return (
     <li className="px-[6px]">
       <Link
+        title={`Gehe zu Seite ${count}`}
         href={pageSrc}
         className={`flex h-6 min-w-[24px] items-center justify-center rounded px-1 text-base text-body-color hover:bg-[#EDEFF1] ${isActive ? 'bg-[#EDEFF1]' : ''}`}
       >

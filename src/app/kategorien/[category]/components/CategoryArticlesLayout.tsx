@@ -143,6 +143,7 @@ const ArticleComponent: React.FC<ArticleComponentProps> = ({
     style={style}
   >
     <Link
+      title={article?.attributes.title + ' - China Today'}
       href={`/kategorien/${article?.attributes.collection.data.attributes.slug}/${article?.attributes.slug}`}
     >
       <div className="block h-full">

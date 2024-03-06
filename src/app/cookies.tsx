@@ -44,7 +44,7 @@ export default function Cookies({ children }: { children: React.ReactNode }) {
                 Welcome! To enhance your experience, we use cookies and comply
                 with GDPR. For more information feel free to check out our{' '}
                 <Link
-                  href="#"
+                  href="https://www.china-today.de/datenschutz"
                   style={{ textDecoration: 'underline', fontWeight: 500 }}
                 >
                   privacy policy
@@ -75,7 +75,7 @@ export default function Cookies({ children }: { children: React.ReactNode }) {
                 To learn more about our use of cookies feel free to check out
                 our{' '}
                 <Link
-                  href="#"
+                  href="https://www.china-today.de/datenschutz"
                   style={{ textDecoration: 'underline', fontWeight: 500 }}
                 >
                   privacy policy

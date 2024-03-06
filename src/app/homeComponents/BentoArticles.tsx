@@ -91,6 +91,7 @@ export default async function BentoArticles() {
       <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {articles.map((article, index) => (
           <Link
+            title={article?.attributes?.title + ' - China Today'}
             href={`/kategorien/${article.attributes.collection.data.attributes.slug}/${article.attributes.slug}`}
             key={article.id}
             className={`group relative overflow-hidden rounded-lg shadow-lg ${

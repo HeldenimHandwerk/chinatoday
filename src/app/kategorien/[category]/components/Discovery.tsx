@@ -43,7 +43,7 @@ const Discovery = async (category: any) => {
     <section className="bg-[#FAFAFA] pb-10 pt-20 lg:pb-20 lg:pt-10">
       <div className="container mx-auto">
         <div className="mb-12 text-center">
-          <h1 className="mb-4 text-4xl font-bold text-black">Entdecken</h1>
+          <h2 className="mb-4 text-4xl font-bold text-black">Entdecken</h2>
           <p className="mx-auto max-w-2xl text-lg text-gray-600">
             Erkunden Sie eine Vielzahl von Themen und Einsichten aus unseren
             neuesten Artikeln.
@@ -68,6 +68,7 @@ interface ArticleProps {
 const SingleCard: React.FC<ArticleProps> = ({ article }) => {
   return (
     <Link
+      title={article?.attributes.title + ' - China Today'}
       href={`/kategorien/${article?.attributes?.collection?.data.attributes.slug}/${article.attributes.slug}`}
       className="w-full p-4 sm:w-1/2"
     >

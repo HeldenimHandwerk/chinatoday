@@ -33,6 +33,7 @@ export default function Carousel({ articles }: CarouselProps) {
           {articles.map((article: Article) => (
             <div key={article.id} className=" h-[300px] md:h-[500px]">
               <Link
+                title={article?.attributes.title + ' - China Today'}
                 href={`/kategorien/${article.attributes.collection.data.attributes.slug}/${article.attributes.slug}`}
               >
                 <div className="relative h-full w-full">

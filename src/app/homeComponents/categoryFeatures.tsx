@@ -69,6 +69,7 @@ export default async function CategoryFeatures({
           {collection === 'mobilitaet' ? 'Mobalität' : collection}
         </span>
         <Link
+          title={collection + ' - China Today'}
           href={`/kategorien/${collection.toLowerCase()}`}
           className="bg-red-600 px-4 py-2 text-white shadow transition duration-300 ease-in-out  hover:bg-red-700"
         >
@@ -78,6 +79,7 @@ export default async function CategoryFeatures({
       {/* Large Image with Text Overlay */}
       {articles.length > 0 && (
         <Link
+          title={articles[0]?.attributes?.title + ' - China Today'}
           href={`/kategorien/${articles[0].attributes.collection.data.attributes.slug}/${articles[0].attributes.slug}`}
         >
           <div className="relative mb-8 h-[500px] w-full rounded-lg shadow-lg">
@@ -105,6 +107,7 @@ export default async function CategoryFeatures({
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
         {articles.slice(1, 4).map((article: Article, index: number) => (
           <Link
+            title={article?.attributes?.title + ' - China Today'}
             href={`/kategorien/${article.attributes.collection.data.attributes.slug}/${article.attributes.slug}`}
             key={index}
             className="flex transform flex-col overflow-hidden rounded-xl bg-white shadow transition duration-300 hover:scale-105"

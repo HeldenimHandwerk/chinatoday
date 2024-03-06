@@ -1,4 +1,5 @@
 'use client'
+import type { Metadata } from 'next'
 
 import React, { useState } from 'react'
 import { FaSearch } from 'react-icons/fa'

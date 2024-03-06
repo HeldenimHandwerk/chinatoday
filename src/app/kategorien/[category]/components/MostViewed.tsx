@@ -98,6 +98,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
 
   return (
     <Link
+      title={title + ' - China Today'}
       href={`/kategorien/${article.attributes.collection.data.attributes.slug}/${article.attributes.slug}`}
       className="mb-8 block w-full"
     >
