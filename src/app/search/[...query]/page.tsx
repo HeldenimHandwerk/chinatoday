@@ -13,10 +13,12 @@ interface Props {
   }
 }
 
-export const generateMetadata = (query: string, page: string): Metadata => {
-  const title = `Suchergebnisse für "${query}" | China Today`
-  const description = `Entdecken Sie Artikel zu "${query}" auf China Today. Bleiben Sie informiert mit den neuesten Nachrichten und tiefgehenden Analysen.`
-  const url = `https://www.china-today.de/search/${query}/${page}`
+export const generateMetadata = async ({
+  params
+}: Props): Promise<Metadata> => {
+  const title = `Suchergebnisse für "${params.query}" | China Today`
+  const description = `Entdecken Sie Artikel zu "${params.query}" auf China Today. Bleiben Sie informiert mit den neuesten Nachrichten und tiefgehenden Analysen.`
+  const url = `https://www.china-today.de/search/${params.query}/${params.page}`
 
   return {
     title,
