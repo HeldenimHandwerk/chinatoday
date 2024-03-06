@@ -23,14 +23,16 @@ const Archive: React.FC<ArchiveProps> = ({ articles }) => {
   const totalPages = Math.ceil(articles.length / articlesPerPage)
 
   return (
-    <section className="h-full p-10">
+    <section className="h-full  sm:p-10">
       {/* Modern "Show Articles" Button with Red-400 Theme */}
-      <button
-        className=" container flex w-full items-center justify-center rounded-md bg-red-400 px-4 py-3 text-lg font-bold text-white shadow-md transition duration-300 ease-in-out hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
-        onClick={() => setShowArticles(!showArticles)}
-      >
-        {showArticles ? 'Archivartikel ausblenden' : 'Archivartikel anzeigen'}
-      </button>
+      <div className="p-5">
+        <button
+          className=" flex w-full items-center justify-center rounded-md bg-red-400 px-4 py-3 text-lg font-bold text-white shadow-md transition duration-300 ease-in-out sm:container hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+          onClick={() => setShowArticles(!showArticles)}
+        >
+          {showArticles ? 'Archivartikel ausblenden' : 'Archivartikel anzeigen'}
+        </button>
+      </div>
 
       {/* Animated Articles Container with Modern Transitions */}
       {showArticles && (
