@@ -119,7 +119,7 @@ export default async function CategoryArticlesLayout({
       </div>
       {/* Third Column */}
       <div className="hidden w-1/4 flex-col gap-4 md:flex">
-        {featureArticles.slice(4).map((article, index) => (
+        {featureArticles.slice(4, 6).map((article, index) => (
           <ArticleComponent
             article={article}
             style={{ height: '50%' }}
