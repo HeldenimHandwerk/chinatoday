@@ -5,7 +5,7 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
     rules: [
       {
         userAgent: '*',
-        disallow: ['/admin', '/privacy'],
+        disallow: ['/adminhih', '/datenschutz', '/impressum'],
         allow: '/'
       }
     ],

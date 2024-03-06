@@ -20,11 +20,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       category.attributes.slug !== 'uncategorized'
   )
 
+  // Check if a date is valid
+  const isValidDate = (date: any) => {
+    return !isNaN(Date.parse(date))
+  }
+
   // Dynamic paths from articles
   const dynamicArticlesPaths: MetadataRoute.Sitemap = articles.map(
     (article: Article) => ({
       url: `https://www.china-today.de/kategorien/${article.attributes?.collection?.data?.attributes?.slug}/${article?.attributes?.slug}`,
-      lastModified: new Date(article?.attributes?.dateOfPublish).toISOString(),
+      lastModified: isValidDate(article?.attributes?.dateOfPublish)
+        ? new Date(article?.attributes?.dateOfPublish).toISOString()
+        : undefined,
       changeFrequency: 'daily', // Specified as a literal type
       priority: 0.7
     })
@@ -34,7 +41,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const dynamicCategoriesPaths: MetadataRoute.Sitemap = categoryData.map(
     (category: Article) => ({
       url: `https://www.china-today.de/kategorien/${category.attributes.slug}`,
-      lastModified: new Date(category.attributes.dateOfPublish).toISOString(),
+      lastModified: isValidDate(category.attributes.dateOfPublish)
+        ? new Date(category.attributes.dateOfPublish).toISOString()
+        : undefined,
       changeFrequency: 'daily', // Specified as a literal type
       priority: 0.7
     })
@@ -46,7 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `https://www.china-today.de`,
       lastModified: new Date().toISOString(),
       changeFrequency: 'daily', // Specified as a literal type
-      priority: 0.7
+      priority: 1.0
     },
     {
       url: `https://www.china-today.de/search`,
@@ -58,7 +67,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `https://www.china-today.de/datenschutz`,
       lastModified: new Date().toISOString(),
       changeFrequency: 'daily', // Specified as a literal type
-      priority: 0.7
+      priority: 0.2
     },
 
     ...dynamicCategoriesPaths,
