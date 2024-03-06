@@ -18,7 +18,16 @@ const categories = [
     title: 'Wirtschaft China today'
   },
   { name: 'Kultur', link: 'kategorien/kultur', title: 'Kultur China today' },
-  // { name: 'technology', link: 'kategorien/technology' },
+  {
+    name: 'technology',
+    link: 'kategorien/technology',
+    title: 'Technologie China today'
+  },
+  {
+    name: 'gesellschaft',
+    link: 'kategorien/gesellschaft',
+    title: 'Gesellschaft China today'
+  },
   {
     name: 'Mobilität',
     link: 'kategorien/mobilitaet',
