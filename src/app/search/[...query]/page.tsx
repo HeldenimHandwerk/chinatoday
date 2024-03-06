@@ -13,13 +13,10 @@ interface Props {
   }
 }
 
-export const generateMetadata = (
-  searchTerm: string,
-  pageNumber: string
-): Metadata => {
-  const title = `Suchergebnisse für "${searchTerm}" | China Today`
-  const description = `Entdecken Sie Artikel zu "${searchTerm}" auf China Today. Bleiben Sie informiert mit den neuesten Nachrichten und tiefgehenden Analysen.`
-  const url = `https://www.china-today.de/search/${searchTerm}/${pageNumber}`
+export const generateMetadata = (query: string, page: string): Metadata => {
+  const title = `Suchergebnisse für "${query}" | China Today`
+  const description = `Entdecken Sie Artikel zu "${query}" auf China Today. Bleiben Sie informiert mit den neuesten Nachrichten und tiefgehenden Analysen.`
+  const url = `https://www.china-today.de/search/${query}/${page}`
 
   return {
     title,
