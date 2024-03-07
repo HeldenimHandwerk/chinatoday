@@ -19,8 +19,8 @@ const categories = [
   },
   { name: 'Kultur', link: 'kategorien/kultur', title: 'Kultur China today' },
   {
-    name: 'technology',
-    link: 'kategorien/technology',
+    name: 'Technologie',
+    link: 'kategorien/technologie',
     title: 'Technologie China today'
   },
   {

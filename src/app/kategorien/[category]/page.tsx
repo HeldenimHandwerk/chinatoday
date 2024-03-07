@@ -57,7 +57,7 @@ export const generateMetadata = async ({
       description =
         'Bleiben Sie auf dem Laufenden über Sportereignisse und Trends in China mit China Today. Erfahren Sie alles über die Leistungen chinesischer Athleten, nationale und internationale Wettkämpfe sowie die Entwicklung verschiedener Sportarten in China.'
       break
-    case 'technology':
+    case 'technologie':
       title = 'Technologische Innovationen aus China - China Today'
       description =
         'Erhalten Sie Einblicke in Chinas Technologielandschaft mit China Today. Wir berichten über die neuesten technologischen Durchbrüche, Start-ups, und die Rolle Chinas als globale Tech-Supermacht. Verpassen Sie keine Innovationen aus der Welt der Technologie.'
