@@ -66,7 +66,7 @@ const Footer = () => {
                 <NavLink link="/kategorien/poltik" label="Politik" />
                 <NavLink link="/kategorien/wirtschaft" label="Wirtschaft" />
                 <NavLink link="/kategorien/kultur" label="Kultur" />
-                <NavLink link="/kategorien/technologie" label="technologie" />
+                <NavLink link="/kategorien/technologie" label="Technologie" />
               </ul>
               <ul className="w-full">
                 <NavLink link="/kategorien/mobilitaet" label="Mobilität" />

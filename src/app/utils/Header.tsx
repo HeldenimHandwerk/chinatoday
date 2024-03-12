@@ -24,7 +24,7 @@ const categories = [
     title: 'Technologie China today'
   },
   {
-    name: 'gesellschaft',
+    name: 'Gesellschaft',
     link: 'kategorien/gesellschaft',
     title: 'Gesellschaft China today'
   },
