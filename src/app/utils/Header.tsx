@@ -22,19 +22,7 @@ const categories = [
     name: 'Technologie',
     link: 'kategorien/technologie',
     title: 'Technologie China today'
-  },
-  {
-    name: 'Gesellschaft',
-    link: 'kategorien/gesellschaft',
-    title: 'Gesellschaft China today'
-  },
-  {
-    name: 'Mobilität',
-    link: 'kategorien/mobilitaet',
-    title: 'Mobilität China today'
-  },
-  { name: 'Sport', link: 'kategorien/sport', title: 'Sport China today' },
-  { name: 'Reisen', link: 'kategorien/reisen', title: 'Reisen China today' }
+  }
 ]
 
 export default function Header() {

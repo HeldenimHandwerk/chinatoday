@@ -2,16 +2,7 @@ import BentoArticles from './homeComponents/BentoArticles'
 import CategoryFeatures from './homeComponents/categoryFeatures'
 
 export default function Home() {
-  const collections = [
-    'politik',
-    'wirtschaft',
-    'kultur',
-    'technologie',
-    'mobilitaet',
-    'gesellschaft',
-    'reisen',
-    'sport'
-  ]
+  const collections = ['politik', 'wirtschaft', 'kultur', 'technologie']
   return (
     <main>
       <BentoArticles />

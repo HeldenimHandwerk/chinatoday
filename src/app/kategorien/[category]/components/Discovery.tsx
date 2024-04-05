@@ -69,7 +69,7 @@ const SingleCard: React.FC<ArticleProps> = ({ article }) => {
   return (
     <Link
       title={article?.attributes.title + ' - China Today'}
-      href={`/kategorien/${article?.attributes?.collection?.data.attributes.slug}/${article.attributes.slug}`}
+      href={`/kategorien/${article?.attributes?.collection?.data?.attributes?.slug}/${article?.attributes?.slug}`}
       className="w-full p-4 sm:w-1/2"
     >
       <div className="flex h-full transform flex-col overflow-hidden rounded-lg bg-white shadow-lg duration-300 hover:-translate-y-1 hover:shadow-xl lg:flex-row">
