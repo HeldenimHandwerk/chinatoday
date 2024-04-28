@@ -6,7 +6,8 @@ import Script from 'next/script'
 import Header from '@/app/utils/Header'
 import Footer from '@/app/utils/Footer'
 import Cookies from '@/app/utils/cookies'
-
+import PlausibleProvider from 'next-plausible'
+import Head from 'next/head'
 // Importing Roboto font
 const roboto = Roboto({
   weight: ['400', '700'],
@@ -41,6 +42,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Head>
+        <PlausibleProvider domain="china-today.de" />
+      </Head>
       {/* Applying Roboto font to the body */}
       <body className={roboto.className}>
         {/* <GoogleAnalytics /> */}
