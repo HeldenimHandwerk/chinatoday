@@ -42,9 +42,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Head>
-        <PlausibleProvider domain="china-today.de" />
-      </Head>
       {/* Applying Roboto font to the body */}
       <body className={roboto.className}>
         {/* <GoogleAnalytics /> */}
@@ -69,6 +66,8 @@ export default function RootLayout({
         <Header />
         <Cookies>{children}</Cookies>
         <Analytics />
+        <PlausibleProvider domain="china-today.de" />
+
         <Footer />
       </body>
     </html>
